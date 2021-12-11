@@ -1,0 +1,785 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter2.tex
+%% NOVA thesis document file
+%%
+%% Chapter with the template manual
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{State of the Art} \label{cha:users_manual}
+
+\section{Machine Learning} \label{sec:ml}
+
+The modern world is overflowing with data. It has reached a stage where humans can no longer regulate it since the rate of analysis is far slower than the continuous growth of good and bad data. According to Figure~\ref{fig:volume_of_data}, this rapid growth is not expected to stop anytime sooner, so we need tools and technologies to make the process of making sense out of data more efficient~\cite{G2017WhatLearning}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{volume_of_data.png}
+    \caption{The volume of data created, captured, copied, and consumed from 2010 to 2025~\cite{TotalStatista}}
+    \label{fig:volume_of_data}
+\end{figure}
+
+\gls{ML}, which is a subfield of artificial intelligence and computer science, is a promise that humans will be able to extract useful information from all this data. It focuses on using data and algorithms to imitate the way humans learn while improving accuracy~\cite{IBMCloudEducationWhatLearning}.
+
+For a long time, one of the major differences between humans and computers has been that humans tend to naturally improve their approach to solving problems by learning from their mistakes and trying to fix them. Traditional computer programs are unable to improve their behavior since they do not consider the outcome of their job~\cite{Luckert2016UsingDocuments}. 
+
+This topic is addressed by \gls{ML}, which entails the development of computer systems that can learn and improve their performance by accumulating more data and experience. A. Samuel was the first scientist to design a self-learning program in 1952 when he developed a program that improved at playing checkers as the number of games increased~\cite{Samuel1959SomeCheckers}. By comparing fresh data to known data and discovering similarities between them, the first pattern recognition algorithm was able to recognize patterns in data in 1967~\cite{Luckert2016UsingDocuments}. 
+
+\subsection{Concepts and Workflow}
+
+\gls{ML} relies solely on the availability of the data and does not need any rule-based programming. There is a distinction to be made between traditional programming and \gls{ML}. In traditional programming, we send data and programs as inputs to the machine, and it produces an output, however in \gls{ML}, data and outputs are inputs to the system, and the machine's output is the program that has been learned to make predictions on unknown examples. The primary difference between traditional programming and \gls{ML}'s approach is represented in Figure~\ref{fig:tradition_vs_ml}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{tradition_vs_ml}
+    \caption{Difference between Traditional Programming and Machine Learning~\cite{Kassel2017PredictingAzavea}}
+    \label{fig:tradition_vs_ml}
+\end{figure}
+
+To understand better the concepts of \gls{ML}, Table~\ref{tab:ml_terminologies} provides a few important terminologies.
+
+\begin{table}[ht]
+	\caption{Machine Learning concepts~\cite{Advani2021WhatUses,MachineDevelopers}}
+	\label{tab:ml_terminologies}
+\centering
+\begin{tabular}{p{2.5cm}c}
+	\toprule
+	\multicolumn{1}{c}{\textbf{Concept}} & \textbf{Description} \\
+	\midrule
+	
+    Model
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Mathematical representation of a real-world process. Created using a \gls{ML}\\
+        algorithm and training data.
+    \end{tabular} 
+    \\\midrule
+    
+    Feature
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        It is a measurable property or characteristic of the data-set.
+    \end{tabular} 
+    \\\midrule
+    
+    Feature Vector
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Multiple features are used as an input to the \gls{ML} model to\\
+        train and predict.
+    \end{tabular} 
+    \\\midrule
+    
+    Training
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        As input, an algorithm takes a set of data known as "training data". The\\
+        learning algorithm looks for patterns in the data and then trains the\\
+        model to produce the predicted results. The model is the result of\\
+        the training process.
+    \end{tabular} 
+    \\\midrule
+    
+    Prediction
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Once the \gls{ML} model is complete, it can be fed input data\\
+        to accurately predict.
+    \end{tabular} 
+    \\\midrule
+    
+    Target (Label)
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        It is the value that the \gls{ML} model must predict.
+    \end{tabular} 
+    \\\midrule
+    
+    Overfitting
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Making a model that is so similar to the training data that it fails\\
+        to generate accurate predictions on new data.
+    \end{tabular} 
+    \\\midrule
+    
+    Underfitting
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        This happens when the model fails to detect the underlying trend in\\
+        the input data. The \gls{ML} model's accuracy is affected.
+    \end{tabular} 
+    \\
+    
+    
+	\bottomrule
+\end{tabular}
+\end{table}
+
+\gls{ML} workflows specify which phases of a \gls{ML} project are implemented. While these measures are widely acknowledged as best practices, there is still potential for improvement. 
+
+When developing a \gls{ML} workflow, the first step is to define the project before determining the best working strategy or attempting to fit the model into a predetermined workflow. Instead, a flexible workflow should be created to start small and work its way up to a production-ready solution~\cite{MachineRun:AI}.
+
+The steps taken during a \gls{ML} implementation are defined by the workflows. \gls{ML} workflows differ depending on the project, but they usually consist of seven steps~\cite{Advani2021WhatUses,MachineRun:AI}.
+
+\subsubsection{Data Gathering}
+
+This phase is crucial because the quality and quantity of data collected will directly affect how accurate the predictive model is.
+
+Some examples of types of data are listed below in Table~\ref{tab:data_types}.
+
+\begin{table}[ht]
+	\caption{Types of data~\cite{Sarker2021MachineDirections}}
+    \label{tab:data_types}
+\centering
+\begin{tabular}{p{2.5cm}cc}
+	\toprule
+	\multicolumn{1}{c}{\textbf{Data type}} & \textbf{Description} & \textbf{Examples} \\
+	\midrule
+	
+    Structured
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        It has a well-defined structure, is well-organized\\
+        and accessible, and is used by an entity or a \\
+        computer program. Often stored in a tabular manner\\
+        in well-defined schemes, such as relational databases.
+    \end{tabular} 
+    &
+    \begin{tabular}[c]{@{}c@{}}
+        names, addresses,\\
+        credit card numbers,\\
+        geolocation
+    \end{tabular}
+    \\\midrule
+    
+    Unstructured
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Since there is no pre-defined format or\\
+        organization, it is significantly more difficult\\
+        to acquire, handle, and analyze data that is\\
+        largely text and multimedia.
+    \end{tabular} 
+    &
+    \begin{tabular}[c]{@{}c@{}}
+        emails, PDF files,\\
+        audio files,\\
+        videos, photos
+    \end{tabular}
+    \\\midrule
+    
+    Semi-structured
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        It is not kept in a relational database, but\\
+        it does contain organizational qualities that\\
+        make it easier to examine.
+    \end{tabular} 
+    &
+    \begin{tabular}[c]{@{}c@{}}
+        HTML, XML,\\
+        JSON documents,\\
+        NoSQL databases
+    \end{tabular}
+    \\
+    
+	\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Data pre-processing}
+
+Cleaning, validating, and converting data into a usable dataset, are all part of pre-processing. This may be a simple operation if the data was collected from a single source. If not, the data format must match between the different sources and be equally credible without any potential duplicates. The majority of real-world data is disorganized; examples include:
+\begin{itemize}
+    \item \textbf{Missing data}: when it is not created continuously or when there are technical issues with the application.
+    \item \textbf{Noisy data}: also known as outliners, this can be caused by human error (manually obtaining data) or a technical issue with the device at the time of data collection.
+    \item \textbf{Inconsistent data}: This type of data may be gathered as a result of human error (mistakes in names or values) or data duplication.
+\end{itemize}
+
+And there are types of raw data too, including:
+
+\begin{itemize}
+    \item \textbf{Numeric}: height, weight, age, number of movies watched, IQ.
+    \item \textbf{Categorical}: race, sex, nationality.
+    \item \textbf{Ordinal}: low/medium/high, education level ("high school", "BS", "MS", "PhD").
+\end{itemize}
+
+However, there's an important aspect of \gls{ML} models as they can only handle numeric features. As a result, categorical and ordinal data must be converted into numeric features~\cite{Pant2019WorkflowProject}.
+
+
+\subsubsection{Splitting the Data}
+
+This step includes dividing the processed data into three datasets: training, validating, and testing:
+
+\begin{itemize}
+    \item \textbf{Training set}: used to train the algorithm. This set uses parameters to define model classifications.
+    \item \textbf{Validation set}: used to calculate the model's accuracy. The parameters of the model are fine-tuned using this dataset.
+    \item \textbf{Test set}: used to evaluate the models' accuracy and performance. This set is intended to reveal any model flaws or mistrainings. It helps to avoid choosing a set of hyperparameters that happen to work well on the data chosen for the validation set.
+\end{itemize}
+
+The training set must not be too small; otherwise, due to the lack of data, the model is unable to learn. The validation set cannot be too small either, as measures such as accuracy, recall, and precision will have a lot of variance, and the model will not be tuned properly. The best split of the test, validation, and train sets is determined by factors such as the use case, model structure, data dimension, etc. So, in general, a good split to start with is keeping 80\% of the data in the training set, 10\% in the validation set, and 10\% in the test set~\cite{Baheti2021TrainData}.
+
+\subsubsection{Building + Training model}
+
+The key goal now is to use the pre-processed data to train the best-performing model.
+
+Data can be any of the types listed above (Table~\ref{tab:data_types}), and they can differ from one application to the next in the real world. Therefore, different types of \gls{ML} approaches can be used to evaluate a specific problem field and extract insights or usable knowledge from the data to construct real-world intelligent systems.
+
+As shown in Figure~\ref{fig:categorization_ML}, supervised learning, unsupervised learning, and reinforcement learning are the three primary categories of \gls{ML} algorithms. Each type of learning algorithm will be addressed in the following section, along with the extent to which they can be used to solve real-world problems.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Chapters/Figures/categorization_ML.jpeg}
+    \caption{Categorization of Machine Learning with examples~\cite{Chugh2018TypesKnow}}
+    \label{fig:categorization_ML}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Supervised Learning}: It is a \gls{ML} paradigm for obtaining knowledge about a system's input-output relationship from a set of paired input-output training examples~\cite{Liu2012SupervisedLearning}. The two most common supervised categories are "classification", in which various labels are used to teach the algorithm to classify items inside a certain category, and "regression", which is used to predict future values trained with historical data. Examples for both categories are shown in Figure~\ref{fig:categorization_ML}. A clearer distinction between classification and regression is illustrated in Figure~\ref{fig:regression_vs_classification}.
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.7\linewidth]{Chapters/Figures/regression-vs-classification.png}
+        \caption{Classification vs Regression~\cite{Matanga2017AnalysisInterfaces}}
+        \label{fig:regression_vs_classification}
+    \end{figure}
+    
+    \item \textbf{Unsupervised Learning}: These algorithms are used when the data used in the training process is not categorized. Although they cannot figure out the proper output, they can infer a function to identify trends or hidden structures from unlabeled data in the dataset~\cite{2020WhatExpert.ai}. The two most common unsupervised categories are "clustering", which involves grouping input variables with similar qualities, and "dimensionality reduction" which refers to techniques that reduce the number of input variables in a dataset~\cite{Advani2021WhatUses,Brownlee2020IntroductionLearning}. 
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.7\linewidth]{Chapters/Figures/clustering_vs_DR.png}
+        \caption{Clustering vs Dimensionality Reduction~\cite{Beck2020AModelling}}
+        \label{fig:clustering_vs_DR}
+    \end{figure}
+    
+    \item \textbf{Reinforcement Learning}: These models are taught to make a set of decisions based on the rewards and feedback they receive. During the learning stage, the machine learns to achieve a specified goal in complicated and uncertain conditions and is rewarded each time it succeeds. Reinforcement learning differs from supervised learning in that there is no right or wrong answer, therefore the reinforcement agent determines how to complete a task. When there is no training data set available, the machine learns from its own experiences~\cite{Advani2021WhatUses}.
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.55\linewidth]{Chapters/Figures/reinforcement.png}
+        \caption{Overview of reinforcement learning~\cite{Sah2020MachineTypes}}
+        \label{fig:reinforcement}
+    \end{figure}
+\end{itemize}
+
+\subsubsection{Evaluation}
+
+The validation set is used to evaluate the model's performance, showing how it will perform on new, unknown data.
+
+Then, the model can be tested when an acceptable collection of hyperparameters has been found and the model accuracy has been optimized. The test dataset is used in testing to ensure that the models are using accurate features.
+
+It's possible to go back to training to improve the desired metrics if the feedback received is not acceptable.
+
+\subsubsection{Hyperparameter Tuning}
+
+The process of selecting a set of ideal hyperparameters for a learning algorithm is known as hyperparameter tuning. A hyperparameter is a model argument whose value is determined prior to the start of the learning process. Hyperparameter optimization is the core of \gls{ML} algorithms.
+
+\subsubsection{Prediction}
+
+After obtaining an acceptable performance, guided by the evaluation phase, the next and final step is to put the developed model to work. After all this effort, the benefit of \gls{ML} is recognized at this step. The benefit of \gls{ML} is that it enables one to obtain an accurate prediction by feeding input data to the model rather than relying on human judgment and manual rules.
+
+\subsection{Machine Learning models and algorithms}
+
+\subsubsection{Supervised Learning}
+
+In supervised \gls{ML} processes, several algorithms and computing approaches are utilized. The following are quick descriptions of some of the most popular learning approaches~\cite{2020WhatIBM,Chugh2018TypesKnow}.
+\begin{itemize}
+    \item \textbf{\gls{LR}}: It's a classification technique in which a straight line is used to show the relationships between data and outcomes. The approach provides insight into the factors that have a greater impact on the outcome. For example, the color of a car may not have a substantial association to its risks of breaking down, but the make/model may~\cite{Chugh2018TypesKnow}. Simple \gls{LR} occurs when there are only two variables: one independent and one dependent. Multiple \gls{LR} is used when the number of independent variables increases. It aims to display a line of maximum fit, which is computed using the method of least squares~\cite{Kenton2021LeastDefinition}, for each type of \gls{LR}.
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.65\linewidth]{Chapters/Figures/linear_regression.jpg}
+        \caption{Visual representation of Linear Regression~\cite{MachineRegressionModel}}
+        \label{fig:linear_regression}
+    \end{figure}
+    
+    Figure~\ref{fig:linear_regression} shows how the model (red line) is created by utilizing training data (blue points) with known labels (y axis) to fit the points as exactly as possible by minimizing the value of a given loss function.
+    
+    \item \textbf{\gls{KNN}}:
+    The \gls{KNN} algorithm is a classification/regression technique that classifies data points based on their proximity and correlation with other data~\cite{Singh2018K-NearestPython,2020WhatIBM}. This technique assumes that data points that are comparable can be located close together. As a result, it attempts to determine the distance between data points, which is commonly done using Euclidean distance, and then assigns a category based on the most common category or average. Depending on the value of K (the number of nearest neighbors that will participate in the voting process), different results can be obtained.
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.65\linewidth]{Chapters/Figures/knn.png}
+        \caption{Visual representation of K-Nearest Neighbors~\cite{Bronshtein2017AMedium}}
+        \label{fig:knn}
+    \end{figure}
+    
+    In Figure~\ref{fig:knn}, the test sample should fall into one of two categories: blue squares or red triangles. If K = 1 (inner circle), it is assigned to the class represented by the blue squares because there is only one blue square and zero red triangles inside the circle. If K = 3 (outer circle), since there are two red triangles and one blue square inside the circle, it is classified into the category represented by the red triangles.
+    
+    \item \textbf{\gls{SVM}}: \gls{SVM}s are supervised learning models that evaluate data for classification and regression analysis. The kernel approach allows \gls{SVM}s to do non-linear as well as linear classification by implicitly mapping their inputs into high-dimensional feature spaces. Basically, it is used to draw lines between classes (hyperplanes). The hyper-plane is drawn at the maximum distance between two classes from the training data points (support vectors) since, in general, the greater the margin, the lower the classifier's generalization error~\cite{Mahesh2019MachineReview}.
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.65\linewidth]{Chapters/Figures/svm.png}
+        \caption{Visual representation of Support Vector Machines~\cite{MaquinaExplicada}}
+        \label{fig:svm}
+    \end{figure}
+    
+    \item \textbf{\gls{RF}}: \gls{RF} is a supervised \gls{ML} technique that can be used for classification and regression. The "forest" refers to a group of uncorrelated decision trees that are then blended to reduce variance and produce more accurate data predictions. The goal of decision trees is to develop a model that predicts by learning basic decision rules from training data~\cite{Chugh2018TypesKnow,2020WhatIBM}.
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.70\linewidth]{Chapters/Figures/dt.png}
+        \caption{Visual representation of Decision Tree~\cite{Rai2018XGBoostScience}}
+        \label{fig:dt}
+    \end{figure}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.70\linewidth]{Chapters/Figures/random_forest.png}
+        \caption{Visual representation of multiple Decision Tree~\cite{Rai2018XGBoostScience}}
+        \label{fig:random_forest}
+    \end{figure}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.65\linewidth]{Chapters/Figures/random_forest_cavalo.png}
+        \caption{Random Forest structure considering multiple decision trees~\cite{Sarker2021MachineDirections}}
+        \label{fig:random_forest2}
+    \end{figure}
+    
+    \item \textbf{\gls{ANN}}: \gls{ANN} is a \gls{ML} algorithm that is inspired by the biological structure and function of the human brain~\cite{ArtificialDataFlair}. In general, a biological neuron accepts inputs and arranges them to perform an operation, which results in the final output. When looking at biological neurons, there are four major components: dendrites, cell bodies, axons, and synapses. Dendrites are in charge of accepting incoming impulses into the cell body. The cell body subsequently processes these electrical signals and converts them to the final output. The output signal is then transferred from the cell body to the other neurons through the axon, which serves as a transmission line between neurons. Synapses are the locations placed between neurons and dendrites that are responsible for gathering input from neurons~\cite{Imran2019AClassification}. The structure of biological neurons is seen in Figure~\ref{fig:neuron}. As seen in Figure~\ref{fig:an}, the intricacy of biological neurons in the brain can be mimicked.
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.75\linewidth]{Chapters/Figures/neuron.png}
+        \caption{Biological neuron~\cite{Deyoung1990ThinkingResearch}}
+        \label{fig:neuron}
+    \end{figure}
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.65\linewidth]{Chapters/Figures/an.png}
+        \caption{Artificial neuron~\cite{Baheti12Choose}}
+        \label{fig:an}
+    \end{figure}
+    
+    In the case of \gls{ANN}, inputs are directed to the body of an artificial neuron. X(n) represents the inputs; each input is multiplied by its associated weight, which is a measure of the input's connection strength and is represented by W(n). The summing function is then given weighted inputs and the bias (b). The summing function's value (z) will be sent to the activation function (f), which will yield the final output~\cite{Imran2019AClassification}. The activation function will also, throughout the prediction phase, use mathematical operations to determine if the neuron's input to the network is essential or not~\cite{Baheti12Choose}. Some examples of activation functions are sigmoid (Eq~\ref{eq:1}), binary step function (Eq~\ref{eq:2}), and ReLU (Eq~\ref{eq:3})~\cite{Gupta2020ActivationLearning}.
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \begin{equation}\label{eq:1}
+        f(x) = \frac{1}{1+e^{-x}}
+    \end{equation}
+    
+    \begin{equation}\label{eq:2}
+        f(x) = \begin{cases}1 & x \geq 0\\0 & x < 0\end{cases}
+    \end{equation}
+    
+    \begin{equation} \label{eq:3}
+        f(x) = \begin{cases}x & x \geq 0\\0 & x < 0\end{cases}
+    \end{equation}
+    
+    The weights of an \gls{ANN} are initially randomly assigned, but they are updated during the training process. This is possible by applying both forward and back propagation. In forward propagation, information travels in one direction only: forward. Inputs are fed into the neural network, and the produced outputs are compared to the real ones, with a loss function used to determine the difference~\cite{DivakarForwardNetworks}. Then, in back propagation, the internal weights are adjusted using optimization methods to reduce the loss function~\cite{Baheti12Choose}. 
+    
+    An \gls{ANN} is composed of three layers: an input layer, a hidden layer, and an output layer. There must be a link between the nodes in the input layer and the nodes in the hidden layer, as well as between each node in the hidden layer and the nodes in the output layer~\cite{Imran2019AClassification}. In the input layer, each neuron represents an input feature, and no computation is performed in this layer. In the hidden layer, as the name suggests, the nodes are not visible. They serve as an abstraction for the neural network. The hidden layer performs all types of calculations on the features received through the input layer by using a weighted linear summation followed by an activation function, and sends the results to the output layer. And it is in the final layer of the network, the output layer, that takes the information learnt from the hidden layer and provides the final value. The number of output neurons represents the number of predictions. This means that, if it is a regression or binary classification problem, this layer will only have one neuron. If it is a multiclass classification problem, the number of neurons will be equal to the number of classes~\cite{Shukla2019DesigningWalkthrough,Baheti12Choose}. Figure~\ref{fig:ann} shows an example of an \gls{ANN}'s structure.
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.65\linewidth]{Chapters/Figures/ann.png}
+        \caption{Artificial Neural Network~\cite{CastrounisAIExplained}}
+        \label{fig:ann}
+    \end{figure}
+
+\end{itemize}
+
+\subsubsection{Unsupervised Learning}
+
+In unsupervised \gls{ML} processes, several algorithms and\mbox{}\\ computing approaches are utilized. The following are quick descriptions of some of the most popular learning approaches~\cite{Chugh2018TypesKnow}.
+\begin{itemize}
+    \item \textbf{K-means clustering}: K-means clustering is a clustering \gls{ML} technique in which data points are divided into K groups. The data points nearest to a certain centroid will be clustered together. Smaller groupings with more granularity are indicated by a higher K value, whereas bigger groupings with less granularity are indicated by a lower K value~\cite{2020WhatIBMb}.
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.65\linewidth]{Chapters/Figures/k-means.png}
+        \caption{Visual representation of K-means clustering~\cite{Beaumont2020ImageMedium}}
+        \label{fig:k-means}
+    \end{figure}
+    
+    \item \textbf{\gls{PCA}}: It is a dimensionality reduction approach that uses feature extraction to eliminate redundancies and compress datasets~\cite{2020WhatIBMb}. Working with too many variables can be difficult for \gls{ML} since there is a chance of overfitting, a lack of appropriate data for each variable, and a degree of correlation between each variable and the output~\cite{Chugh2018TypesKnow}. Figure~\ref{fig:pca} shows an example of a \gls{PCA} and created principal components PC1 and PC2 in different dimension space.
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.85\linewidth]{Chapters/Figures/pca.png}
+        \caption{Visual representation of Principal Component Analysis~\cite{Sah2020MachineTypes}}
+        \label{fig:pca}
+    \end{figure}
+    
+\end{itemize}
+
+\subsubsection{Reinforcement Learning}
+
+In reinforcement learning processes, several algorithms and computing approaches are utilized. The following are quick descriptions of some of the most popular learning approaches~\cite{Sarker2021MachineDirections}.
+\begin{itemize}
+    \item \textbf{Monte Carlos methods}: Monte Carlo methods is a \gls{ML} technique that creates numerical results through repetitive random sampling. The basic concept is to use randomness to solve problems that are, in fact, deterministic~\cite{Sarker2021MachineDirections}.
+    \item \textbf{Q-learning}: Q-learning is a reinforcement learning method that attempts to determine the optimum action to perform given the current state and to learn a policy that maximizes the overall reward. The letter 'Q' in Q-learning often refers for quality, as the algorithm determines the highest predicted rewards for a particular behavior in a given condition~\cite{Sarker2021MachineDirections}.
+\end{itemize}
+
+\subsection{Deep Learning}
+
+\gls{DL} is a subset of \gls{ML} (Figure~\ref{fig:DL}) that employs multi-layered \gls{ANN}s, also know as \gls{DNN}. A \gls{DNN} has several hidden layers, while a typical \gls{ANN} just has one. The inner workings of the layers and neurons are the same as previously mentioned. A visual distinction between these two is depicted in Figure~\ref{fig:ann-vs-dnn}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Chapters/Figures/DL.png}
+    \caption{Overview of Deep Learning~\cite{Alzubaidi2021ReviewDirections}}
+    \label{fig:DL}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Chapters/Figures/ann-vs-dnn.png}
+    \caption{Artificial Neural Network vs Deep Neural Network~\cite{Mostafa2020MachineArticle}}
+    \label{fig:ann-vs-dnn}
+\end{figure}
+
+\gls{DL} uses a series of levels of abstraction to learn from data and solve the problem at hand. The data is broken down into smaller ideas that gradually get more intricate, and it passes through multiple layers that can perform changes on the data in order to find a solution to the problem. Figure~\ref{fig:face_recog} shows an example of a broken-down abstraction. The \gls{DL} algorithm's goal in this case is to detect faces inside a photo, and the system will learn on its own which pixels, edges, and shapes are significant for human face recognition and which are not. This is known as feature extraction, and it is performed by the \gls{DL} model itself, contrasting with other \gls{ML} approaches, where feature extraction is often done explicitly by the programmer~\cite{DeClercq2018DeepSequences}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Chapters/Figures/face_recog.jpg}
+    \caption{Levels of abstraction in a face recognition Deep Learning algorithm~\cite{Mohra2019DeepRecognition}}
+    \label{fig:face_recog}
+\end{figure}
+
+The main advantage of \gls{DL} over typical \gls{ML} approaches is that it performs better in many circumstances, particularly when learning from huge datasets. Figure~\ref{fig:DL_vs_ML} illustrates the general performance of \gls{DL} over \gls{ML} when the amount of data increases. It may, however, differ based on the data qualities and experimental setup.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Chapters/Figures/DL_vs_ML.png}
+    \caption{Deep Learning vs Machine Learning performance~\cite{Alom2019AArchitectures}}
+    \label{fig:DL_vs_ML}
+\end{figure}
+
+To understand better the concepts of \gls{DL}, Table~\ref{tab:dl_terminologies} provides a few important terminologies.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[ht]
+	\caption{Deep Learning concepts~\cite{MachineDevelopers,Pere2020WhatFunctions,Shafkat2018IntuitivelyLearning}}
+	\label{tab:dl_terminologies}
+\centering
+\begin{tabular}{p{0.15\linewidth}c}
+	\toprule
+	\multicolumn{1}{c}{\textbf{Concept}} & \textbf{Description} \\
+	\midrule
+	
+    Activation Function
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Function that takes the weighted sum of all the inputs from\\
+		the previous layer and then creates and passes an output value\\
+		(usually nonlinear) to the following layer.
+    \end{tabular} 
+    \\\midrule
+    
+    Back-propagation
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Most commonly used algorithm for Gradient Descent. Begins at the\\
+		output layer and traverses the network backwards.
+    \end{tabular} 
+    \\\midrule
+    
+    Batch
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Set of examples utilized in one model training iteration.
+    \end{tabular} 
+    \\\midrule
+    
+    Batch size
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        The number of examples in a batch. It's an hyperparameter.
+    \end{tabular} 
+    \\\midrule
+    
+    Dropout
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Deletes a random number of neurons in every iteration.
+    \end{tabular} 
+    \\\midrule
+    
+    Early-stopping
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Regularization strategy that involves stopping model training\\
+		before the training loss reaches zero. The training phase ends\\
+		when the loss on a validation dataset starts to increase.
+    \end{tabular} 
+    \\\midrule
+    
+    Epoch
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        A full training pass across the entire dataset while updating model\\
+		weights. The number of epochs is a key hyperparameter.
+    \end{tabular} 
+    \\\midrule
+    
+    Gradient
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Vector of partial derivatives with respect to all of the\\
+		independent variables.
+    \end{tabular} 
+    \\\midrule
+
+	Gradient Descent
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Technique to minimize loss by computing the gradients of loss with\\
+		respect to the model's parameters, conditioned on training data.
+    \end{tabular} 
+    \\\midrule
+
+	Hyper-parameter
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        The "knobs" adjusted when training a model in successive runs.
+    \end{tabular} 
+    \\\midrule
+
+	Kernel
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Matrix of weights.
+    \end{tabular} 
+    \\\midrule
+
+	Learning rate
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Scalar that is used to train a model with gradient descent. The\\
+		gradient descent technique multiplies the learning rate by the\\
+		gradient at each iteration, meaning it controls the speed of the\\
+		gradient update. It's also a key hyperparameter.
+    \end{tabular} 
+    \\\midrule
+
+	Loss
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Function that calculates the difference between the algorithm's\\
+		current output and the expected output.
+    \end{tabular} 
+    \\\midrule
+
+	Neuron
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        The neural network's basic unit.
+    \end{tabular} 
+    \\\midrule
+
+	Optimizer
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Specific implementation of the gradient descent algorithm.\\
+		Examples are \gls{SGD} and Adam.
+    \end{tabular} 
+    \\\midrule
+
+	Parameter
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Model variable that is self-taught by the \gls{ML} system. Weights,\\
+		for example, are parameters whose values the \gls{ML} system learns\\
+		over time through training iterations.
+    \end{tabular} 
+    \\\midrule
+    
+    Training
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Procedure for determining a model's optimum parameters.
+    \end{tabular} 
+    \\
+
+	\bottomrule
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsubsection{Training Phase}
+
+In order to start training a \gls{DL} model, just as \gls{ANN}, the initial model weights are chosen randomly. Then, the model weights are updated to reduce the error between the algorithm's current output and the expected output. This error is measured by the loss function and weight-finding algorithms are used to minimize this function, knows as optimization algorithms. These algorithms are specific implementations of the gradient descent algorithm, which is a technique to minimize loss by computing the gradients of loss with respect to the model's parameters, conditioned on training data. 
+
+Various optimizers are researched within the last few couples of years each having its advantages and disadvantages, but the most commonly used is \gls{SGD}~\cite{Chauhan2020OptimizationNetworks}.
+
+In \gls{SGD}, the back-propagation algorithm is used to compute the gradients of the loss function, and the results are input to the \gls{SGD} method to update the parameters (weights and biases) incrementally after each epoch.
+
+Instead of computing the gradient of the error based on all training samples like GD, \gls{SGD} creates an approximation of the actual gradient error based on a single training sample. As a result of the faster calculation of the approximation, \gls{DNN} can train faster and generalize better with \gls{SGD}~\cite{Amir2021SGDHelp}.
+
+The difference between the non-updated and the updated weight can be controlled using the learning rate hyperparameter. This means that the greater the learning rate, the greater the weight differential. It is therefore possible to define how to calculate the updated weight
+
+\begin{equation}\label{eq:4}
+    W_{x}^{'} = W_{x} - a(\frac{\partial Error}{\partial W_{x}})
+\end{equation}
+
+where ~$W_{x}^{'}$ is the new weight, ~$W_{x}$ is the old weight, ~$a$ is the learning rate, and ~$\frac{\partial Error}{\partial W_{x}}$ is the gradient (derivative of error with respect to weight)~\cite{2019BackpropagationStep}.
+
+\subsubsection{Generalization, Overfitting and Regularization}
+
+It is difficult to train a \gls{DNN} that can generalize well to unknown input data. A model with insufficient capacity cannot learn the problem, while a model with excessive capacity may learn it too well and overfit the training dataset. In both circumstances, the model does not generalize effectively. 
+
+The capacity, or complexity, of a neural network model is determined by both its structure (number of nodes and layers) and its parameters (weights). As a result, in order to reduce overfitting (and increase generalization power), it is possible to lower a neural network's complexity by changing its structure or its parameters~\cite{Brownlee2019HowNetworks}. However, instead of changing the neural network's architecute, it is more typical to limit the model's complexity by changing the model's weights, keeping them as small as possible. Small parameters imply a less complex and, as a result, more stable model that is less susceptible to statistical fluctuations in the input data.
+
+Methods that aim to reduce overfitting by maintaining network weights minimal are referred to as regularization methods and the most common ones include early stopping, L1, L2 and dropout~\cite{Brownlee2019HowNetworks}.
+
+Early stopping takes a straightforward strategy, stopping the network's training before it overfits to the training data. The training phase should be terminated when generalization reduces.
+
+Weight decay, also known as weight regularization, is another strategy for decreasing overfitting in neural networks. Weight decay penalizes the network for having a high weight distribution by adding a cost to the training loss~\cite{Brownlee2019HowNetworks}. Examples of these methods are L1 and L2. In L1, it applies an L1 penalty equivalent to the absolute value of the magnitude of the coefficient. In L2, It applies an L2 penalty equivalent to the square of the magnitude of the coefficients~\cite{Tyagi2021L2Learning}.
+
+In dropout, as the name suggests, drops nodes at random in the network's hidden layers. This is accomplished by setting the weight for these randomly chosen nodes to zero and then increasing the other weights. The amount to scale up is proportional to the dropout rate~\cite{Brownlee2019HowNetworks}.
+
+\subsubsection{Deep Neural Network Architectures}
+
+The growth in the field of \gls{DL} architectures during the last two decades has provided enormous prospects for implementing it in a variety of applications. The next section introduces three popular \gls{DL} architectures: \gls{CNN}, \gls{RNN}, and autoencoders~\cite{Ganatra2018ATools,Madhavan2021DeepDeveloper}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Chapters/Figures/DL-arch.png}
+    \caption{Deep Learning architectures~\cite{Madhavan2021DeepDeveloper}}
+    \label{fig:DL-arch}
+\end{figure}
+
+\subsubsection{Convolutional Neural Networks}
+
+A \gls{CNN} is a multilayer supervised neural network that was originally inspired by the neurobiological process of animal visual cortex~\cite{Ganatra2018ATools}. It is commonly utilized in a variety of applications including as image and video recognition, image processing, and classification.
+
+The \gls{CNN} architecture is composed of multiple layers that perform feature extraction and classification (Figure~\ref{fig:cnn}). The input image is separated into fields, which are then fed into a convolutional layer, which extracts features from the input image. Pooling is the following stage, which decreases the dimensionality of the retrieved features (by down-sampling) while maintaining the most critical information (typically, through max pooling). Following that, another convolution and pooling phase is conducted, which feeds into a fully connected multilayer. This network's final output layer is a collection of nodes that identify image features (in this case, a node per identified number)~\cite{Madhavan2021DeepDeveloper}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Chapters/Figures/cnn.png}
+    \caption{Convolutional Neural Network architecture~\cite{Madhavan2021DeepDeveloper}}
+    \label{fig:cnn}
+\end{figure}
+
+\subsubsection{Recurrent Neural Networks}
+
+In a feedforward neural network, the outputs of one layer are passed to the next layer, which is a unidirectional process. Past data cannot be stored in these feedforward networks~\cite{Shewalkar2019PerformanceGRU}. 
+
+A \gls{RNN} can access previous data because of its loop-like structure, making them ideal algorithms for \gls{ML} supervised challenges involving sequential data, such as speech and handwriting recognition~\cite{Ganatra2018ATools}. Recurrent connections can be generated in \gls{RNN} in three ways: starting in a neuron and ending in the same neuron; starting in a neuron and ending in another neuron from the same layer; or starting in a neuron and ending in another neuron from the previous layer. Only hidden and output neurons establish these recurrent connections; no input or bias neurons are involved. This design allows for the storage of historical data in order to predict current data~\cite{ShewalkarComparisonData}, meaning that it considers both the current input and what it has learnt from previous inputs when making a decision.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Chapters/Figures/rnn.png}
+    \caption{Recurrent Neural Network architecture~\cite{Gupta2017RecurrentLearning}}
+    \label{fig:rnn}
+\end{figure}
+
+However, RNNs suffer from the vanishing gradients problem, which makes learning large data sequences difficult. Gradients carry the information that is utilized in \gls{RNN} parameter updates, and as they backpropagate through time, they become smaller and smaller. The parameter updates then become so tiny that no significant learning has taken place. Specific \gls{RNN} designs, such as the \gls{LSTM} and \gls{GRU}, were created to overcome the problem of vanishing gradients.
+
+\gls{LSTM} is a \gls{RNN} architecture that was created to more precisely model temporal sequences and their long-range dependencies. \gls{LSTM}s have a similar architecture to RNNs, with the exception that they employ a separate function to calculate hidden state in addition to the gating mechanism. To regulate the information passing through, it has three gates: an input gate, a forget gate, and an output gate. In \gls{LSTM}s, there is a cell that saves past values and keeps them until a forget gate orders the cell to forget them. In another sense, it preserves earlier iterations for as long as they are required. An input gate adds a new input to the cell, while an output gate determines when the vectors from the cell should be sent through to the next hidden state~\cite{Khan2019RNN-LSTM-GRUTransformation}. Each gate is controlled by weights in the cell. The training algorithm, which is usually referred to as \gls{BPTT}, optimizes these weights depending on the network output error~\cite{Madhavan2021DeepDeveloper}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Chapters/Figures/lstm.png}
+    \caption{Long Short-Term Memory architecture~\cite{Madhavan2021DeepDeveloper}}
+    \label{fig:lstm}
+\end{figure}
+
+The architecture of the \gls{LSTM} can take several forms, one of which is the \gls{GRU}. The rest gate and the update gate are the only two gates that \gls{GRU} uses. The rest gate is used in a model to determine how much information from the past should be forgotten or remembered. It decides which information to forget based on the information in the previous state and the next input candidate. The update gate aids the model in determining how much information from previous time steps should be passed on to future time steps.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Chapters/Figures/gru.png}
+    \caption{Gated Recurrent Unit architecture~\cite{Madhavan2021DeepDeveloper}}
+    \label{fig:gru}
+\end{figure}
+
+\gls{GRU} is a simple version \gls{LSTM}, so it can be trained faster, and can execute tasks more efficiently. The \gls{LSTM}, on the other hand, is more expressive, and with more data, it can provide better performance.
+
+\subsubsection{Autoencoders}
+
+Autoencoder is an unsupervised neural network that learns how to compress and encode data effectively before reconstructing it back to a representation that is as similar to the original input as possible~\cite{Badr2019Auto-Encoder:For}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Chapters/Figures/autoencoders.png}
+    \caption{Autoencoders architecture~\cite{Madhavan2021DeepDeveloper}}
+    \label{fig:autoencoders}
+\end{figure}
+
+As shown in Figure~\ref{fig:autoencoders}, this type of neural network is made up of three layers: input, hidden, and output. First, a suitable encoding function is used to encode the input layer into the hidden layer. The hidden layer contains a significantly smaller number of nodes than the input layer. The compressed form of the original input is stored in this hidden layer. Using a decoder function, the output layer attempts to recreate the input layer. 
+
+As a result, autoencoders consists of 4 main parts~\cite{Bandyopadhyay2021AnKnow,Badr2019Auto-Encoder:For}:
+
+\begin{itemize}
+    \item \textbf{Encoder}: The model learns how to compress the input data into an encoded form by reducing the input dimensions.
+    \item \textbf{Bottleneck}: The compressed form of the input data is stored in this layer. This is the smallest input data dimension imaginable.
+    \item \textbf{Decoder}: The model learns how to reconstruct data from the encoded representation as closely as possible to the original input.
+    \item \textbf{Reconstruction Loss}: This is a way for determining how well a decoder works and how near the output is to the original input. Back propagation is then used in the training to reduce the network's reconstruction loss.
+\end{itemize}
+
+The compressed form of the original input must only have essential information. In other words, an autoencoder can reduce data dimensionality by learning to ignore noise from the input data. Figure~\ref{fig:ac_example} provides an illustration of this process.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Chapters/Figures/ac_example.jpeg}
+    \caption{Autoencoders example~\cite{Badr2019Auto-Encoder:For}}
+    \label{fig:ac_example}
+\end{figure}
+
+\subsection{AutoML}
+
+By automating \gls{ML} workflows, teams may complete some of the more time-consuming tasks associated with model creation with more efficiency. This is commonly referred to as automated \gls{AutoML}, and there are various modules and platforms available for it.
+
+\gls{AutoML} works by using current \gls{ML} algorithms to create new models. Its goal isn't to automate the entire model development process. Rather, it is to limit the amount of interventions that humans must do in order for development to be successful. \gls{AutoML} makes it much easier for developers to get started and finish projects. It has the potential to improve \gls{DL} and unsupervised \gls{ML} training processes, allowing produced models to self-correct~\cite{MachineRun:AI}.
+
+While it would be ideal if all components of \gls{ML} operations could be automated, this is presently not attainable. The following items can be reliably automated~\cite{MachineRun:AI}:
+
+\begin{itemize}
+    \item \textbf{Hyperparameter optimization}: employs algorithms such as grid search, random search, and Bayesian methods to test and determine the best combination of pre-defined parameters.
+    \item \textbf{Model selection}: to identify which model is most suited to learn from the type of data provided, the same dataset is run through different models with default hyperparameters.
+    \item \textbf{Feature selection}: from pre-defined sets of features, tools identify the most relevant ones.
+\end{itemize}
+
+\subsection{Python libraries for machine and deep learning}
+
+While there are many languages to choose from, Python is one of the most developer-friendly \gls{ML} and \gls{DL} programming languages available, and it comes with a large library to suit any use-case or project. Most popular libraries include~\cite{JonssonWaysDevelopment,BestGeeksforGeeks}:
+
+\begin{itemize}
+    \item \textbf{Tensorflow}: high-performance numerical computing open source software framework. This library, which was created by Google researchers and engineers, has a strong support for \gls{ML} and \gls{DL}.  It enables users to train models on both the CPU and GPU.
+    \item \textbf{Keras}: \gls{DL} framework that provides high-level building blocks for designing practically any type of \gls{DL} model in a far more convenient way than constructing it from the ground up. Keras also enables users to train models on both the CPU and GPU.
+    \item \textbf{PyTorch}: open-source \gls{ML}/\gls{DL} library created by Facebook and based on Torch, an open-source \gls{ML} toolkit written in C with a Lua wrapper. It offers a large number of tools and libraries that assist Computer Vision, \gls{NLP}, and a variety of other \gls{ML} tasks. It enables developers to run Tensor computations with GPU acceleration and aids in the creation of computational graphs.
+\end{itemize}
+
+\section{DNA sequences} \label{sec:dna_sequences}
+
+\subsection{What are DNA sequences?}
+
+Deoxyribonucleic acid (DNA) is composed of a linear string of nucleotides, or bases, which are referred to by their chemical names' first letters: A, T, C, and G. DNA Sequencing is the technique of finding the order of the four bases. Because the DNA sequence provides information that the organism utilizes to build RNA molecules and proteins, determining the DNA sequence is essential to understanding how genomes function. Scientists can utilize sequence information to figure out which segments of DNA contain genes and which sections have regulatory instructions that turn genes on and off. Furthermore, and more significantly, sequence data can reveal alterations in a gene that could lead to disease~\cite{2020DNASheet}.
+
+The four chemical bases of the DNA double helix always connect with the same partner to produce "base pairs." Adenine (A) is always paired with thymine (T), while cytosine (C) is always paired with guanine (G). This pairing explains the technique by which DNA molecules are copied when cells divide, as well as the methods used in most DNA sequencing research. The human genome is made up of around 3 billion base pairs, which carry the instructions for creating and maintaining a human person~\cite{2020DNASheet}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Chapters/Figures/dna.jpg}
+    \caption{Double helix of DNA~\cite{Yang2020ReviewDNA}}
+    \label{fig:dna}
+\end{figure}
+
+\subsection{Examples of DNA sequences}
+
+\begin{itemize}
+    \item Transcription factor
+    \item Essential genes
+\end{itemize}
+
+\subsection{DNA sequence classification}
+
+\section{Machine and Deep Learning in DNA sequence classification} \label{sec:ml_dl_dna}
+
+\subsection{Common architectures}
+
+\subsection{Relevant previous work on DNA classification}
+
+\subsection{Tools for building DNA sequence classification algorithms}
+
