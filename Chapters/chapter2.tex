@@ -578,7 +578,7 @@ To understand better the concepts of \gls{DL}, Table~\ref{tab:dl_terminologies} 
     & 
     \begin{tabular}[c]{@{}c@{}}
         Specific implementation of the gradient descent algorithm.\\
-		Examples are \gls{SGD} and Adam.
+		Examples are SGD and Adam.
     \end{tabular} 
     \\\midrule
 
@@ -755,9 +755,12 @@ While there are many languages to choose from, Python is one of the most develop
 
 \subsection{What are DNA sequences?}
 
-Deoxyribonucleic acid (DNA) is composed of a linear string of nucleotides, or bases, which are referred to by their chemical names' first letters: A, T, C, and G. DNA Sequencing is the technique of finding the order of the four bases. Because the DNA sequence provides information that the organism utilizes to build RNA molecules and proteins, determining the DNA sequence is essential to understanding how genomes function. Scientists can utilize sequence information to figure out which segments of DNA contain genes and which sections have regulatory instructions that turn genes on and off. Furthermore, and more significantly, sequence data can reveal alterations in a gene that could lead to disease~\cite{2020DNASheet}.
+Deoxyribonucleic acid (DNA) is composed of a linear string of nucleotides, or bases, which are referred to by their chemical names' first letters: \gls{A}, \gls{T}, \gls{C}, and \gls{G}. 
 
-The four chemical bases of the DNA double helix always connect with the same partner to produce "base pairs." Adenine (A) is always paired with thymine (T), while cytosine (C) is always paired with guanine (G). This pairing explains the technique by which DNA molecules are copied when cells divide, as well as the methods used in most DNA sequencing research. The human genome is made up of around 3 billion base pairs, which carry the instructions for creating and maintaining a human person~\cite{2020DNASheet}.
+DNA sequencing is the technique of finding the order of the four bases. Because the DNA sequence provides information that the organism utilizes to build RNA molecules and proteins, determining the DNA sequence is essential to understanding how genomes function. 
+Large sections of DNA - 1 million bases or more - from different individuals may now be compared rapidly and inexpensively. Such comparisons can provide a wealth of information regarding the role of heredity in illness susceptibility and response to environmental factors. Furthermore, the capacity to sequence the genome more quickly and cheaply opens up a world of possibilities for diagnostics and therapeutics. Furthermore, and more significantly, sequence data can reveal alterations in a gene that could lead to disease~\cite{2020DNASheet}.
+
+The four chemical bases of the DNA double helix always connect with the same partner to produce "base pairs". \gls{A} is always paired with \gls{T}, while \gls{C} is always paired with \gls{G} (Figure~\ref{fig:dna}). This pairing explains the technique by which DNA molecules are copied when cells divide, as well as the methods used in most DNA sequencing research. The human genome is made up of around 3 billion base pairs, which carry the instructions for creating and maintaining a human person~\cite{2020DNASheet}.
 
 \begin{figure}[htbp]
     \centering
@@ -766,7 +769,12 @@ The four chemical bases of the DNA double helix always connect with the same par
     \label{fig:dna}
 \end{figure}
 
+
+Since the Human Genome Project's completition~\cite{TheProject}, technological advancements and automation have made it possible for individual genes to be sequenced on a regular basis, by reducing the amount of time it takes to perform the sequencing and also reducing its cost. Some labs can sequence over 100,000 billion bases per year, and a few thousand dollars is enough to sequence an entire genome~\cite{2020DNASheet}. 
+
 \subsection{Examples of DNA sequences}
+
+Scientists can utilize sequence information to figure out which segments of DNA contain genes and which sections have regulatory instructions that turn genes on and off.
 
 \begin{itemize}
     \item Transcription factor
@@ -774,6 +782,7 @@ The four chemical bases of the DNA double helix always connect with the same par
 \end{itemize}
 
 \subsection{DNA sequence classification}
+
 
 \section{Machine and Deep Learning in DNA sequence classification} \label{sec:ml_dl_dna}
 
