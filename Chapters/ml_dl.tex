@@ -1,13 +1,4 @@
-%!TEX root = ../template.tex
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% chapter2.tex
-%% NOVA thesis document file
-%%
-%% Chapter with the template manual
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{State of the Art} \label{cha:users_manual}
-
-\section{Machine Learning} \label{sec:ml}
+\chapter{Machine and Deep Learning} \label{sec:ml}
 
 The modern world is overflowing with data. It has reached a stage where humans can no longer regulate it since the rate of analysis is far slower than the continuous growth of good and bad data. According to Figure~\ref{fig:volume_of_data}, this rapid growth is not expected to stop anytime sooner, so we need tools and technologies to make the process of making sense out of data more efficient~\cite{G2017WhatLearning}.
 
@@ -24,7 +15,7 @@ For a long time, one of the major differences between humans and computers has b
 
 This topic is addressed by \gls{ML}, which entails the development of computer systems that can learn and improve their performance by accumulating more data and experience. A. Samuel was the first scientist to design a self-learning program in 1952 when he developed a program that improved at playing checkers as the number of games increased~\cite{Samuel1959SomeCheckers}. By comparing fresh data to known data and discovering similarities between them, the first pattern recognition algorithm was able to recognize patterns in data in 1967~\cite{Luckert2016UsingDocuments}. 
 
-\subsection{Concepts and Workflow}
+\section{Concepts and Workflow}
 
 \gls{ML} relies solely on the availability of the data and does not need any rule-based programming. There is a distinction to be made between traditional programming and \gls{ML}. In traditional programming, we send data and programs as inputs to the machine, and it produces an output, however in \gls{ML}, data and outputs are inputs to the system, and the machine's output is the program that has been learned to make predictions on unknown examples. The primary difference between traditional programming and \gls{ML}'s approach is represented in Figure~\ref{fig:tradition_vs_ml}.
 
@@ -121,7 +112,7 @@ When developing a \gls{ML} workflow, the first step is to define the project bef
 
 The steps taken during a \gls{ML} implementation are defined by the workflows. \gls{ML} workflows differ depending on the project, but they usually consist of seven steps~\cite{Advani2021WhatUses,MachineRun:AI}.
 
-\subsubsection{Data Gathering}
+\subsection{Data Gathering}
 
 This phase is crucial because the quality and quantity of data collected will directly affect how accurate the predictive model is.
 
@@ -187,7 +178,7 @@ Some examples of types of data are listed below in Table~\ref{tab:data_types}.
 \end{tabular}
 \end{table}
 
-\subsubsection{Data pre-processing}
+\subsection{Data pre-processing}
 
 Cleaning, validating, and converting data into a usable dataset, are all part of pre-processing. This may be a simple operation if the data was collected from a single source. If not, the data format must match between the different sources and be equally credible without any potential duplicates. The majority of real-world data is disorganized; examples include:
 \begin{itemize}
@@ -207,7 +198,7 @@ And there are types of raw data too, including:
 However, there's an important aspect of \gls{ML} models as they can only handle numeric features. As a result, categorical and ordinal data must be converted into numeric features~\cite{Pant2019WorkflowProject}.
 
 
-\subsubsection{Splitting the Data}
+\subsection{Splitting the Data}
 
 This step includes dividing the processed data into three datasets: training, validating, and testing:
 
@@ -219,51 +210,33 @@ This step includes dividing the processed data into three datasets: training, va
 
 The training set must not be too small; otherwise, due to the lack of data, the model is unable to learn. The validation set cannot be too small either, as measures such as accuracy, recall, and precision will have a lot of variance, and the model will not be tuned properly. The best split of the test, validation, and train sets is determined by factors such as the use case, model structure, data dimension, etc. So, in general, a good split to start with is keeping 80\% of the data in the training set, 10\% in the validation set, and 10\% in the test set~\cite{Baheti2021TrainData}.
 
-\subsubsection{Building + Training model}
+\subsection{Building and Training model}
 
 The key goal now is to use the pre-processed data to train the best-performing model.
 
 Data can be any of the types listed above (Table~\ref{tab:data_types}), and they can differ from one application to the next in the real world. Therefore, different types of \gls{ML} approaches can be used to evaluate a specific problem field and extract insights or usable knowledge from the data to construct real-world intelligent systems.
 
-As shown in Figure~\ref{fig:categorization_ML}, supervised learning, unsupervised learning, and reinforcement learning are the three primary categories of \gls{ML} algorithms. Each type of learning algorithm will be addressed in the following section, along with the extent to which they can be used to solve real-world problems.
+The two primary categories of \gls{ML} algorithms are supervised and unsupervised learning. Other categories include semi-supervised learning and reinforcement learning. 
+
+Supervised learning is a \gls{ML} paradigm for obtaining knowledge about a system's input-output relationship from a set of paired input-output training examples~\cite{Liu2012SupervisedLearning}. The two most common supervised categories are classification and regression. In classification, various labels are used to teach the algorithm how to classify items within a certain category. It is applied to image classification and fraud detection problems. On the other hand, regression is used to predict future values trained with historical data. It is used for weather and population growth predictions. A clearer distinction between classification and regression is illustrated in Figure~\ref{fig:regression_vs_classification}.
+    
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Chapters/Figures/regression-vs-classification.png}
+    \caption{Classification vs Regression~\cite{Matanga2017AnalysisInterfaces}}
+    \label{fig:regression_vs_classification}
+\end{figure}
+
+In unsupervised learning, algorithms are used when the data used in the training process is not categorized. Although they cannot figure out the proper output, they can infer a function to identify trends or hidden structures from unlabeled data in the dataset~\cite{2020WhatExpert.ai}. The two most common unsupervised categories are clustering and dimensionality reduction. Clustering involves grouping input variables with similar qualities, and it is applied in targetted marketing problems and recommender systems. Dimensionality reduction algorithms are techniques that reduce the number of input variables in a dataset, and they are used for big data visualization and structure discovery~\cite{Advani2021WhatUses,Brownlee2020IntroductionLearning}. 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\linewidth]{Chapters/Figures/categorization_ML.jpeg}
-    \caption{Categorization of Machine Learning with examples~\cite{Chugh2018TypesKnow}}
-    \label{fig:categorization_ML}
+    \includegraphics[width=0.7\linewidth]{Chapters/Figures/clustering_vs_DR.png}
+    \caption{Clustering vs Dimensionality Reduction~\cite{Beck2020AModelling}}
+    \label{fig:clustering_vs_DR}
 \end{figure}
 
-\begin{itemize}
-    \item \textbf{Supervised Learning}: It is a \gls{ML} paradigm for obtaining knowledge about a system's input-output relationship from a set of paired input-output training examples~\cite{Liu2012SupervisedLearning}. The two most common supervised categories are "classification", in which various labels are used to teach the algorithm to classify items inside a certain category, and "regression", which is used to predict future values trained with historical data. Examples for both categories are shown in Figure~\ref{fig:categorization_ML}. A clearer distinction between classification and regression is illustrated in Figure~\ref{fig:regression_vs_classification}.
-    
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.7\linewidth]{Chapters/Figures/regression-vs-classification.png}
-        \caption{Classification vs Regression~\cite{Matanga2017AnalysisInterfaces}}
-        \label{fig:regression_vs_classification}
-    \end{figure}
-    
-    \item \textbf{Unsupervised Learning}: These algorithms are used when the data used in the training process is not categorized. Although they cannot figure out the proper output, they can infer a function to identify trends or hidden structures from unlabeled data in the dataset~\cite{2020WhatExpert.ai}. The two most common unsupervised categories are "clustering", which involves grouping input variables with similar qualities, and "dimensionality reduction" which refers to techniques that reduce the number of input variables in a dataset~\cite{Advani2021WhatUses,Brownlee2020IntroductionLearning}. 
-    
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.7\linewidth]{Chapters/Figures/clustering_vs_DR.png}
-        \caption{Clustering vs Dimensionality Reduction~\cite{Beck2020AModelling}}
-        \label{fig:clustering_vs_DR}
-    \end{figure}
-    
-    \item \textbf{Reinforcement Learning}: These models are taught to make a set of decisions based on the rewards and feedback they receive. During the learning stage, the machine learns to achieve a specified goal in complicated and uncertain conditions and is rewarded each time it succeeds. Reinforcement learning differs from supervised learning in that there is no right or wrong answer, therefore the reinforcement agent determines how to complete a task. When there is no training data set available, the machine learns from its own experiences~\cite{Advani2021WhatUses}.
-    
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.55\linewidth]{Chapters/Figures/reinforcement.png}
-        \caption{Overview of reinforcement learning~\cite{Sah2020MachineTypes}}
-        \label{fig:reinforcement}
-    \end{figure}
-\end{itemize}
-
-\subsubsection{Evaluation}
+\subsection{Evaluation}
 
 The validation set is used to evaluate the model's performance, showing how it will perform on new, unknown data.
 
@@ -271,74 +244,95 @@ Then, the model can be tested when an acceptable collection of hyperparameters h
 
 It's possible to go back to training to improve the desired metrics if the feedback received is not acceptable.
 
-\subsubsection{Hyperparameter Tuning}
+\subsection{Hyperparameter Tuning}
 
 The process of selecting a set of ideal hyperparameters for a learning algorithm is known as hyperparameter tuning. A hyperparameter is a model argument whose value is determined prior to the start of the learning process. Hyperparameter optimization is the core of \gls{ML} algorithms.
 
-\subsubsection{Prediction}
+\subsection{Prediction}
 
 After obtaining an acceptable performance, guided by the evaluation phase, the next and final step is to put the developed model to work. After all this effort, the benefit of \gls{ML} is recognized at this step. The benefit of \gls{ML} is that it enables one to obtain an accurate prediction by feeding input data to the model rather than relying on human judgment and manual rules.
 
-\subsection{Machine Learning models and algorithms}
+\section{Unsupervised Machine Learning models and algorithms}
 
-\subsubsection{Supervised Learning}
-
-In supervised \gls{ML} processes, several algorithms and computing approaches are utilized. The following are quick descriptions of some of the most popular learning approaches~\cite{2020WhatIBM,Chugh2018TypesKnow}.
+In unsupervised \gls{ML} learning, several algorithms and computing approaches are utilized. The following are quick descriptions of some of the most popular learning approaches~\cite{Chugh2018TypesKnow}.
 \begin{itemize}
-    \item \textbf{\gls{LR}}: It's a classification technique in which a straight line is used to show the relationships between data and outcomes. The approach provides insight into the factors that have a greater impact on the outcome. For example, the color of a car may not have a substantial association to its risks of breaking down, but the make/model may~\cite{Chugh2018TypesKnow}. Simple \gls{LR} occurs when there are only two variables: one independent and one dependent. Multiple \gls{LR} is used when the number of independent variables increases. It aims to display a line of maximum fit, which is computed using the method of least squares~\cite{Kenton2021LeastDefinition}, for each type of \gls{LR}.
+    \item \textbf{K-means clustering}: K-means clustering is a clustering \gls{ML} technique in which data points are divided into K groups. The data points nearest to a certain centroid will be clustered together. Smaller groupings with more granularity are indicated by a higher K value, whereas bigger groupings with less granularity are indicated by a lower K value~\cite{2020WhatIBMb}.
     
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.65\linewidth]{Chapters/Figures/linear_regression.jpg}
-        \caption{Visual representation of Linear Regression~\cite{MachineRegressionModel}}
-        \label{fig:linear_regression}
+        \includegraphics[width=0.65\linewidth]{Chapters/Figures/k-means.png}
+        \caption{Visual representation of K-means clustering~\cite{Beaumont2020ImageMedium}}
+        \label{fig:k-means}
     \end{figure}
     
-    Figure~\ref{fig:linear_regression} shows how the model (red line) is created by utilizing training data (blue points) with known labels (y axis) to fit the points as exactly as possible by minimizing the value of a given loss function.
-    
-    \item \textbf{\gls{KNN}}:
-    The \gls{KNN} algorithm is a classification/regression technique that classifies data points based on their proximity and correlation with other data~\cite{Singh2018K-NearestPython,2020WhatIBM}. This technique assumes that data points that are comparable can be located close together. As a result, it attempts to determine the distance between data points, which is commonly done using Euclidean distance, and then assigns a category based on the most common category or average. Depending on the value of K (the number of nearest neighbors that will participate in the voting process), different results can be obtained.
+    \item \textbf{\gls{PCA}}: It is a dimensionality reduction approach that uses feature extraction to eliminate redundancies and compress datasets~\cite{2020WhatIBMb}. Working with too many variables can be difficult for \gls{ML} since there is a chance of overfitting, a lack of appropriate data for each variable, and a degree of correlation between each variable and the output~\cite{Chugh2018TypesKnow}. Figure~\ref{fig:pca} shows an example of a \gls{PCA} and created principal components PC1 and PC2 in different dimension space.
     
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.65\linewidth]{Chapters/Figures/knn.png}
-        \caption{Visual representation of K-Nearest Neighbors~\cite{Bronshtein2017AMedium}}
-        \label{fig:knn}
+        \includegraphics[width=0.85\linewidth]{Chapters/Figures/pca.png}
+        \caption{Visual representation of Principal Component Analysis~\cite{Sah2020MachineTypes}}
+        \label{fig:pca}
     \end{figure}
     
-    In Figure~\ref{fig:knn}, the test sample should fall into one of two categories: blue squares or red triangles. If K = 1 (inner circle), it is assigned to the class represented by the blue squares because there is only one blue square and zero red triangles inside the circle. If K = 3 (outer circle), since there are two red triangles and one blue square inside the circle, it is classified into the category represented by the red triangles.
+\end{itemize}
+
+\section{Supervised Machine Learning models and algorithms}
+
+In supervised \gls{ML} learning, several algorithms and computing approaches are utilized. The following are some of the most popular classification and regression algorithms: \gls{LR}, \gls{KNN}, \gls{SVM}, \gls{DT} and \gls{RF}~\cite{2020WhatIBM,Chugh2018TypesKnow}.
+
+% Linear Regression
+\gls{LR} is a classification technique in which a straight line is used to show the relationships between data and outcomes. The approach provides insight into the factors that have a greater impact on the outcome. Simple \gls{LR} occurs when there are only two variables: one independent and one dependent. Multiple \gls{LR} is used when the number of independent variables increases. It aims to display a line of maximum fit, which is computed using the method of least squares~\cite{Kenton2021LeastDefinition}, for each type of \gls{LR}. Figure~\ref{fig:linear_regression} shows how the model (red line) is created by utilizing training data (blue points) with known labels (y axis) to fit the points as exactly as possible by minimizing the value of a given loss function.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\linewidth]{Chapters/Figures/linear_regression.jpg}
+    \caption{Visual representation of Linear Regression~\cite{MachineRegressionModel}}
+    \label{fig:linear_regression}
+\end{figure}
+
+% KNN
+The \gls{KNN} algorithm is a classification/regression technique that classifies data points based on their proximity and correlation with other data~\cite{Singh2018K-NearestPython,2020WhatIBM}. This technique assumes that data points that are comparable can be located close together. As a result, it attempts to determine the distance between data points, which is commonly done using Euclidean distance, and then assigns a category based on the most common category or average. Depending on the value of K (the number of nearest neighbors that will participate in the voting process), different results can be obtained. In Figure~\ref{fig:knn}, the test sample should fall into one of two categories: blue squares or red triangles. If K = 1 (inner circle), it is assigned to the class represented by the blue squares because there is only one blue square and zero red triangles inside the circle. If K = 3 (outer circle), since there are two red triangles and one blue square inside the circle, it is classified into the category represented by the red triangles.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\linewidth]{Chapters/Figures/knn.png}
+    \caption{Visual representation of K-Nearest Neighbors~\cite{Bronshtein2017AMedium}}
+    \label{fig:knn}
+\end{figure}
+
+% SVM
+\gls{SVM}s are supervised learning models that evaluate data for classification and regression analysis. The kernel approach allows \gls{SVM}s to do non-linear as well as linear classification by implicitly mapping their inputs into high-dimensional feature spaces. It is used to draw lines between classes (hyperplanes). The hyper-plane is drawn at the maximum distance between two classes from the training data points (support vectors) since, in general, the greater the margin, the lower the classifier's generalization error~\cite{Mahesh2019MachineReview}.
     
-    \item \textbf{\gls{SVM}}: \gls{SVM}s are supervised learning models that evaluate data for classification and regression analysis. The kernel approach allows \gls{SVM}s to do non-linear as well as linear classification by implicitly mapping their inputs into high-dimensional feature spaces. Basically, it is used to draw lines between classes (hyperplanes). The hyper-plane is drawn at the maximum distance between two classes from the training data points (support vectors) since, in general, the greater the margin, the lower the classifier's generalization error~\cite{Mahesh2019MachineReview}.
-    
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.65\linewidth]{Chapters/Figures/svm.png}
-        \caption{Visual representation of Support Vector Machines~\cite{MaquinaExplicada}}
-        \label{fig:svm}
-    \end{figure}
-    
-    \item \textbf{\gls{RF}}: \gls{RF} is a supervised \gls{ML} technique that can be used for classification and regression. The "forest" refers to a group of uncorrelated decision trees that are then blended to reduce variance and produce more accurate data predictions. The goal of decision trees is to develop a model that predicts by learning basic decision rules from training data~\cite{Chugh2018TypesKnow,2020WhatIBM}.
-    
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.70\linewidth]{Chapters/Figures/dt.png}
-        \caption{Visual representation of Decision Tree~\cite{Rai2018XGBoostScience}}
-        \label{fig:dt}
-    \end{figure}
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.70\linewidth]{Chapters/Figures/random_forest.png}
-        \caption{Visual representation of multiple Decision Tree~\cite{Rai2018XGBoostScience}}
-        \label{fig:random_forest}
-    \end{figure}
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.65\linewidth]{Chapters/Figures/random_forest_cavalo.png}
-        \caption{Random Forest structure considering multiple decision trees~\cite{Sarker2021MachineDirections}}
-        \label{fig:random_forest2}
-    \end{figure}
-    
-    \item \textbf{\gls{ANN}}: \gls{ANN} is a \gls{ML} algorithm that is inspired by the biological structure and function of the human brain~\cite{ArtificialDataFlair}. In general, a biological neuron accepts inputs and arranges them to perform an operation, which results in the final output. When looking at biological neurons, there are four major components: dendrites, cell bodies, axons, and synapses. Dendrites are in charge of accepting incoming impulses into the cell body. The cell body subsequently processes these electrical signals and converts them to the final output. The output signal is then transferred from the cell body to the other neurons through the axon, which serves as a transmission line between neurons. Synapses are the locations placed between neurons and dendrites that are responsible for gathering input from neurons~\cite{Imran2019AClassification}. The structure of biological neurons is seen in Figure~\ref{fig:neuron}. As seen in Figure~\ref{fig:an}, the intricacy of biological neurons in the brain can be mimicked.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\linewidth]{Chapters/Figures/svm.png}
+    \caption{Visual representation of Support Vector Machines~\cite{MaquinaExplicada}}
+    \label{fig:svm}
+\end{figure}
+
+% Decision tree
+\gls{DT} learning is a supervised machine learning technique for producing a decision tree from training data. \gls{DT} builds classification or regression models in the form of a tree structure. It is a model that consists of a mapping from item observations to conclusions about its target value. In tree structures, leaves indicate labels, nonleaf nodes represent features, and branches represent combinations of features that lead to decisions on the target~\cite{Tan2015CodeQuality}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.70\linewidth]{Chapters/Figures/dt.png}
+    \caption{Visual representation of Decision Tree~\cite{Rai2018XGBoostScience}}
+    \label{fig:dt}
+\end{figure}
+
+% Random forest
+\gls{RF} is a supervised \gls{ML} technique that can be used for classification and regression. The "forest" refers to a group of uncorrelated decision trees that are then blended to reduce variance and produce more accurate data predictions~\cite{2020WhatIBM}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\linewidth]{Chapters/Figures/random_forest_cavalo.png}
+    \caption{Random Forest structure~\cite{Sarker2021MachineDirections}}
+    \label{fig:random_forest2}
+\end{figure}
+
+\section{Artificial Neural Networks}
+
+\gls{ANN} is a \gls{ML} algorithm that is inspired by the biological structure and function of the human brain~\cite{ArtificialDataFlair}. In general, a biological neuron accepts inputs and arranges them to perform an operation, which results in the final output. When looking at biological neurons, there are four major components: dendrites, cell bodies, axons, and synapses. Dendrites are in charge of accepting incoming impulses into the cell body. The cell body subsequently processes these electrical signals and converts them to the final output. The output signal is then transferred from the cell body to the other neurons through the axon, which serves as a transmission line between neurons. Synapses are the locations placed between neurons and dendrites that are responsible for gathering input from neurons~\cite{Imran2019AClassification}. The structure of biological neurons is seen in Figure~\ref{fig:neuron}. As seen in Figure~\ref{fig:an}, the intricacy of biological neurons in the brain can be mimicked.
     
     \begin{figure}[htbp]
         \centering
@@ -381,41 +375,7 @@ In supervised \gls{ML} processes, several algorithms and computing approaches ar
         \label{fig:ann}
     \end{figure}
 
-\end{itemize}
-
-\subsubsection{Unsupervised Learning}
-
-In unsupervised \gls{ML} processes, several algorithms and computing approaches are utilized. The following are quick descriptions of some of the most popular learning approaches~\cite{Chugh2018TypesKnow}.
-\begin{itemize}
-    \item \textbf{K-means clustering}: K-means clustering is a clustering \gls{ML} technique in which data points are divided into K groups. The data points nearest to a certain centroid will be clustered together. Smaller groupings with more granularity are indicated by a higher K value, whereas bigger groupings with less granularity are indicated by a lower K value~\cite{2020WhatIBMb}.
-    
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.65\linewidth]{Chapters/Figures/k-means.png}
-        \caption{Visual representation of K-means clustering~\cite{Beaumont2020ImageMedium}}
-        \label{fig:k-means}
-    \end{figure}
-    
-    \item \textbf{\gls{PCA}}: It is a dimensionality reduction approach that uses feature extraction to eliminate redundancies and compress datasets~\cite{2020WhatIBMb}. Working with too many variables can be difficult for \gls{ML} since there is a chance of overfitting, a lack of appropriate data for each variable, and a degree of correlation between each variable and the output~\cite{Chugh2018TypesKnow}. Figure~\ref{fig:pca} shows an example of a \gls{PCA} and created principal components PC1 and PC2 in different dimension space.
-    
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.85\linewidth]{Chapters/Figures/pca.png}
-        \caption{Visual representation of Principal Component Analysis~\cite{Sah2020MachineTypes}}
-        \label{fig:pca}
-    \end{figure}
-    
-\end{itemize}
-
-\subsubsection{Reinforcement Learning}
-
-In reinforcement learning processes, several algorithms and computing approaches are utilized. The following are quick descriptions of some of the most popular learning approaches~\cite{Sarker2021MachineDirections}.
-\begin{itemize}
-    \item \textbf{Monte Carlos methods}: Monte Carlo methods is a \gls{ML} technique that creates numerical results through repetitive random sampling. The basic concept is to use randomness to solve problems that are, in fact, deterministic~\cite{Sarker2021MachineDirections}.
-    \item \textbf{Q-learning}: Q-learning is a reinforcement learning method that attempts to determine the optimum action to perform given the current state and to learn a policy that maximizes the overall reward. The letter 'Q' in Q-learning often refers for quality, as the algorithm determines the highest predicted rewards for a particular behavior in a given condition~\cite{Sarker2021MachineDirections}.
-\end{itemize}
-
-\subsection{Deep Learning}
+\section{Deep Learning}
 
 \gls{DL} is a subset of \gls{ML} (Figure~\ref{fig:DL}) that employs multi-layered \gls{ANN}s, also know as \gls{DNN}. A \gls{DNN} has several hidden layers, while a typical \gls{ANN} just has one. The inner workings of the layers and neurons are the same as previously mentioned. A visual distinction between these two is depicted in Figure~\ref{fig:ann-vs-dnn}.
 
@@ -605,7 +565,7 @@ To understand better the concepts of \gls{DL}, Table~\ref{tab:dl_terminologies} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\subsubsection{Training Phase}
+\subsection{Training Phase}
 
 In order to start training a \gls{DL} model, just as \gls{ANN}, the initial model weights are chosen randomly. Then, the model weights are updated to reduce the error between the algorithm's current output and the expected output. This error is measured by the loss function and weight-finding algorithms are used to minimize this function, knows as optimization algorithms. These algorithms are specific implementations of the gradient descent algorithm, which is a technique to minimize loss by computing the gradients of loss with respect to the model's parameters, conditioned on training data. 
 
@@ -623,7 +583,7 @@ The difference between the non-updated and the updated weight can be controlled 
 
 where ~$W_{x}^{'}$ is the new weight, ~$W_{x}$ is the old weight, ~$a$ is the learning rate, and ~$\frac{\partial Error}{\partial W_{x}}$ is the gradient (derivative of error with respect to weight)~\cite{2019BackpropagationStep}.
 
-\subsubsection{Generalization, Overfitting and Regularization}
+\subsection{Generalization, Overfitting and Regularization}
 
 It is difficult to train a \gls{DNN} that can generalize well to unknown input data. A model with insufficient capacity cannot learn the problem, while a model with excessive capacity may learn it too well and overfit the training dataset. In both circumstances, the model does not generalize effectively. 
 
@@ -637,7 +597,7 @@ Weight decay, also known as weight regularization, is another strategy for decre
 
 In dropout, as the name suggests, drops nodes at random in the network's hidden layers. This is accomplished by setting the weight for these randomly chosen nodes to zero and then increasing the other weights. The amount to scale up is proportional to the dropout rate~\cite{Brownlee2019HowNetworks}.
 
-\subsubsection{Deep Neural Network Architectures}
+\subsection{Deep Neural Network Architectures}
 
 The growth in the field of \gls{DL} architectures during the last two decades has provided enormous prospects for implementing it in a variety of applications. The next section introduces three popular \gls{DL} architectures: \gls{CNN}, \gls{RNN}, and autoencoders~\cite{Ganatra2018ATools,Madhavan2021DeepDeveloper}.
 
@@ -648,7 +608,7 @@ The growth in the field of \gls{DL} architectures during the last two decades ha
     \label{fig:DL-arch}
 \end{figure}
 
-\subsubsection{Convolutional Neural Networks}
+\subsection{Convolutional Neural Networks}
 
 A \gls{CNN} is a multilayer supervised neural network that was originally inspired by the neurobiological process of animal visual cortex~\cite{Ganatra2018ATools}. It is commonly utilized in a variety of applications including as image and video recognition, image processing, and classification.
 
@@ -661,7 +621,7 @@ The \gls{CNN} architecture is composed of multiple layers that perform feature e
     \label{fig:cnn}
 \end{figure}
 
-\subsubsection{Recurrent Neural Networks}
+\subsection{Recurrent Neural Networks}
 
 In a feedforward neural network, the outputs of one layer are passed to the next layer, which is a unidirectional process. Past data cannot be stored in these feedforward networks~\cite{Shewalkar2019PerformanceGRU}. 
 
@@ -696,7 +656,7 @@ The architecture of the \gls{LSTM} can take several forms, one of which is the \
 
 \gls{GRU} is a simple version \gls{LSTM}, so it can be trained faster, and can execute tasks more efficiently. The \gls{LSTM}, on the other hand, is more expressive, and with more data, it can provide better performance.
 
-\subsubsection{Autoencoders}
+\subsection{Autoencoders}
 
 Autoencoder is an unsupervised neural network that learns how to compress and encode data effectively before reconstructing it back to a representation that is as similar to the original input as possible~\cite{Badr2019Auto-Encoder:For}.
 
@@ -727,7 +687,7 @@ The compressed form of the original input must only have essential information. 
     \label{fig:ac_example}
 \end{figure}
 
-\subsection{AutoML}
+\section{Model selection and optimization}
 
 By automating \gls{ML} workflows, teams may complete some of the more time-consuming tasks associated with model creation with more efficiency. This is commonly referred to as automated \gls{AutoML}, and there are various modules and platforms available for it.
 
@@ -741,7 +701,7 @@ While it would be ideal if all components of \gls{ML} operations could be automa
     \item \textbf{Feature selection}: from pre-defined sets of features, tools identify the most relevant ones.
 \end{itemize}
 
-\subsection{Python libraries for machine and deep learning}
+\section{Python libraries for machine and deep learning}
 
 While there are many languages to choose from, Python is one of the most developer-friendly \gls{ML} and \gls{DL} programming languages available, and it comes with a large library to suit any use-case or project. Most popular libraries include~\cite{JonssonWaysDevelopment,BestGeeksforGeeks}:
 
@@ -750,45 +710,3 @@ While there are many languages to choose from, Python is one of the most develop
     \item \textbf{Keras}: \gls{DL} framework that provides high-level building blocks for designing practically any type of \gls{DL} model in a far more convenient way than constructing it from the ground up. Keras also enables users to train models on both the CPU and GPU.
     \item \textbf{PyTorch}: open-source \gls{ML}/\gls{DL} library created by Facebook and based on Torch. It offers a large number of tools and libraries that assist Computer Vision, \gls{NLP}, and a variety of other \gls{ML} tasks. It enables developers to run Tensor computations with GPU acceleration and aids in the creation of computational graphs.
 \end{itemize}
-
-\section{DNA sequences} \label{sec:dna_sequences}
-
-\subsection{What are DNA sequences?} \label{subsec:what_are_dna_sequences}
-
-Deoxyribonucleic acid (DNA) is composed of a linear string of nucleotides, or bases, which are referred to by their chemical names' first letters: \gls{A}, \gls{T}, \gls{C}, and \gls{G}. 
-
-DNA sequencing is the technique of finding the order of the four bases. Scientists can determine the type of genetic information carried in a DNA segment by examining the sequence. Furthermore, and more significantly, sequencing data can reveal mutations in a gene that could lead to illness, by comparing a healthy and a mutated sequence~\cite{2020DNASheet}.
-
-The four chemical bases of the DNA double helix always connect with the same partner to produce "base pairs". \gls{A} is always paired with \gls{T}, while \gls{C} is always paired with \gls{G} (Figure~\ref{fig:dna}). This pairing explains the technique by which DNA molecules are copied when cells divide, as well as the methods used in most DNA sequencing research. The human \gls{genome} is made up of around 3 billion base pairs, which carry the instructions for creating and maintaining a human person~\cite{2020DNASheet}.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.5\linewidth]{Chapters/Figures/dna.jpg}
-    \caption{Double helix of DNA~\cite{Yang2020ReviewDNA}}
-    \label{fig:dna}
-\end{figure}
-
-Since the Human Genome Project's completition~\cite{TheProject}, technological advancements and automation have made it possible for individual genes to be sequenced on a regular basis, by reducing the amount of time it takes to perform the sequencing and also reducing its cost. Some labs can sequence over 100,000 billion bases per year, and a few thousand dollars is enough to sequence an entire \gls{genome}~\cite{2020DNASheet}. 
-
-\subsection{Examples of DNA sequences}
-
-As previously mentioned in Section~\ref{subsec:what_are_dna_sequences}, by looking at the sequence of a DNA segment, scientists can figure out what kind of genetic information it contains. For example, scientists can utilize sequence information to determine which stretches of DNA include genes and which stretches have regulatory instructions that turn genes on or off.
-
-
-
-\begin{itemize}
-    \item Transcription factor
-    \item Essential genes
-\end{itemize}
-
-\subsection{DNA sequence classification}
-
-
-\section{Machine and Deep Learning in DNA sequence classification} \label{sec:ml_dl_dna}
-
-\subsection{Common architectures}
-
-\subsection{Relevant previous work on DNA classification}
-
-\subsection{Tools for building DNA sequence classification algorithms}
-
