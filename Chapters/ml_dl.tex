@@ -332,7 +332,7 @@ The \gls{KNN} algorithm is a classification/regression technique that classifies
 
 \section{Artificial Neural Networks}
 
-\gls{ANN} is a \gls{ML} algorithm that is inspired by the biological structure and function of the human brain~\cite{ArtificialDataFlair}. In general, a biological neuron accepts inputs and arranges them to perform an operation, which results in the final output. When looking at biological neurons, there are four major components: dendrites, cell bodies, axons, and synapses. Dendrites are in charge of accepting incoming impulses into the cell body. The cell body subsequently processes these electrical signals and converts them to the final output. The output signal is then transferred from the cell body to the other neurons through the axon, which serves as a transmission line between neurons. Synapses are the locations placed between neurons and dendrites that are responsible for gathering input from neurons~\cite{Imran2019AClassification}. The structure of biological neurons is seen in Figure~\ref{fig:neuron}. As seen in Figure~\ref{fig:an}, the intricacy of biological neurons in the brain can be mimicked.
+\gls{ANN} is a \gls{ML} algorithm that is inspired by the biological structure and function of the human brain. In general, a biological neuron accepts inputs and arranges them to perform an operation, which results in the final output. When looking at biological neurons, there are four major components: dendrites, cell bodies, axons, and synapses. Dendrites are in charge of accepting incoming impulses into the cell body. The cell body subsequently processes these electrical signals and converts them to the final output. The output signal is then transferred from the cell body to the other neurons through the axon, which serves as a transmission line between neurons. Synapses are the locations placed between neurons and dendrites that are responsible for gathering input from neurons~\cite{Imran2019AClassification}. The structure of biological neurons is seen in Figure~\ref{fig:neuron}. As seen in Figure~\ref{fig:an}, the intricacy of biological neurons in the brain can be mimicked.
     
     \begin{figure}[htbp]
         \centering
@@ -348,7 +348,7 @@ The \gls{KNN} algorithm is a classification/regression technique that classifies
         \label{fig:an}
     \end{figure}
     
-    In the case of \gls{ANN}, inputs are directed to the body of an artificial neuron. X(n) represents the inputs; each input is multiplied by its associated weight, which is a measure of the input's connection strength and is represented by W(n). The summing function is then given weighted inputs and the bias (b). The summing function's value (z) will be sent to the activation function (f), which will yield the final output~\cite{Imran2019AClassification}. The activation function will also, throughout the prediction phase, use mathematical operations to determine if the neuron's input to the network is essential or not~\cite{Baheti12Choose}. Some examples of activation functions are sigmoid (Eq~\ref{eq:1}), binary step function (Eq~\ref{eq:2}), and ReLU (Eq~\ref{eq:3})~\cite{Gupta2020ActivationLearning}.
+    In the case of \gls{ANN}, inputs are directed to the body of an artificial neuron. X(n) represents the inputs; each input is multiplied by its associated weight, which is a measure of the input's connection strength and is represented by W(n). The summing function is then given weighted inputs and the bias (b). The summing function's value (z) will be sent to the activation function (f), which will yield the final output~\cite{Imran2019AClassification}. Activation functions specify a range of values for the neuron's output, determining if the neuron's input to the network is essential or not~\cite{2020ArtificialNetworks}. Some examples of activation functions are sigmoid (Eq~\ref{eq:1}), TanH (Eq~\ref{eq:2}), and ReLU (Eq~\ref{eq:3})~\cite{EnyinnaNwankpa2018ActivationLearning}.
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
@@ -357,16 +357,16 @@ The \gls{KNN} algorithm is a classification/regression technique that classifies
     \end{equation}
     
     \begin{equation}\label{eq:2}
-        f(x) = \begin{cases}1 & x \geq 0\\0 & x < 0\end{cases}
+        f(x) = \frac{e^{x}-e^{-x}}{e^{x}+e^{-x}}
     \end{equation}
     
     \begin{equation} \label{eq:3}
         f(x) = \begin{cases}x & x \geq 0\\0 & x < 0\end{cases}
     \end{equation}
     
-    The weights of an \gls{ANN} are initially randomly assigned, but they are updated during the training process. This is possible by applying both forward and back propagation. In forward propagation, information travels in one direction only: forward. Inputs are fed into the neural network, and the produced outputs are compared to the real ones, with a loss function used to determine the difference~\cite{DivakarForwardNetworks}. Then, in back propagation, the internal weights are adjusted using optimization methods to reduce the loss function~\cite{Baheti12Choose}. 
+    The weights of an \gls{ANN} are initially randomly assigned, but they are updated during the training process. This is possible by applying both forward and back propagation. In forward propagation, information travels in one direction only: forward. Inputs are fed into the neural network, and the produced outputs are compared to the real ones, with a loss function used to determine the difference~\cite{DivakarForwardNetworks}. Then, in back propagation, the internal weights are adjusted using optimization methods to reduce the loss function~\cite{KimCBP:Method}. 
     
-    An \gls{ANN} is composed of three layers: an input layer, a hidden layer, and an output layer. There must be a link between the nodes in the input layer and the nodes in the hidden layer, as well as between each node in the hidden layer and the nodes in the output layer~\cite{Imran2019AClassification}. In the input layer, each neuron represents an input feature, and no computation is performed in this layer. In the hidden layer, as the name suggests, the nodes are not visible. They serve as an abstraction for the neural network. The hidden layer performs all types of calculations on the features received through the input layer by using a weighted linear summation followed by an activation function, and sends the results to the output layer. And it is in the final layer of the network, the output layer, that takes the information learnt from the hidden layer and provides the final value. The number of output neurons represents the number of predictions. This means that, if it is a regression or binary classification problem, this layer will only have one neuron. If it is a multiclass classification problem, the number of neurons will be equal to the number of classes~\cite{Shukla2019DesigningWalkthrough,Baheti12Choose}. Figure~\ref{fig:ann} shows an example of an \gls{ANN}'s structure.
+    An \gls{ANN} is composed of three layers: an input layer, a hidden layer, and an output layer. There must be a link between the nodes in the input layer and the nodes in the hidden layer, as well as between each node in the hidden layer and the nodes in the output layer~\cite{Imran2019AClassification}. In the input layer, each neuron represents an input feature, and no computation is performed in this layer. In the hidden layer the nodes are not visible. They serve as an abstraction for the neural network. The hidden layer performs all types of calculations on the features received through the input layer by using a weighted linear summation followed by an activation function, and sends the results to the output layer. Then the output layer takes the information learnt from the hidden layer and provides the final value. The number of output neurons represents the number of predictions. This means that, if it is a regression or binary classification problem, this layer will only have one neuron. If it is a multiclass classification problem, the number of neurons will be equal to the number of classes~\cite{Alaloul2020DataNetworks}. Figure~\ref{fig:ann} shows an example of an \gls{ANN}'s structure.
     
     \begin{figure}[htbp]
         \centering
@@ -581,7 +581,7 @@ The difference between the non-updated and the updated weight can be controlled 
     W_{x}^{'} = W_{x} - a(\frac{\partial Error}{\partial W_{x}})
 \end{equation}
 
-where ~$W_{x}^{'}$ is the new weight, ~$W_{x}$ is the old weight, ~$a$ is the learning rate, and ~$\frac{\partial Error}{\partial W_{x}}$ is the gradient (derivative of error with respect to weight)~\cite{2019BackpropagationStep}.
+where ~$W_{x}^{'}$ is the new weight, ~$W_{x}$ is the old weight, ~$a$ is the learning rate, and ~$\frac{\partial Error}{\partial W_{x}}$ is the gradient (derivative of error with respect to weight)~\cite{Kim2021EasyAlgorithm}.
 
 \subsection{Generalization, Overfitting and Regularization}
 
@@ -658,7 +658,7 @@ The architecture of the \gls{LSTM} can take several forms, one of which is the \
 
 \subsection{Autoencoders}
 
-Autoencoder is an unsupervised neural network that learns how to compress and encode data effectively before reconstructing it back to a representation that is as similar to the original input as possible~\cite{Badr2019Auto-Encoder:For}.
+Autoencoder is an unsupervised neural network that learns how to compress and encode data effectively before reconstructing it back to a representation that is as similar to the original input as possible~\cite{LopezPinaya2020Autoencoders}.
 
 \begin{figure}[htbp]
     \centering
@@ -669,7 +669,7 @@ Autoencoder is an unsupervised neural network that learns how to compress and en
 
 As shown in Figure~\ref{fig:autoencoders}, this type of neural network is made up of three layers: input, hidden, and output. First, a suitable encoding function is used to encode the input layer into the hidden layer. The hidden layer contains a significantly smaller number of nodes than the input layer. The compressed form of the original input is stored in this hidden layer. Using a decoder function, the output layer attempts to recreate the input layer. 
 
-As a result, autoencoders consists of 4 main parts~\cite{Bandyopadhyay2021AnKnow,Badr2019Auto-Encoder:For}:
+As a result, autoencoders consists of 4 main parts~\cite{Abirami2020Energy-efficientSystem,LopezPinaya2020Autoencoders}:
 
 \begin{itemize}
     \item \textbf{Encoder}: The model learns how to compress the input data into an encoded form by reducing the input dimensions.
@@ -682,8 +682,8 @@ The compressed form of the original input must only have essential information. 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\linewidth]{Chapters/Figures/ac_example.jpeg}
-    \caption{Autoencoders example~\cite{Badr2019Auto-Encoder:For}}
+    \includegraphics[width=0.7\linewidth]{Chapters/Figures/ac_example.png}
+    \caption{Autoencoders example~\cite{LopezPinaya2020Autoencoders}}
     \label{fig:ac_example}
 \end{figure}
 
