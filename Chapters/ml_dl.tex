@@ -4,7 +4,7 @@ The modern world is overflowing with data. It has reached a stage where humans c
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{volume_of_data.png}
+    \includegraphics[width=0.7\linewidth]{volume_of_data.png}
     \caption{The volume of data created, captured, copied, and consumed from 2010 to 2025~\cite{TotalStatista}}
     \label{fig:volume_of_data}
 \end{figure}
@@ -129,10 +129,9 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
         Structured
         & 
         \begin{tabular}[c]{@{}c@{}}
-            It has a well-defined structure, is well-organized\\
-            and accessible, and is used by an entity or a \\
-            computer program. Often stored in a tabular manner\\
-            in well-defined schemes, such as relational databases.
+            Well-defined structure, well-organized\\
+            and accessible. Often stored in a tabular\\
+            manner such as relational databases.
         \end{tabular} 
         &
         \begin{tabular}[c]{@{}c@{}}
@@ -146,9 +145,9 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
         & 
         \begin{tabular}[c]{@{}c@{}}
             Since there is no pre-defined format or\\
-            organization, it is significantly more difficult\\
-            to acquire, handle, and analyze data that is\\
-            largely text and multimedia.
+            organization, it is significantly more\\
+            difficult to acquire, handle, and analyze\\
+            data that is largely text and multimedia.
         \end{tabular} 
         &
         \begin{tabular}[c]{@{}c@{}}
@@ -161,8 +160,7 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
         Semi-structured
         & 
         \begin{tabular}[c]{@{}c@{}}
-            It is not kept in a relational database, but\\
-            it does contain organizational qualities that\\
+            Contains organizational qualities that\\
             make it easier to examine.
         \end{tabular} 
         &
@@ -211,7 +209,7 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
         
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.7\linewidth]{Chapters/Figures/regression-vs-classification.png}
+        \includegraphics[width=0.7\linewidth]{regression-vs-classification.png}
         \caption{Classification vs Regression~\cite{Matanga2017AnalysisInterfaces}}
         \label{fig:regression_vs_classification}
     \end{figure}
@@ -220,7 +218,7 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
     
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.7\linewidth]{Chapters/Figures/clustering_vs_DR.png}
+        \includegraphics[width=0.7\linewidth]{clustering_vs_DR.png}
         \caption{Clustering vs Dimensionality Reduction~\cite{Beck2020AModelling}}
         \label{fig:clustering_vs_DR}
     \end{figure}
@@ -245,7 +243,7 @@ K-means clustering is a clustering \gls{ML} technique in which data points are d
     
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.65\linewidth]{Chapters/Figures/k-means.png}
+    \includegraphics[width=0.65\linewidth]{k-means.png}
     \caption{Visual representation of K-means clustering~\cite{Beaumont2020ImageMedium}}
     \label{fig:k-means}
 \end{figure}
@@ -254,7 +252,7 @@ K-means clustering is a clustering \gls{ML} technique in which data points are d
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.85\linewidth]{Chapters/Figures/pca.png}
+    \includegraphics[width=0.85\linewidth]{pca.png}
     \caption{Visual representation of Principal Component Analysis~\cite{Sah2020MachineTypes}}
     \label{fig:pca}
 \end{figure}
@@ -269,7 +267,7 @@ In supervised \gls{ML} learning, several algorithms and computing approaches are
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.65\linewidth]{Chapters/Figures/linear_regression.jpg}
+    \includegraphics[width=0.65\linewidth]{linear_regression.png}
     \caption{Visual representation of Linear Regression~\cite{Nasteski2017AnMethods}}
     \label{fig:linear_regression}
 \end{figure}
@@ -284,7 +282,7 @@ Figure~\ref{fig:lgr} shows an example of a binary logistic function.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.65\linewidth]{Chapters/Figures/lgr.jpg}
+    \includegraphics[width=0.65\linewidth]{lgr.jpg}
     \caption{Visual representation of logistic function~\cite{Nasteski2017AnMethods}}
     \label{fig:lgr}
 \end{figure}
@@ -295,17 +293,17 @@ The \gls{KNN} algorithm is a classification/regression technique that classifies
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.65\linewidth]{Chapters/Figures/knn.png}
+    \includegraphics[width=0.65\linewidth]{knn.png}
     \caption{Visual representation of K-Nearest Neighbors~\cite{Bronshtein2017AMedium}}
     \label{fig:knn}
 \end{figure}
 
 % SVM
-\gls{SVM}s are supervised learning models that evaluate data for classification and regression analysis. The kernel approach allows \gls{SVM}s to do non-linear as well as linear classification by implicitly mapping their inputs into high-dimensional feature spaces. It is used to draw lines between classes (hyperplanes). The hyper-plane is drawn at the maximum distance between two classes from the training data points (support vectors) since, in general, the greater the margin, the lower the classifier's generalization error~\cite{Mahesh2019MachineReview}.
+\gls{SVM}s are supervised learning models that evaluate data for classification and regression analysis. The kernel function allows \gls{SVM}s to do non-linear as well as linear classification by implicitly mapping their inputs into high-dimensional feature spaces. It is used to draw lines between classes (hyperplanes). The hyper-plane is drawn at the maximum distance between two classes from the training data points (support vectors) since, in general, the greater the margin, the lower the classifier's generalization error~\cite{Mahesh2019MachineReview}.
     
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.65\linewidth]{Chapters/Figures/svm.png}
+    \includegraphics[width=0.65\linewidth]{svm.png}
     \caption{Visual representation of Support Vector Machines~\cite{MaquinaExplicada}}
     \label{fig:svm}
 \end{figure}
@@ -315,17 +313,17 @@ The \gls{KNN} algorithm is a classification/regression technique that classifies
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.70\linewidth]{Chapters/Figures/dt.png}
+    \includegraphics[width=0.70\linewidth]{dt.png}
     \caption{Visual representation of Decision Tree~\cite{Rai2018XGBoostScience}}
     \label{fig:dt}
 \end{figure}
 
 % Random forest
-\gls{RF} is a supervised \gls{ML} technique that can be used for classification and regression. The "forest" refers to a group of uncorrelated decision trees that are then blended to reduce variance and produce more accurate data predictions~\cite{2020WhatIBM}.
+A \gls{RF} classifier is an ensemble \gls{ML} algorithm. One note should be added regarding ensemble methods before addressing \gls{RF}. Ensemble learning is the process of building and combining many models to tackle a specific computational issue. Ensemble learning is generally used to improve a model's performance or lessen the risk of an unintentional poor model selection~\cite{Mahesh2019MachineReview}. Back to \gls{RF}, this method employs parallel ensembling, in which numerous \gls{DT} classifiers are fitted in parallel on distinct dataset sub-samples, as illustrated in Figure~\ref{fig:random_forest2}, and the final result is determined by majority voting or averages. Therefore, the overfitting problem is reduced, and prediction accuracy and control are improved. As a result, an \gls{RF} learning model based on many \gls{DT}s is usually more accurate than one based on a single \gls{DT}. It combines bagging (which is another ensemble learning method) with random feature selection to create a succession of \gls{DT}s with controlled variance. It works well for both categorical and continuous variables and may be applied to both classification and regression issues~\cite{Sarker2021MachineDirections}.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.65\linewidth]{Chapters/Figures/random_forest_cavalo.png}
+    \includegraphics[width=0.65\linewidth]{random_forest_cavalo.png}
     \caption{Random Forest structure~\cite{Sarker2021MachineDirections}}
     \label{fig:random_forest2}
 \end{figure}
@@ -336,14 +334,14 @@ The \gls{KNN} algorithm is a classification/regression technique that classifies
     
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.75\linewidth]{Chapters/Figures/neuron.png}
+        \includegraphics[width=0.75\linewidth]{neuron.png}
         \caption{Biological neuron~\cite{Deyoung1990ThinkingResearch}}
         \label{fig:neuron}
     \end{figure}
     
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.65\linewidth]{Chapters/Figures/an.png}
+        \includegraphics[width=0.65\linewidth]{an.png}
         \caption{Artificial neuron~\cite{Baheti12Choose}}
         \label{fig:an}
     \end{figure}
@@ -370,7 +368,7 @@ The \gls{KNN} algorithm is a classification/regression technique that classifies
     
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.65\linewidth]{Chapters/Figures/ann.png}
+        \includegraphics[width=0.65\linewidth]{ann.png}
         \caption{Artificial Neural Network~\cite{CastrounisAIExplained}}
         \label{fig:ann}
     \end{figure}
@@ -381,14 +379,14 @@ The \gls{KNN} algorithm is a classification/regression technique that classifies
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{Chapters/Figures/DL.png}
+    \includegraphics[width=0.5\linewidth]{DL.png}
     \caption{Overview of Deep Learning~\cite{Alzubaidi2021ReviewDirections}}
     \label{fig:DL}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\linewidth]{Chapters/Figures/ann-vs-dnn.png}
+    \includegraphics[width=0.8\linewidth]{ann-vs-dnn.png}
     \caption{Artificial Neural Network vs Deep Neural Network~\cite{Mostafa2020MachineArticle}}
     \label{fig:ann-vs-dnn}
 \end{figure}
@@ -397,7 +395,7 @@ The \gls{KNN} algorithm is a classification/regression technique that classifies
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{Chapters/Figures/face_recog.jpg}
+    \includegraphics[width=\linewidth]{face_recog.jpg}
     \caption{Levels of abstraction in a face recognition Deep Learning algorithm~\cite{Mohra2019DeepRecognition}}
     \label{fig:face_recog}
 \end{figure}
@@ -406,7 +404,7 @@ The main advantage of \gls{DL} over typical \gls{ML} approaches is that it perfo
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{Chapters/Figures/DL_vs_ML.png}
+    \includegraphics[width=0.5\linewidth]{DL_vs_ML.png}
     \caption{Deep Learning vs Machine Learning performance~\cite{Alom2019AArchitectures}}
     \label{fig:DL_vs_ML}
 \end{figure}
@@ -452,22 +450,6 @@ To understand better the concepts of \gls{DL}, Table~\ref{tab:dl_terminologies} 
     & 
     \begin{tabular}[c]{@{}c@{}}
         The number of examples in a batch. It's an hyperparameter.
-    \end{tabular} 
-    \\\midrule
-    
-    Dropout
-    & 
-    \begin{tabular}[c]{@{}c@{}}
-        Deletes a random number of neurons in every iteration.
-    \end{tabular} 
-    \\\midrule
-    
-    Early-stopping
-    & 
-    \begin{tabular}[c]{@{}c@{}}
-        Regularization strategy that involves stopping model training\\
-		before the training loss reaches zero. The training phase ends\\
-		when the loss on a validation dataset starts to increase.
     \end{tabular} 
     \\\midrule
     
@@ -587,13 +569,13 @@ where ~$W_{x}^{'}$ is the new weight, ~$W_{x}$ is the old weight, ~$a$ is the le
 
 It is difficult to train a \gls{DNN} that can generalize well to unknown input data. A model with insufficient capacity cannot learn the problem, while a model with excessive capacity may learn it too well and overfit the training dataset. In both circumstances, the model does not generalize effectively. 
 
-The capacity, or complexity, of a neural network model is determined by both its structure (number of nodes and layers) and its parameters (weights). As a result, in order to reduce overfitting (and increase generalization power), it is possible to lower a neural network's complexity by changing its structure or its parameters~\cite{Brownlee2019HowNetworks}. However, instead of changing the neural network's architecute, it is more typical to limit the model's complexity by changing the model's weights, keeping them as small as possible. Small parameters imply a less complex and, as a result, more stable model that is less susceptible to statistical fluctuations in the input data.
+The capacity, or complexity, of a neural network model is determined by both its structure (number of nodes and layers) and its parameters (weights). As a result, in order to reduce overfitting (and increase generalization power), it is possible to lower a neural network's complexity by changing its structure or its parameters~\cite{Brownlee2019HowNetworks}. However, instead of changing the neural network's architecture, it is more typical to limit the model's complexity by changing the model's weights, keeping them as small as possible. Small parameters imply a less complex and, as a result, more stable model that is less susceptible to statistical fluctuations in the input data.
 
 Methods that aim to reduce overfitting by maintaining network weights minimal are referred to as regularization methods and the most common ones include early stopping, L1, L2 and dropout~\cite{Brownlee2019HowNetworks}.
 
 Early stopping takes a straightforward strategy, stopping the network's training before it overfits to the training data. The training phase should be terminated when generalization reduces.
 
-Weight decay, also known as weight regularization, is another strategy for decreasing overfitting in neural networks. Weight decay penalizes the network for having a high weight distribution by adding a cost to the training loss~\cite{Brownlee2019HowNetworks}. Examples of these methods are L1 and L2. In L1, it applies an L1 penalty equivalent to the absolute value of the magnitude of the coefficient. In L2, It applies an L2 penalty equivalent to the square of the magnitude of the coefficients~\cite{Tyagi2021L2Learning}.
+Weight decay, also known as weight regularization, is another strategy for decreasing overfitting in neural networks. Weight decay penalizes the network for having a high weight distribution by adding a cost to the training loss~\cite{Brownlee2019HowNetworks}. Examples of these methods are L1 and L2. In L1, it applies an L1 penalty equivalent to the absolute value of the magnitude of the coefficient. In L2, It applies an L2 penalty equivalent to the square of the magnitude of the coefficients~\cite{NgFeatureInvariance}.
 
 In dropout, as the name suggests, drops nodes at random in the network's hidden layers. This is accomplished by setting the weight for these randomly chosen nodes to zero and then increasing the other weights. The amount to scale up is proportional to the dropout rate~\cite{Brownlee2019HowNetworks}.
 
@@ -603,12 +585,12 @@ The growth in the field of \gls{DL} architectures during the last two decades ha
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{Chapters/Figures/DL-arch.png}
+    \includegraphics[width=\linewidth]{DL-arch.png}
     \caption{Deep Learning architectures~\cite{Madhavan2021DeepDeveloper}}
     \label{fig:DL-arch}
 \end{figure}
 
-\subsection{Convolutional Neural Networks}
+\paragraph{Convolutional Neural Networks} 
 
 A \gls{CNN} is a multilayer supervised neural network that was originally inspired by the neurobiological process of animal visual cortex~\cite{Ganatra2018ATools}. It is commonly utilized in a variety of applications including as image and video recognition, image processing, and classification.
 
@@ -616,12 +598,12 @@ The \gls{CNN} architecture is composed of multiple layers that perform feature e
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{Chapters/Figures/cnn.png}
+    \includegraphics[width=\linewidth]{cnn.png}
     \caption{Convolutional Neural Network architecture~\cite{Madhavan2021DeepDeveloper}}
     \label{fig:cnn}
 \end{figure}
 
-\subsection{Recurrent Neural Networks}
+\paragraph{Recurrent Neural Networks}
 
 In a feedforward neural network, the outputs of one layer are passed to the next layer, which is a unidirectional process. Past data cannot be stored in these feedforward networks~\cite{Shewalkar2019PerformanceGRU}. 
 
@@ -629,7 +611,7 @@ A \gls{RNN} can access previous data because of its loop-like structure, making 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\linewidth]{Chapters/Figures/rnn.png}
+    \includegraphics[width=0.75\linewidth]{rnn.png}
     \caption{Recurrent Neural Network architecture~\cite{Gupta2017RecurrentLearning}}
     \label{fig:rnn}
 \end{figure}
@@ -640,7 +622,7 @@ However, RNNs suffer from the vanishing gradients problem, which makes learning 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\linewidth]{Chapters/Figures/lstm.png}
+    \includegraphics[width=0.75\linewidth]{lstm.png}
     \caption{Long Short-Term Memory architecture~\cite{Madhavan2021DeepDeveloper}}
     \label{fig:lstm}
 \end{figure}
@@ -649,20 +631,20 @@ The architecture of the \gls{LSTM} can take several forms, one of which is the \
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{Chapters/Figures/gru.png}
+    \includegraphics[width=0.5\linewidth]{gru.png}
     \caption{Gated Recurrent Unit architecture~\cite{Madhavan2021DeepDeveloper}}
     \label{fig:gru}
 \end{figure}
 
 \gls{GRU} is a simple version \gls{LSTM}, so it can be trained faster, and can execute tasks more efficiently. The \gls{LSTM}, on the other hand, is more expressive, and with more data, it can provide better performance.
 
-\subsection{Autoencoders}
+\paragraph{Autoencoders}
 
 Autoencoder is an unsupervised neural network that learns how to compress and encode data effectively before reconstructing it back to a representation that is as similar to the original input as possible~\cite{LopezPinaya2020Autoencoders}.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\linewidth]{Chapters/Figures/autoencoders.png}
+    \includegraphics[width=0.6\linewidth]{autoencoders.png}
     \caption{Autoencoders architecture~\cite{Madhavan2021DeepDeveloper}}
     \label{fig:autoencoders}
 \end{figure}
@@ -682,7 +664,7 @@ The compressed form of the original input must only have essential information. 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\linewidth]{Chapters/Figures/ac_example.png}
+    \includegraphics[width=0.7\linewidth]{ac_example.png}
     \caption{Autoencoders example~\cite{LopezPinaya2020Autoencoders}}
     \label{fig:ac_example}
 \end{figure}
