@@ -1,6 +1,6 @@
 \chapter{Machine and Deep Learning} \label{sec:ml}
 
-The modern world is overflowing with data. It has reached a stage where humans can no longer regulate it since the rate of analysis is far slower than the continuous growth of good and bad data. According to Figure~\ref{fig:volume_of_data}, this rapid growth is not expected to stop anytime sooner, so we need tools and technologies to make the process of making sense out of data more efficient.
+The modern world is overflowing with data. It has reached a stage where humans can no longer regulate it since the rate of analysis is far slower than the continuous growth of good and bad data. According to Figure~\ref{fig:volume_of_data}, this rapid growth is not expected to stop anytime soon, so tools and technologies are needed to make the process of making sense of data more efficient.
 
 \begin{figure}[htbp]
     \centering
@@ -15,9 +15,9 @@ For a long time, one of the major differences between humans and computers has b
 
 This topic is addressed by \gls{ML}, which entails the development of computer systems that can learn and improve their performance by accumulating more data and experience. A. Samuel was the first scientist to design a self-learning program in 1952 when he developed a program that improved at playing checkers as the number of games increased~\cite{Samuel1959SomeCheckers}. By comparing fresh data to known data and discovering similarities between them, the first pattern recognition algorithm was able to recognize patterns in data in 1967~\cite{Luckert2016UsingDocuments}. 
 
-\section{Concepts and Workflow}
+\section{Concepts and workflow}
 
-\gls{ML} relies solely on the availability of the data and does not need any rule-based programming. There is a distinction to be made between traditional programming and \gls{ML}. In traditional programming, we send data and programs as inputs to the machine, and it produces an output, however in \gls{ML}, data and outputs are inputs to the system, and the machine's output is the program that has been learned to make predictions on unknown examples. The primary difference between traditional programming and \gls{ML}'s approach is represented in Figure~\ref{fig:tradition_vs_ml}.
+\gls{ML} relies solely on the availability of the data and does not need any rule-based programming. There is a distinction to be made between traditional programming and \gls{ML}. In traditional programming, data and programs are sent as inputs to the machine, and it produces an output, however in \gls{ML}, data and outputs are inputs to the system, and the machine's output is the program that has been learned to make predictions on unknown examples. The primary difference between traditional programming and \gls{ML}'s approach is represented in Figure~\ref{fig:tradition_vs_ml}.
 
 \begin{figure}[htbp]
     \centering
@@ -235,7 +235,7 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
 
 \end{enumerate}
 
-\section{Unsupervised Machine Learning models and algorithms}
+\section{Unsupervised ML models and algorithms}
 
 In unsupervised \gls{ML}, several algorithms and computing approaches are utilized. The following are some of the most clustering and dimensionaly reduction algorithms: K-means clustering and \gls{PCA}~\cite{Chugh2018TypesKnow}.
 
@@ -258,7 +258,7 @@ K-means clustering is a clustering \gls{ML} technique in which data points are d
 \end{figure}
 
 
-\section{Supervised Machine Learning models and algorithms}
+\section{Supervised ML models and algorithms}
 
 In supervised \gls{ML} learning, several algorithms and computing approaches are utilized. The following are some of the most popular classification and regression algorithms: \gls{LR}, \gls{LgR}, \gls{KNN}, \gls{SVM}, \gls{DT} and \gls{RF}~\cite{2020WhatIBM,Chugh2018TypesKnow}.
 
@@ -319,7 +319,7 @@ The \gls{KNN} algorithm is a classification/regression technique that classifies
 \end{figure}
 
 % Random forest
-A \gls{RF} classifier is an ensemble \gls{ML} algorithm. One note should be added regarding ensemble methods before addressing \gls{RF}. Ensemble learning is the process of building and combining many models to tackle a specific computational issue. Ensemble learning is generally used to improve a model's performance or lessen the risk of an unintentional poor model selection~\cite{Mahesh2019MachineReview}. Back to \gls{RF}, this method employs parallel ensembling, in which numerous \gls{DT} classifiers are fitted in parallel on distinct dataset sub-samples, as illustrated in Figure~\ref{fig:random_forest2}, and the final result is determined by majority voting or averages. Therefore, the overfitting problem is reduced, and prediction accuracy and control are improved. As a result, an \gls{RF} learning model based on many \gls{DT}s is usually more accurate than one based on a single \gls{DT}. It combines bagging (which is another ensemble learning method) with random feature selection to create a succession of \gls{DT}s with controlled variance. It works well for both categorical and continuous variables and may be applied to both classification and regression issues~\cite{Sarker2021MachineDirections}.
+A \gls{RF} classifier is an ensemble \gls{ML} algorithm. One note should be added regarding ensemble methods before addressing \gls{RF}. Ensemble learning is the process of building and combining many models to tackle a specific computational issue. Ensemble learning is generally used to improve a model's performance or lessen the risk of an unintentional poor model selection~\cite{Mahesh2019MachineReview}. Knowing this, \gls{RF} employs parallel ensembling, in which numerous \gls{DT} classifiers are fitted in parallel on distinct dataset sub-samples, as illustrated in Figure~\ref{fig:random_forest2}, and the final result is determined by majority voting or averages. Therefore, the overfitting problem is reduced, and prediction accuracy and control are improved. As a result, an \gls{RF} learning model based on many \gls{DT}s is usually more accurate than one based on a single \gls{DT}. It combines bagging (which is another ensemble learning method) with random feature selection to create a succession of \gls{DT}s with controlled variance. It works well for both categorical and continuous variables and may be applied to both classification and regression issues~\cite{Sarker2021MachineDirections}.
 
 \begin{figure}[htbp]
     \centering
@@ -328,7 +328,7 @@ A \gls{RF} classifier is an ensemble \gls{ML} algorithm. One note should be adde
     \label{fig:random_forest2}
 \end{figure}
 
-\section{Artificial Neural Networks}
+\section{Artificial neural networks}\label{sec:ann}
 
 \gls{ANN} is a \gls{ML} algorithm that is inspired by the biological structure and function of the human brain. In general, a biological neuron accepts inputs and arranges them to perform an operation, which results in the final output. When looking at biological neurons, there are four major components: dendrites, cell bodies, axons, and synapses. Dendrites are in charge of accepting incoming impulses into the cell body. The cell body subsequently processes these electrical signals and converts them to the final output. The output signal is then transferred from the cell body to the other neurons through the axon, which serves as a transmission line between neurons. Synapses are the locations placed between neurons and dendrites that are responsible for gathering input from neurons~\cite{Imran2019AClassification}. The structure of biological neurons is seen in Figure~\ref{fig:neuron}. As seen in Figure~\ref{fig:an}, the intricacy of biological neurons in the brain can be mimicked.
     
@@ -373,9 +373,9 @@ A \gls{RF} classifier is an ensemble \gls{ML} algorithm. One note should be adde
         \label{fig:ann}
     \end{figure}
 
-\section{Deep Learning}
+\section{Deep Learning}\label{sec:dl}
 
-\gls{DL} is a subset of \gls{ML} (Figure~\ref{fig:DL}) that employs multi-layered \gls{ANN}s, also know as \gls{DNN}. A \gls{DNN} has several hidden layers, while a typical \gls{ANN} just has one. The inner workings of the layers and neurons are the same as previously mentioned. A visual distinction between these two is depicted in Figure~\ref{fig:ann-vs-dnn}.
+\gls{DL} is a subset of \gls{ML} (Figure~\ref{fig:DL}) whose methods are based on multi-layered \gls{ANN}s with feature learning techniques. These techniques enable a system to automatically identify the representations required for feature detection from raw data. This eliminates the need for human feature engineering by allowing a machine to learn the features and then use them to execute a specified activity. But, for this to be possible, \gls{DL} algorithms demand a larger amount of data.
 
 \begin{figure}[htbp]
     \centering
@@ -384,23 +384,7 @@ A \gls{RF} classifier is an ensemble \gls{ML} algorithm. One note should be adde
     \label{fig:DL}
 \end{figure}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{ann-vs-dnn.png}
-    \caption{Artificial Neural Network vs Deep Neural Network~\cite{Mostafa2020MachineArticle}}
-    \label{fig:ann-vs-dnn}
-\end{figure}
-
-\gls{DL} uses a series of levels of abstraction to learn from data and solve the problem at hand. The data is broken down into smaller ideas that gradually get more intricate, and it passes through multiple layers that can perform changes on the data in order to find a solution to the problem. Figure~\ref{fig:face_recog} shows an example of a broken-down abstraction. The \gls{DL} algorithm's goal in this case is to detect faces inside a photo, and the system will learn on its own which pixels, edges, and shapes are significant for human face recognition and which are not. This is known as feature extraction, and it is performed by the \gls{DL} model itself, contrasting with other \gls{ML} approaches, where feature extraction is often done explicitly by the programmer~\cite{DeClercq2018DeepSequences}.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth]{face_recog.jpg}
-    \caption{Levels of abstraction in a face recognition Deep Learning algorithm~\cite{Mohra2019DeepRecognition}}
-    \label{fig:face_recog}
-\end{figure}
-
-The main advantage of \gls{DL} over typical \gls{ML} approaches is that it performs better in many circumstances, particularly when learning from huge datasets. Figure~\ref{fig:DL_vs_ML} illustrates the general performance of \gls{DL} over \gls{ML} when the amount of data increases. It may, however, differ based on the data qualities and experimental setup.
+One of the advantages of \gls{DL} over traditional \gls{ML} approaches is that it performs better when learning from huge datasets. Figure~\ref{fig:DL_vs_ML} illustrates the general performance of \gls{DL} over \gls{ML} when the amount of data increases.
 
 \begin{figure}[htbp]
     \centering
@@ -408,6 +392,17 @@ The main advantage of \gls{DL} over typical \gls{ML} approaches is that it perfo
     \caption{Deep Learning vs Machine Learning performance~\cite{Alom2019AArchitectures}}
     \label{fig:DL_vs_ML}
 \end{figure}
+
+The simplest \gls{DL} architecture is the \gls{DNN}. A \gls{DNN} is an \gls{ANN} with various layers between the input layer and the output layers. In other words, a \gls{DNN} has multiple hidden layers~\cite{Schmidhuber2015DeepOverview}. Figure~\ref{fig:ann-vs-dnn} shows a visual distinction between these two.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{ann-vs-dnn.png}
+    \caption{Artificial Neural Network vs Deep Neural Network~\cite{Mostafa2020MachineArticle}}
+    \label{fig:ann-vs-dnn}
+\end{figure}
+
+The inner workings of the layers and neurons are similar between \gls{ANN} and \gls{DNN}, meaning \gls{DNN}s are feedforward networks that transfer data from the input layer to the output layer without looping back. The \gls{DNN} starts by creating a map of virtual neurons and assigning random weights to their connections. The inputs and weights are multiplied, and the result is a value between 0 and 1. An algorithm would update the weights if the network didn't detect a pattern correctly. As a result, the algorithm might increase the influence of specific factors until it finds the optimal mathematical manipulation to fully analyze the input.
 
 To understand better the concepts of \gls{DL}, Table~\ref{tab:dl_terminologies} provides a few important terminologies.
 
@@ -547,7 +542,7 @@ To understand better the concepts of \gls{DL}, Table~\ref{tab:dl_terminologies} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\subsection{Training Phase}
+\subsection{Training phase}
 
 In order to start training a \gls{DL} model, just as \gls{ANN}, the initial model weights are chosen randomly. Then, the model weights are updated to reduce the error between the algorithm's current output and the expected output. This error is measured by the loss function and weight-finding algorithms are used to minimize this function, knows as optimization algorithms. These algorithms are specific implementations of the gradient descent algorithm, which is a technique to minimize loss by computing the gradients of loss with respect to the model's parameters, conditioned on training data. 
 
@@ -565,11 +560,11 @@ The difference between the non-updated and the updated weight can be controlled 
 
 where ~$W_{x}^{'}$ is the new weight, ~$W_{x}$ is the old weight, ~$a$ is the learning rate, and ~$\frac{\partial Error}{\partial W_{x}}$ is the gradient (derivative of error with respect to weight)~\cite{Kim2021EasyAlgorithm}.
 
-\subsection{Generalization, Overfitting and Regularization}
+\subsection{Challenges of deep neural networks}
 
-It is difficult to train a \gls{DNN} that can generalize well to unknown input data. A model with insufficient capacity cannot learn the problem, while a model with excessive capacity may learn it too well and overfit the training dataset. In both circumstances, the model does not generalize effectively. 
+It is difficult to train a \gls{DNN} that can generalize well to unknown input data. A model with insufficient capacity cannot learn the problem, while a model with excessive capacity may learn it too well and overfit the training dataset. In both circumstances, the model does not generalize effectively. However, \gls{DNN}s tend to overfit because of the additional abstraction layers that enable them to model unusual relationships in the training data.
 
-The capacity, or complexity, of a neural network model is determined by both its structure (number of nodes and layers) and its parameters (weights). As a result, in order to reduce overfitting (and increase generalization power), it is possible to lower a neural network's complexity by changing its structure or its parameters~\cite{Brownlee2019HowNetworks}. However, instead of changing the neural network's architecture, it is more typical to limit the model's complexity by changing the model's weights, keeping them as small as possible. Small parameters imply a less complex and, as a result, more stable model that is less susceptible to statistical fluctuations in the input data.
+The complexity of a neural network model is determined by both its structure (number of nodes and layers) and its parameters (weights). As a result, in order to reduce overfitting, it is possible to lower a neural network's complexity by changing its structure or its parameters~\cite{Brownlee2019HowNetworks}. Instead of changing the neural network's architecture, it is more typical to limit the model's complexity by changing the model's weights, keeping them as small as possible. Small parameters imply a less complex and, as a result, more stable model that is less susceptible to statistical fluctuations in the input data.
 
 Methods that aim to reduce overfitting by maintaining network weights minimal are referred to as regularization methods and the most common ones include early stopping, L1, L2 and dropout~\cite{Brownlee2019HowNetworks}.
 
@@ -579,18 +574,17 @@ Weight decay, also known as weight regularization, is another strategy for decre
 
 In dropout, as the name suggests, drops nodes at random in the network's hidden layers. This is accomplished by setting the weight for these randomly chosen nodes to zero and then increasing the other weights. The amount to scale up is proportional to the dropout rate~\cite{Brownlee2019HowNetworks}.
 
-\subsection{Deep Neural Network Architectures}
+In addition to the overfitting problem, \gls{DNN}s also suffer from high computation times. \gls{DNN}s must take into account a variety of training parameters, including the size (number of layers and units per layer), learning rate, and starting weights. Due to the time and processing resources required, sweeping across the parameter space for optimal parameters may not be practical. However, powerful processing hardware such as \gls{GPU}s are ideal for training \gls{DL} models as they can handle numerous computations at the same time. They feature a lot of cores, which makes it easier to run several parallel operations at the same time, resulting in a speed up in the training process.
 
-The growth in the field of \gls{DL} architectures during the last two decades has provided enormous prospects for implementing it in a variety of applications. The next section introduces three popular \gls{DL} architectures: \gls{CNN}, \gls{RNN}, and autoencoders~\cite{Ganatra2018ATools,Madhavan2021DeepDeveloper}.
+\subsection{Deep learning architectures}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth]{DL-arch.png}
-    \caption{Deep Learning architectures~\cite{Madhavan2021DeepDeveloper}}
-    \label{fig:DL-arch}
-\end{figure}
+The growth in the field of \gls{DL} architectures during the last two decades has provided enormous prospects for implementing it in a variety of applications. The next section introduces four popular \gls{DL} architectures: \gls{DNN}, \gls{CNN}, \gls{RNN}, and autoencoders~\cite{Ganatra2018ATools,Madhavan2021DeepDeveloper}.
 
-\paragraph{Convolutional Neural Networks} 
+\paragraph{Deep neural networks} 
+
+As mentioned in Section~\ref{sec:dl}, \gls{DNN}s are feed forward networks, in which data goes from the input layer to the output layer without traveling backwards. They are based on \gls{ANN}s but, unlike them, \gls{DNN}s contain multiple hidden layers. In spite of this, the inner workings of the layers and neurons are similar between \gls{ANN} and \gls{DNN}.
+
+\paragraph{Convolutional neural networks} 
 
 A \gls{CNN} is a multilayer supervised neural network that was originally inspired by the neurobiological process of animal visual cortex~\cite{Ganatra2018ATools}. It is commonly utilized in a variety of applications including as image and video recognition, image processing, and classification.
 
@@ -627,7 +621,7 @@ However, RNNs suffer from the vanishing gradients problem, which makes learning 
     \label{fig:lstm}
 \end{figure}
 
-The architecture of the \gls{LSTM} can take several forms, one of which is the \gls{GRU}. The rest gate and the update gate are the only two gates that \gls{GRU} uses. The rest gate is used in a model to determine how much information from the past should be forgotten or remembered. It decides which information to forget based on the information in the previous state and the next input candidate. The update gate aids the model in determining how much information from previous time steps should be passed on to future time steps.
+The architecture of the \gls{LSTM} can take several forms, one of which is \gls{GRU}. The rest gate and the update gate are the only two gates that \gls{GRU} uses. The rest gate is used in a model to determine how much information from the past should be forgotten or remembered. It decides which information to forget based on the information in the previous state and the next input candidate. The update gate aids the model in determining how much information from previous time steps should be passed on to future time steps.
 
 \begin{figure}[htbp]
     \centering
