@@ -13,7 +13,7 @@ The modern world is overflowing with data. It has reached a stage where humans c
 
 For a long time, one of the major differences between humans and computers has been that humans tend to naturally improve their approach to solving problems by learning from their mistakes and trying to fix them. Traditional computer programs are unable to improve their behavior since they do not consider the outcome of their job~\cite{Luckert2016UsingDocuments}. 
 
-This topic is addressed by \gls{ML}, which entails the development of computer systems that can learn and improve their performance by accumulating more data and experience. A. Samuel was the first scientist to design a self-learning program in 1952 when he developed a program that improved at playing checkers as the number of games increased~\cite{Samuel1959SomeCheckers}. By comparing fresh data to known data and discovering similarities between them, the first pattern recognition algorithm was able to recognize patterns in data in 1967~\cite{Luckert2016UsingDocuments}. 
+This topic is addressed by \gls{ML}, which entails the development of computer systems that can learn and improve their performance by accumulating more data and experience. A. Samuel was the first scientist to design a self-learning program in 1952 when he developed a program that improved at playing checkers as the number of games increased~\cite{Samuel1959SomeCheckers,Luckert2016UsingDocuments}. 
 
 \section{Concepts and workflow}
 
@@ -199,11 +199,11 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
     
     It's also typical to save a part of the training set for validation purposes. The validation set may be used to fine-tune the model's performance by selecting hyper-parameters and regularization parameters~\cite{Joseph2020SPlit:Splitting}.
     
-    \item \textbf{Building and Training model} The key goal now is to use the pre-processed data to train the best-performing model.
+    \item \textbf{Building the model} The key goal now is to choose the type of model which fits better the desired problem.
     
     Data can be any of the types listed above (Table~\ref{tab:data_types}), and they can differ from one application to the next in the real world. Therefore, different types of \gls{ML} approaches can be used to evaluate a specific problem field and extract insights or usable knowledge from the data to construct real-world intelligent systems.
     
-    The two primary categories of \gls{ML} algorithms are supervised and unsupervised learning. Other categories include semi-supervised learning and reinforcement learning. 
+    The two primary categories of \gls{ML} algorithms are supervised and unsupervised learning. Other categories include semi-supervised learning and reinforcement learning.
     
     Supervised learning is a \gls{ML} paradigm for obtaining knowledge about a system's input-output relationship from a set of paired input-output training examples~\cite{Liu2012SupervisedLearning}. The two most common supervised categories are classification and regression. In classification, various labels are used to teach the algorithm how to classify items within a certain category. It is applied to image classification and fraud detection problems. On the other hand, regression is used to predict future values trained with historical data. It is used for weather and population growth predictions. A clearer distinction between classification and regression is illustrated in Figure~\ref{fig:regression_vs_classification}.
         
@@ -223,13 +223,91 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
         \label{fig:clustering_vs_DR}
     \end{figure}
     
-    \item \textbf{Evaluation} The validation set is used to evaluate the model's performance, showing how it will perform on new, unknown data.
+    \item \textbf{Training and evaluation} The objective now is to use the pre-processed data to train the best-performing chosen model, followed by its performance evaluation. 
+    The training set will be used to train the model and then the model outputs will be compared with the unseen values. To evaluate these outputs, multiple metrics are used which can vary depending on the problem. 
     
-    Then, the model can be tested when an acceptable collection of hyperparameters has been found and the model accuracy has been optimized. The test dataset is used in testing to ensure that the models are using accurate features.
+    For classification problems, the most commonly metrics include: confusion matrices, accuracy, recall, precision and f1-score~\cite{Liu2014AEvaluation}. These are based on \gls{TP}, \gls{TN}, \gls{FP} and \gls{FN} values, which are the four possible predictions outcomes for a classification problem. \gls{TP} outcomes are correct predictions of the positive class, while \gls{TN} still are correct predictions but of the negative class. \gls{FP} outcomes are incorrect predictions of the positive class, while \gls{FN} still are incorrect predictions but of the negative class. 
     
-    It's possible to go back to training to improve the desired metrics if the feedback received is not acceptable.
+    The confusion matrices are tables which rows represent the real classes and the columns represent the predicted classes. So, for each class, the table shows how many predictions were and were not correct. Figure~\ref{fig:conf_matrix} shows an example of a confusion matrix and Figure~\ref{fig:conf_matrix2} illustrates how the the \gls{TP}, \gls{TN}, \gls{FP} and \gls{FN} values are perceived within the table.
     
-    \item \textbf{Hyperparameter Tuning} The process of selecting a set of ideal hyperparameters for a learning algorithm is known as hyperparameter tuning. A hyperparameter is a model argument whose value is determined prior to the start of the learning process. Hyperparameter optimization is the core of \gls{ML} algorithms.
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.7\linewidth]{conf_matrix.png}
+        \caption{Example of confusion matrix~\cite{Grandini2020MetricsOverview}}
+        \label{fig:conf_matrix}
+    \end{figure}
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.65\linewidth]{conf_matrix2.png}
+        \caption{Example of confusion matrix with the prediction outcomes, relative to the \textit{b} class~\cite{Grandini2020MetricsOverview}}
+        \label{fig:conf_matrix2}
+    \end{figure}
+    
+    After defining \gls{TP}, \gls{TN}, \gls{FP} and \gls{FN} values, the other classification metrics are simple to calculate. Table~\ref{tab:classification_metrics} explains each classification metric and how each one is calculated.
+    
+    \begin{table}[ht]
+    	\caption{Classification evaluation metrics}
+        \label{tab:classification_metrics}
+    \centering
+    \begin{tabular}{p{2.5cm}cc}
+    	\toprule
+    	\multicolumn{1}{c}{\textbf{Metric}} & \textbf{Description} & \textbf{Equation} \\
+    	\midrule
+    	
+        Accuracy
+        & 
+        \begin{tabular}[c]{@{}c@{}}
+            Fraction of correct predictions. 
+        \end{tabular} 
+        &
+        \begin{tabular}[c]{@{}c@{}}
+            \(\displaystyle \frac{TP + TN}{TP + TN + FP + FN} \)
+        \end{tabular}
+        \\\midrule
+        
+        Recall
+        & 
+        \begin{tabular}[c]{@{}c@{}}
+            Proportion of actual positives correctly identified
+        \end{tabular} 
+        &
+        \begin{tabular}[c]{@{}c@{}}
+            \(\displaystyle \frac{TP}{TP + FN} \)
+        \end{tabular}
+        \\\midrule
+        
+        Precision
+        & 
+        \begin{tabular}[c]{@{}c@{}}
+            Proportion of positive identifications actually correct
+        \end{tabular} 
+        &
+        \begin{tabular}[c]{@{}c@{}}
+            \(\displaystyle \frac{TP}{TP + FP} \)
+        \end{tabular}
+        \\\midrule
+        
+        F1-score
+        & 
+        \begin{tabular}[c]{@{}c@{}}
+            Harmonic mean between precision and recall.
+        \end{tabular} 
+        &
+        \begin{tabular}[c]{@{}c@{}}
+            \(\displaystyle 2\times\frac{precision \times recall}{precision + recall} \)
+        \end{tabular}
+        \\
+        
+    	\bottomrule
+    \end{tabular}
+    \end{table}
+    
+    For regression problems, the most commonly metrics include: \gls{MSE}, \gls{MAE} and \gls{MAPE}~\cite{Botchkarev2018PerformanceTypology}. They are calculated using the difference between the predicted and the actual value. \gls{MSE} measures the average squared difference between the predicted values and the real value. Over all occurrences in the test set, \gls{MAE} determines the mean of the absolute values of the individual prediction errors and \gls{MAPE} determines the mean of the absolute percentage errors of the individual prediction errors. 
+    
+    Since the objective is to build a model that can generalize the information on unseen data, it is also important to measure the generalization performance of the model. This can be achieved by applying the k-fold cross-validation method, which uses \textit{k} different partitions of the dataset to train and test a model on different iterations. Of the \textit{k} portions, \textit{k-1} portions are used as training data and the remaining portion is the validation data to test the model. This process is repeated until all partitions are tested, meaning it has \textit{k} iterations until it ends.
+    
+    \item \textbf{Hyperparameter Tuning} It is the process of selecting a set of ideal hyperparameters for a learning algorithm. A hyperparameter is a model argument whose value is determined prior to the start of the learning process. 
     
     \item \textbf{Prediction} After obtaining an acceptable performance, guided by the evaluation phase, the next and final step is to put the developed model to work. After all this effort, the benefit of \gls{ML} is recognized at this step. The benefit of \gls{ML} is that it enables one to obtain an accurate prediction by feeding input data to the model rather than relying on human judgment and manual rules.
 
@@ -330,14 +408,16 @@ A \gls{RF} classifier is an ensemble \gls{ML} algorithm. One note should be adde
 
 \section{Artificial neural networks}\label{sec:ann}
 
-\gls{ANN} is a \gls{ML} algorithm that is inspired by the biological structure and function of the human brain. In general, a biological neuron accepts inputs and arranges them to perform an operation, which results in the final output. When looking at biological neurons, there are four major components: dendrites, cell bodies, axons, and synapses. Dendrites are in charge of accepting incoming impulses into the cell body. The cell body subsequently processes these electrical signals and converts them to the final output. The output signal is then transferred from the cell body to the other neurons through the axon, which serves as a transmission line between neurons. Synapses are the locations placed between neurons and dendrites that are responsible for gathering input from neurons~\cite{Imran2019AClassification}. The structure of biological neurons is seen in Figure~\ref{fig:neuron}. As seen in Figure~\ref{fig:an}, the intricacy of biological neurons in the brain can be mimicked.
+In general, a biological neuron accepts inputs and arranges them to perform an operation, which results in the final output. When looking at biological neurons, there are four major components: dendrites, cell bodies, axons, and synapses. Dendrites are in charge of accepting incoming impulses into the cell body. The cell body subsequently processes these electrical signals and converts them to the final output. The output signal is then transferred from the cell body to the other neurons through the axon, which serves as a transmission line between neurons. Synapses are the locations placed between neurons and dendrites that are responsible for gathering input from neurons~\cite{Imran2019AClassification}. The structure of biological neurons is seen in Figure~\ref{fig:neuron}. 
     
     \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.75\linewidth]{neuron.png}
+        \includegraphics[width=0.65\linewidth]{neuron.png}
         \caption{Biological neuron~\cite{Deyoung1990ThinkingResearch}}
         \label{fig:neuron}
     \end{figure}
+    
+    \gls{ANN} is a supervised \gls{ML} algorithm that is inspired by the biological structure and function of the human brain and, as seen in Figure~\ref{fig:an}, the intricacy of biological neurons in the brain can be mimicked.
     
     \begin{figure}[htbp]
         \centering
@@ -346,7 +426,7 @@ A \gls{RF} classifier is an ensemble \gls{ML} algorithm. One note should be adde
         \label{fig:an}
     \end{figure}
     
-    In the case of \gls{ANN}, inputs are directed to the body of an artificial neuron. X(n) represents the inputs; each input is multiplied by its associated weight, which is a measure of the input's connection strength and is represented by W(n). The summing function is then given weighted inputs and the bias (b). The summing function's value (z) will be sent to the activation function (f), which will yield the final output~\cite{Imran2019AClassification}. Activation functions specify a range of values for the neuron's output, determining if the neuron's input to the network is essential or not~\cite{2020ArtificialNetworks}. Some examples of activation functions are sigmoid (Eq~\ref{eq:1}), TanH (Eq~\ref{eq:2}), and ReLU (Eq~\ref{eq:3})~\cite{EnyinnaNwankpa2018ActivationLearning}.
+    In the case of \gls{ANN}, inputs are directed to the body of an artificial neuron. In Figure~\ref{fig:an}, X(n) represents the inputs; each input is multiplied by its associated weight, which is a measure of the input's connection strength and is represented by W(n). The summing function is then given weighted inputs and the bias (b). The summing function's value (z) will be sent to the activation function (f), which will yield the final output~\cite{Imran2019AClassification}. Activation functions specify a range of values for the neuron's output, determining if the neuron's input to the network is essential or not~\cite{2020ArtificialNetworks}. Some examples of activation functions are sigmoid (Eq~\ref{eq:1}), TanH (Eq~\ref{eq:2}), and ReLU (Eq~\ref{eq:3})~\cite{EnyinnaNwankpa2018ActivationLearning}.
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
@@ -364,7 +444,7 @@ A \gls{RF} classifier is an ensemble \gls{ML} algorithm. One note should be adde
     
     The weights of an \gls{ANN} are initially randomly assigned, but they are updated during the training process. This is possible by applying both forward and back propagation. In forward propagation, information travels in one direction only: forward. Inputs are fed into the neural network, and the produced outputs are compared to the real ones, with a loss function used to determine the difference~\cite{Farizawani2020AApproaches}. Then, in back propagation, the internal weights are adjusted using optimization methods to reduce the loss function~\cite{Kim2021CBP:Method}. 
     
-    An \gls{ANN} is composed of three layers: an input layer, a hidden layer, and an output layer. There must be a link between the nodes in the input layer and the nodes in the hidden layer, as well as between each node in the hidden layer and the nodes in the output layer~\cite{Imran2019AClassification}. In the input layer, each neuron represents an input feature, and no computation is performed in this layer. In the hidden layer the nodes are not visible. They serve as an abstraction for the neural network. The hidden layer performs all types of calculations on the features received through the input layer by using a weighted linear summation followed by an activation function, and sends the results to the output layer. Then the output layer takes the information learnt from the hidden layer and provides the final value. The number of output neurons represents the number of predictions. This means that, if it is a regression or binary classification problem, this layer will only have one neuron. If it is a multiclass classification problem, the number of neurons will be equal to the number of classes~\cite{Alaloul2020DataNetworks}. Figure~\ref{fig:ann} shows an example of an \gls{ANN}'s structure.
+    An \gls{ANN} is composed of three layers: an input layer, a hidden layer, and an output layer. There must be a link between the nodes in the input layer and the nodes in the hidden layer, as well as between each node in the hidden layer and the nodes in the output layer~\cite{Imran2019AClassification}. In the input layer, each neuron represents an input feature, and no computation is performed. In the hidden layer the nodes are not visible. They serve as an abstraction for the neural network. The hidden layer performs all types of calculations on the features received through the input layer by using a weighted linear summation followed by an activation function, and sends the results to the output layer. Then the output layer takes the information learnt from the hidden layer and provides the final value. The number of output neurons represents the number of predictions. This means that, if it is a regression or binary classification problem, this layer will only have one neuron. If it is a multiclass classification problem, the number of neurons will be equal to the number of classes~\cite{Alaloul2020DataNetworks}. Figure~\ref{fig:ann} shows an example of an \gls{ANN}'s structure.
     
     \begin{figure}[htbp]
         \centering
@@ -475,14 +555,8 @@ To understand better the concepts of \gls{DL}, Table~\ref{tab:dl_terminologies} 
 	Hyper-parameter
     & 
     \begin{tabular}[c]{@{}c@{}}
-        The "knobs" adjusted when training a model in successive runs.
-    \end{tabular} 
-    \\\midrule
-
-	Kernel
-    & 
-    \begin{tabular}[c]{@{}c@{}}
-        Matrix of weights.
+        Constant parameter whose value is determined before the\\
+        learning process.
     \end{tabular} 
     \\\midrule
 
