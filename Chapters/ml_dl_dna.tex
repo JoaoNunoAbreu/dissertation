@@ -37,4 +37,62 @@ Understanding the connections between protein structure and function is one of b
 
 Regardless, despite recent advancements, the major issue that severely restricts the use of alignment techniques remains their computational time complexity. As a result, alignment-free approaches~\cite{Vinga2003Alignment-freeReview,Pinello2014ApplicationsEpigenomics} that have recently been developed have emerged as a viable strategy to investigating the regulatory genome. Feature extraction, such as spectral representation of DNA sequences~\cite{LoBosco2014ASequences,LoBosco2015AlignmentClassification}, is undoubtedly a part of these approaches. Feature representations, which are often constructed by specialists, are critical to the effectiveness of traditional machine learning algorithms. Following that, it is vital to choose which features are more suited for dealing with the particular problem, which is still a very important and challenging stage today~\cite{LoBosco2017DeepClassification}.
 
-DL - \textbf{low level cost of parallel computing architectures.}
+Limitations and suggestions for \gls{ML}~\cite{AbdAlhalem2021DNASurvey}.
+
+\begin{itemize}
+    \item \textbf{Data Representation}: Quantifying characteristics of DNA sequences presents various challenges. Nobody knows which format for encoding numeric values in these nucleotides is the best. When applying learning machines to biological investigations, however, we cannot escape employing quantitative representations of these biological units.
+    
+    \item \textbf{Reducing computational requirement}: Deep learning models are often complicated and have a large number of parameters to train; obtaining well-trained models, as well as using the models productively, is generally computationally and memory costly. These limitations severely limit the use of deep learning in machines with low processing capability, particularly in the data-intensive fields of bioinformatics and healthcare. Several methods have been proposed to compress deep learning models, which can significantly reduce the computational requirements of those models from the start, such as parameter pruning, which significantly reduces redundant parameters that do not contribute to the model's performance, and the well-known Deep Compresion. We may also conserve parameters by using compact convolutional filters.
+    
+    \item \textbf{Hybrid methods}: refers to combining several deep learning models, such as CNN as a feature extraction step with an RNN classifier to provide more knowledge, to get superior results. This might bring fresh perspectives and fine insights into the nature of the genome. 
+    
+    \item Trying to extract other features from DNA sequences before feeding them to the algorithms. As a result, overall evaluations may become more accurate.
+\end{itemize}
+
+% \begin{table}[ht]
+%     	\caption{Comparative survey on gene sequence classification using machine learning techniques~\cite{Dixit2015MachineSequencing}}
+%         \label{tab:comp_survey}
+%     \centering
+%     \begin{tabular}{p{3.5cm}cc}
+%     	\toprule
+%     	\multicolumn{1}{c}{\textbf{Context}} & \textbf{Techniques} & \textbf{Key Points}\\
+%     	\midrule
+    	
+    	
+%     	\begin{tabular}[]{@{}l@{}}
+%             Splice site\\
+%             recognition in\\
+%             DNA Sequences
+%         \end{tabular} 
+%         & 
+%         \begin{tabular}[c]{@{}c@{}}
+%             SVM
+%         \end{tabular} 
+%         &
+%         \begin{tabular}[c]{@{}c@{}}
+%           - Performs better result for identifying the Splice sites.\\ 
+%           - Needs appropriate kernel functions for training the data\\
+%           otherwise leads to poor classification 
+%         \end{tabular}
+%         \\\midrule
+        
+%         \begin{tabular}[]{@{}l@{}}
+%             Splice site\\
+%             recognition in\\
+%             DNA Sequences
+%         \end{tabular} 
+%         & 
+%         \begin{tabular}[c]{@{}c@{}}
+%             SVM
+%         \end{tabular} 
+%         &
+%         \begin{tabular}[c]{@{}c@{}}
+%           - Performs better result for identifying the Splice sites.\\ 
+%           - Needs appropriate kernel functions for training the data\\
+%           otherwise leads to poor classification 
+%         \end{tabular}
+%         \\\midrule
+        
+%     	\bottomrule
+%     \end{tabular}
+%     \end{table}
