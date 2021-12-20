@@ -37,6 +37,16 @@ To understand better the concepts of \gls{ML}, Table~\ref{tab:ml_terminologies} 
 	\multicolumn{1}{c}{\textbf{Concept}} & \textbf{Description} \\
 	\midrule
 	
+	Dataset
+    & 
+    \begin{tabular}[c]{@{}c@{}}
+        Collection of data. In tabular data, each column represents a\\
+        feature and each row represents a given record of the data set\\
+        in question. Instead of tables, datasets can also consist of a\\
+        collection of files.
+    \end{tabular} 
+    \\\midrule
+	
     Model
     & 
     \begin{tabular}[c]{@{}c@{}}
@@ -110,7 +120,7 @@ To understand better the concepts of \gls{ML}, Table~\ref{tab:ml_terminologies} 
 
 When developing a \gls{ML} workflow, the first step is to define the project before determining the best working strategy or attempting to fit the model into a predetermined workflow. Instead, a flexible workflow should be created to start small and work its way up to a production-ready solution.
 
-The steps taken during a \gls{ML} implementation are defined by the workflows. \gls{ML} workflows differ depending on the project, but they usually consist of seven steps.
+The steps taken during a \gls{ML} implementation are defined by the workflows. \gls{ML} workflows differ depending on the project, but they usually consist of eight steps.
 
 \begin{enumerate}
     \item \textbf{Data Gathering} This phase is crucial because the quality and quantity of data collected will directly affect how accurate the predictive model is.
@@ -185,13 +195,14 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
     And there are types of raw data too, including:
     
     \begin{itemize}
-        \item \textbf{Numeric}: height, weight, age, number of movies watched, IQ.
+        \item \textbf{Numeric}: height, weight, age, IQ.
         \item \textbf{Categorical}: race, sex, nationality.
         \item \textbf{Ordinal}: low/medium/high, education level ("high school", "BS", "MS", "PhD").
     \end{itemize}
     
-    However, there's an important aspect of \gls{ML} models as they can only handle numeric features. As a result, categorical and ordinal data must be converted into numeric features.
+    However, there's an important aspect of \gls{ML} models as they can only handle numeric features. As a result, all types of data must be converted into numeric features. This process of transforming raw data, such as images or text, into suitable modelling features is called feature extraction.
     
+    Most of the time, datasets have an excessive number of features that are not required for the predictive model. In fact, removing irrelevant features and keeping the sufficient and essential ones can help reduce the ML model training time, as well as reduce overfit and improve accuracy. This filtering process is called feature selection.
     
     \item \textbf{Splitting the Data} It is usual to divide a dataset into two portions for creating \gls{ML} models: training and testing. The training set is used to estimate the model's unknown parameters. The accuracy of the model is then tested using the testing dataset. This dataset splitting process is done to prevent overfitting. If the entire dataset was used for training, then the model would overfit the data, meaning it would fail to generate accurate predictions on unseen data~\cite{Joseph2020SPlit:Splitting}.
     
