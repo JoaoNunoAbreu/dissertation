@@ -109,7 +109,7 @@
 
 % To process the bibliography
 % (This should be listed after the hyperref, otherwise hyperlinks in citations won't work)
-\RequirePackage{biblatex}
+\RequirePackage[sorting=none]{biblatex}
 \DeclareLanguageMapping{english}{american-apa}
 \DeclareLanguageMapping{portuguese}{portuguese-apa}
 
