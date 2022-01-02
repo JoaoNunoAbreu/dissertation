@@ -12,13 +12,40 @@
 \chapter{Introduction}
 \label{cha:introduction}
 
-\section{Context and Motivation} % (fold)
-\label{sec:context_and_motivation}
+\section{Context and Motivation} \label{sec:context_and_motivation}
+
+Biomedical data has grown at an exponential rate in recent years, requiring the use of a variety of machine learning approaches to handle new issues in biology and clinical research. Machine learning methods are often integrated with bioinformatic methodologies, as well as curated databases and biological networks, to improve training and validation, find the most interpretable features, and enable feature and model research~\cite{Auslander2021IncorporatingFrameworks}.
+
+In organisms, DNA is a kind of biomacromolecule. It holds life's genetic information and controls biological growth as well as the proper functioning of life's functions. Machine learning is now frequently utilized in sequence data analysis, and it has a wide range of applications in terms of enhancing data processing capacities and providing useful biological data~\cite{Yang2020ReviewDNA}.
+
+The assignment of a function to a sequence representing a part of a DNA molecule is a core problem in Bioinformatics, extremely important for biomedical research. Current solutions involve the use of homologies, inferred by sequence similarity, i.e., classifying new sequences based on known functions in sequences with a high degree of similarity. Deep neural networks are an alternative that can automatically learn and comprehend informative sequence representations to get a better understanding of the regulatory code that governs gene expression~\cite{Zrimec2021LearningExpression}.
+
+There is already a platform, developed within the Biosystems group at CEB/ U. Minho, devoted to the classification of peptides/proteins sequences using machine learning and deep learning called \textit{ProPythia}~\cite{Sequeira2020ProPythia:Learning}. One of the objectives of this thesis will be the integration of a tool to support DNA sequence classifiers in the mentioned platform.
+
+\section{Research Objectives} \label{sec:research_objectives}
+
+The main aim of this work is to develop an automatic classification system for DNA sequences using deep learning algorithms, expecting performance gains in terms of response time to annotate large numbers of sequences (e.g., complete genomes), as well as the accuracy of the results obtained. 
+
+In detail, the work will address the following scientific/technological objectives:
+
+\begin{itemize}
+    \item Review relevant literature and existing tools regarding deep learning methods and their applications in sequence classification.
+    \item Develop and compare data pre-processing techniques and understanding the impact of different methods on the classifying performance of machine and deep learning models.
+    \item Develop a tool to support machine and deep learning models for DNA sequence classification to integrate in \textit{ProPythia}.
+    \item Develop automated machine learning (AutoML) classifiers for DNA sequences, which will be integrated into \textit{OmniumAI} software platforms.
+    \item Validate the developed tool and platform with case studies in the areas of biotechnology and health-transcription factor annotation, essential genes determination~\cite{Zhang2020DeepHE:Learning,Quang2016DanQ:Sequences,Novakovsky2021BiologicallyPrediction}.
+    \item Write the master thesis.
+\end{itemize} 
 
 
-\section{Research Objectives} % (fold)
-\label{sec:research_objectives}
+\section{Document Structure} \label{sec:document_structure}
 
+This pre-thesis is divided into five chapters, each of which is briefly described as follows:
 
-\section{Document Structure} % (fold)
-\label{sec:document_structure}
+\begin{itemize}
+    \item Chapter 1: Overview of the work's subject, as well as the motivation and key objectives.
+    \item Chapter 2: Theoretical concepts of machine and deep learning, as well as their objectives, algorithms, and architectures. 
+    \item Chapter 3: Introduction of DNA and DNA sequence classification topics.
+    \item Chapter 4: Applications of machine and deep learning in DNA sequence classification.
+    \item Chapter 5: Thesis objectives and timeline. 
+\end{itemize}
