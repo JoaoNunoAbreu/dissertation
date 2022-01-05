@@ -29,14 +29,36 @@ It is standard practice to encode molecular information as numerical features in
 
 Tools such as \textit{BioSeq-Analysis}~\cite{Liu2019BioSeq-Analysis:Approaches} and \textit{iLearn}~\cite{Chen2020ILearn:Data} are platforms capable of calculating descriptors for not only \gls{DNA} but also \gls{RNA} and protein sequences. In addition, these packages also perform \gls{ML} functions on the calculated features. \textit{BioSeq-Analysis} focuses on automatically completing feature extraction, predictor construction, and performance evaluation. \textit{iLearn} has functions for feature extraction, clustering, feature selection, dimensionality reduction, and ensemble learning, making it a more comprehensive package.
 
-Another important stage in effective sequence analysis is the creation of predictors. Many \gls{ML} methods have been employed to predict structural and functional characteristics and to help in the annotation of genomic data. \gls{SVM}, \gls{RF}, \gls{ANN}, \gls{KNN}, and \gls{LgR} are some examples of these methods~\cite{Chen2020ILearn:Data}.
+Another important stage in sequence analysis is the creation of predictors. Many \gls{ML} methods have been employed to predict structural and functional characteristics and to help in the annotation of genomic data. \gls{SVM}, \gls{RF}, \gls{ANN}, \gls{KNN}, and \gls{LgR} are some examples of these methods~\cite{Chen2020ILearn:Data}.
+
 
 %Descriptors 
 %Algorithms  
 
 \section{DNA sequence classification - DL}
 
-A common difficulty in data mining is classifying biological sequences as a specific data type. This is a tough challenge, due to the non-numerical properties of biological sequence elements, the sequence interaction between sequence elements, and the variable sequence length~\cite{Yang2020ReviewDNA}. \gls{ML} methods for supervised classification tasks are, without a doubt, heavily reliant on the feature extraction stage, and it is required to detect and quantify relevant aspects of the objects to classify in order to develop a suitable representation. \gls{DL} models have recently been shown to be capable of automatically extracting meaningful features from input patterns~\cite{LoBosco2017DeepClassification}.
+A common difficulty in data mining is classifying biological sequences as a specific data type. This is a tough challenge, due to the non-numerical properties of biological sequence elements, the sequence interaction between sequence elements, and the variable sequence length~\cite{Yang2020ReviewDNA}. \gls{ML} methods for supervised classification tasks are, without a doubt, heavily reliant on the feature extraction stage, and it is required to detect and quantify relevant aspects of the objects to classify in order to develop a suitable representation. \gls{DL} models have recently been shown to be capable of automatically extracting meaningful features from input patterns~\cite{LoBosco2017DeepClassification}. This is possible due to feature learning techniques that \gls{DL} methods possess. These techniques allow the automatic identification of the representations required for feature detection from raw data, meaning that the human feature engineering is removed, and the machine will learn the features instead. As a result, \gls{DL} models only need the sequence itself as input, unlike \gls{ML} models that require the previously calculated features. However, first it is required to transform the string sequence into a numerical value in order to create an input matrix for the model~\cite{Yang2020ReviewDNA}. Sequential encoding, one-hot encoding, and k-mer encoding are three popular methods for sequence encoding~\cite{Choong2017EvaluationMethod} and Table~\ref{tab:encoding_methods} summarizes the differences between them. 
+
+\begin{table}[ht]
+	\caption{DNA sequence encoding methods~\cite{Yang2020ReviewDNA}}
+	\label{tab:encoding_methods}
+\centering
+\begin{tabular}{lp{8cm}}
+	\toprule
+	\textbf{Encoding Method} & \textbf{Features} \\
+	\midrule
+	
+	Sequential encoding & Each base is encoded as a number. Change [A,T,G,C] to [0.25,0.5,0.75,1.0], and any other character to 0.\\\midrule
+	
+    One-hot enconding & Each base is encoded as a vector. [A,T,G,C] will become [0,0,0,1],[0,0,1,0],[0,1,0,0],[1,0,0,0]. These vectors can be combined into a 2-dimensional array.\\\midrule
+    
+    K-mer enconding & Decomposes a sequence into k-length overlapping segments. "ATGCATCGA" becomes "ATGCAT", "TGCATG", "GCATGC", "CATGCA"  when \textit{k}=6 is used.\\
+    
+	\bottomrule
+\end{tabular}
+\end{table}
+
+
 
 % (over strings?)
 % common architectures

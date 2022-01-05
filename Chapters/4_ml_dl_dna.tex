@@ -48,9 +48,9 @@ Table~\ref{tab:previous_work} provides an overview of the previous work on DNA c
 	
 	\citeyear{Ma2001DNAStudy} & \citeauthor{Ma2001DNAStudy} & \citetitle{Ma2001DNAStudy}~\cite{Ma2001DNAStudy} & E. Coli promoters detection & NN & Orthogonal encoding method\\\midrule
 	
-	\citeyear{Nair2010ANNRepresentation} & \citeauthor{Nair2010ANNRepresentation} & \citetitle{Nair2010ANNRepresentation}~\cite{Nair2010ANNRepresentation} & Taxonomic classification of Eukaryotic species & ANN & FCGR\\\midrule
+	\citeyear{Nair2010ANNRepresentation} & \citeauthor{Nair2010ANNRepresentation} & \citetitle{Nair2010ANNRepresentation}~\cite{Nair2010ANNRepresentation} & Taxonomic classification of Eukaryotic species & \gls{ANN} & FCGR\\\midrule
 	
-	\citeyear{Rizzo2015AClassification} & \citeauthor{Rizzo2015AClassification} & \citetitle{Rizzo2015AClassification}~\cite{Rizzo2015AClassification} & Classify 16S bacterial genomic sequences & DNN, General Regression Neural Network, Naive Bayes, \gls{RF}, \gls{SVM} & k-mer encoding\\\midrule
+	\citeyear{Rizzo2015AClassification} & \citeauthor{Rizzo2015AClassification} & \citetitle{Rizzo2015AClassification}~\cite{Rizzo2015AClassification} & Classify 16S bacterial genomic sequences & \gls{DNN}, General Regression Neural Network, Naive Bayes, \gls{RF}, \gls{SVM} & k-mer encoding\\\midrule
 	
 	\citeyear{Nguyen2016DNANetwork} & \citeauthor{Nguyen2016DNANetwork} & \citetitle{Nguyen2016DNANetwork}~\cite{Nguyen2016DNANetwork} & Solve DNA sequence classification problem in 12 datasets & \gls{CNN} & one-hot vectors\\\midrule
 	
@@ -81,11 +81,3 @@ Vale a pena falar outra vez disto se já tenho a secção~\ref{sec:ML_DL_librari
 Understanding the connections between protein structure and function is one of biology's main goals. The basic amino acid sequences provide particularly helpful structural information for understanding the structure-function paradigm. The idea that sequences with similar structures have comparable functions is used to classify DNA sequences. Sequence alignment techniques such as BLAST~\cite{Altschul1990BasicTool} and FASTA~\cite{Pearson1988ImprovedComparison} have historically been used to determine sequence similarity. This decision is based on two primary assumptions: (1) the functional components have similar sequence properties, and (2) the functional elements' relative order is preserved across sequences. These assumptions are applicable in a wide range of situations, but they are not universal~\cite{LoBosco2017DeepClassification}.
 
 Regardless, despite recent advancements, the major issue that severely restricts the use of alignment techniques remains their computational time complexity. As a result, alignment-free approaches~\cite{Vinga2003Alignment-freeReview,Pinello2014ApplicationsEpigenomics} that have recently been developed have emerged as a viable strategy to investigating the regulatory genome. Feature extraction, such as spectral representation of DNA sequences~\cite{LoBosco2014ASequences,LoBosco2015AlignmentClassification}, is undoubtedly a part of these approaches. Feature representations, which are often constructed by specialists, are critical to the effectiveness of traditional \gls{ML} algorithms. Following that, it is vital to choose which features are more suited for dealing with the particular problem, which is still a very important and challenging stage today~\cite{LoBosco2017DeepClassification}.
-
-Limitations of \gls{ML}~\cite{Abd-Alhalem2021DNASurvey}.
-
-\begin{itemize}
-    \item \textbf{Data Representation}: Quantifying characteristics of DNA sequences presents various challenges. Nobody knows which format for encoding numeric values in these nucleotides is the best. When applying \gls{ML} to biological investigations, it is not possible to employ quantitative representations of these biological units.
-    
-    \item \textbf{Reducing computational requirement}: Deep learning models are often complicated and have a large number of parameters to train; obtaining well-trained models, as well as using the models productively, is generally computationally and memory costly. These limitations severely limit the use of deep learning in machines with low processing capability, particularly in the data-intensive fields of bioinformatics and healthcare. Several methods have been proposed to compress deep learning models, which can significantly reduce the computational requirements of those models from the start, such as parameter pruning, which significantly reduces redundant parameters that do not contribute to the model's performance, and the well-known Deep Compresion. We may also conserve parameters by using compact convolutional filters.
-\end{itemize}

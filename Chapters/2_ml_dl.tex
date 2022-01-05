@@ -120,7 +120,7 @@ To understand better the concepts of \gls{ML}, Table~\ref{tab:ml_terminologies} 
 
 When developing a \gls{ML} workflow, the first step is to define the project before determining the best working strategy or attempting to fit the model into a predetermined workflow. Instead, a flexible workflow should be created to start small and work its way up to a production-ready solution.
 
-The steps taken during a \gls{ML} implementation are defined by the workflows. \gls{ML} workflows differ depending on the project, but they usually consist of eight steps.
+The steps taken during a \gls{ML} implementation are defined by the workflows. \gls{ML} workflows differ depending on the project, but they usually consist of seven steps.
 
 \begin{enumerate}
     \item \textbf{Data Gathering} This phase is crucial because the quality and quantity of data collected will directly affect how accurate the predictive model is.
@@ -202,7 +202,7 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
     
     However, there's an important aspect of \gls{ML} models as they can only handle numeric features. As a result, all types of data must be converted into numeric features. This process of transforming raw data, such as images or text, into suitable modelling features is called feature extraction.
     
-    Most of the time, datasets have an excessive number of features that are not required for the predictive model. In fact, removing irrelevant features and keeping the sufficient and essential ones can help reduce the ML model training time, as well as reduce overfit and improve accuracy. This filtering process is called feature selection.
+    Most of the time, datasets have an excessive number of features that are not required for the predictive model. In fact, removing irrelevant features and keeping the sufficient and essential ones can help reduce the \gls{ML} model training time, as well as reduce overfit and improve accuracy. This filtering process is called feature selection.
     
     \item \textbf{Splitting the Data} It is usual to divide a dataset into two portions for creating \gls{ML} models: training and testing. The training set is used to estimate the model's unknown parameters. The accuracy of the model is then tested using the testing dataset. This dataset splitting process is done to prevent overfitting. If the entire dataset was used for training, then the model would overfit the data, meaning it would fail to generate accurate predictions on unseen data~\cite{Joseph2020SPlit:Splitting}.
     
@@ -324,7 +324,7 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
 
 \end{enumerate}
 
-\section{Unsupervised ML models and algorithms}
+\section{Unsupervised machine learning}
 
 In unsupervised \gls{ML}, several algorithms and computing approaches are utilized. The following are some of the most clustering and dimensionaly reduction algorithms: K-means clustering and \gls{PCA}~\cite{Chugh2018TypesKnow}.
 
@@ -347,9 +347,9 @@ K-means clustering is a clustering \gls{ML} technique in which data points are d
 \end{figure}
 
 
-\section{Supervised ML models and algorithms}
+\section{Supervised machine learning}
 
-In supervised \gls{ML} learning, several algorithms and computing approaches are utilized. The following are some of the most popular classification and regression algorithms: \gls{LR}, \gls{LgR}, \gls{KNN}, \gls{SVM}, \gls{DT} and \gls{RF}~\cite{2020WhatIBM,Chugh2018TypesKnow}.
+In supervised \gls{ML}, several algorithms and computing approaches are utilized. The following are some of the most popular classification and regression algorithms: \gls{LR}, \gls{LgR}, \gls{KNN}, \gls{SVM}, \gls{DT}, \gls{RF} and \gls{ANN}~\cite{2020WhatIBM,Chugh2018TypesKnow}.
 
 % Linear Regression
 \gls{LR} is the most popular method of regression analysis, which assumes that the dependent variable (variable to be predicted) and the independent variable (base for the variable to be predicted) have a linear relationship. Linear regression creates a model for the best fit line between two variables. The outcome of interest must be a continuous variable in order to be appropriate for \gls{LR}~\cite{Worster2007UnderstandingAnalyses}. Figure~\ref{fig:linear_regression} shows how the model (red line) is created by utilizing training data (blue points) with known labels (y axis) to fit the points as exactly as possible by minimizing the value of a given loss function (usually \gls{MSE}).
@@ -416,6 +416,9 @@ A \gls{RF} classifier is an ensemble \gls{ML} algorithm. One note should be adde
     \caption{Random Forest structure~\cite{Sarker2021MachineDirections}}
     \label{fig:random_forest2}
 \end{figure}
+
+% ANN
+\gls{ANN}s-based supervised classifiers are extremely sophisticated and may be further subdivided into a number of distinct but related ideas. They are based on the neural network of the brain. These algorithms are used in most cutting-edge artificial intelligence applications and are typically used when working with very big datasets. They also serve as the foundation for deep learning approaches, as detailed below in both sections~\ref{sec:ann} and ~\ref{sec:dl}.
 
 \section{Artificial neural networks}\label{sec:ann}
 
@@ -759,7 +762,7 @@ The design and training of a machine learning model is frequently an important s
 While there are many languages to choose from, Python is one of the most developer-friendly \gls{ML} and \gls{DL} programming languages available, and it comes with a large library to suit any use-case or project. Most popular libraries include~\cite{JonssonWaysDevelopment,Paszke2019PyTorch:Library}:
 
 \begin{itemize}
-    \item \textbf{Tensorflow}: high-performance numerical computing open source software framework. This library, which was created by Google researchers and engineers, has a strong support for \gls{ML} and \gls{DL}.  It enables users to train models on both the CPU and \gls{GPU}.
+    \item \textbf{Tensorflow}: high-performance numerical computing open source software framework. This library, which was created by Google researchers and engineers, has a strong support for \gls{ML} and \gls{DL}. It works with tensors, which are structures that imitate scalars, vectors, and matrices and allow for calculations between them. This tool's key features include straightforward numerical calculation, deployment on numerous CPUs or GPUs, and a robust data visualization interface.
     \item \textbf{Keras}: \gls{DL} framework that provides high-level building blocks for designing practically any type of \gls{DL} model in a far more convenient way than constructing it from the ground up. Keras also enables users to train models on both the CPU and \gls{GPU}.
     \item \textbf{PyTorch}: open-source \gls{ML}/\gls{DL} library created by Facebook and based on Torch. It offers a large number of tools and libraries that assist Computer Vision, \gls{NLP}, and a variety of other \gls{ML} tasks. It enables developers to run Tensor computations with \gls{GPU} acceleration and aids in the creation of computational graphs.
 \end{itemize}
