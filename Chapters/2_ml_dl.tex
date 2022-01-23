@@ -72,7 +72,8 @@ To understand better the concepts of \gls{ML}, Table~\ref{tab:ml_terminologies} 
     Training
     & 
     \begin{tabular}[c]{@{}c@{}}
-        Procedure for obtaining a model's optimum parameters.
+        %Procedure for obtaining a model's optimum parameters.
+        Procedure for obtaining appropriate values for model weights and bias (parameters).
     \end{tabular} 
     \\\midrule
     
@@ -123,9 +124,9 @@ When developing a \gls{ML} workflow, the first step is to define the project bef
 The steps taken during a \gls{ML} implementation are defined by the workflows. \gls{ML} workflows differ depending on the project, but they usually consist of seven steps.
 
 \begin{enumerate}
-    \item \textbf{Data Gathering} This phase is crucial because the quality and quantity of data collected will directly affect how accurate the predictive model is.
+    \item \textbf{Data Gathering} It is the practice of acquiring and analyzing data from a variety of sources. Data must be collected and kept in a form that makes sense for the challenge at hand in order to be used to build a viable machine learning model. This phase is crucial because the quality and quantity of data collected will directly affect how accurate the predictive model is. Publicly available datasets are frequently the best source of data, and websites like \textit{Kaggle} provide an enormous quantity of huge datasets. Working with these selected datasets reduces the time and effort required to begin a \gls{ML} project.
     
-    Some examples of types of data are listed below in Table~\ref{tab:data_types}.
+    Structured, semi-structured, and unstructured data are examples of different types of data, and Table~\ref{tab:data_types} provides details about each one of them.
     
     \begin{table}[ht]
     	\caption{Types of data~\cite{Sarker2021MachineDirections}}
@@ -200,9 +201,9 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
         \item \textbf{Ordinal}: low/medium/high, education level ("high school", "BS", "MS", "PhD").
     \end{itemize}
     
-    However, there's an important aspect of \gls{ML} models as they can only handle numeric features. As a result, all types of data must be converted into numeric features. This process of transforming raw data, such as images or text, into suitable modelling features is called feature extraction.
+    However, there is an important aspect of \gls{ML} models as they can only handle numeric features. As a result, all types of data must be converted into numeric features. This process of transforming raw data, such as images or text, into suitable modelling features is called feature extraction.
     
-    Most of the time, datasets have an excessive number of features that are not required for the predictive model. In fact, removing irrelevant features and keeping the sufficient and essential ones can help reduce the \gls{ML} model training time, as well as reduce overfit and improve accuracy. This filtering process is called feature selection.
+    Most of the time, datasets have an excessive number of features that are not required for the predictive model. In fact, removing irrelevant features and keeping the sufficient and essential ones can help reduce the \gls{ML} model training time, as well as reduce overfit and improve accuracy. This filtering process is called feature selection and is usually performed after feature extraction.
     
     \item \textbf{Splitting the Data} It is usual to divide a dataset into two portions for creating \gls{ML} models: training and testing. The training set is used to estimate the model's unknown parameters. The accuracy of the model is then tested using the testing dataset. This dataset splitting process is done to prevent overfitting. If the entire dataset was used for training, then the model would overfit the data, meaning it would fail to generate accurate predictions on unseen data~\cite{Joseph2020SPlit:Splitting}.
     
@@ -216,7 +217,8 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
     
     The two primary categories of \gls{ML} algorithms are supervised and unsupervised learning. Other categories include semi-supervised learning and reinforcement learning.
     
-    Supervised learning is a \gls{ML} paradigm for obtaining knowledge about a system's input-output relationship from a set of paired input-output training examples~\cite{Liu2012SupervisedLearning}. The two most common supervised categories are classification and regression. In classification, various labels are used to teach the algorithm how to classify items within a certain category. It is applied to image classification and fraud detection problems. On the other hand, regression is used to predict future values trained with historical data. It is used for weather and population growth predictions. A clearer distinction between classification and regression is illustrated in Figure~\ref{fig:regression_vs_classification}.
+    Supervised learning is a \gls{ML} paradigm for obtaining knowledge about a system's input-output relationship from a set of paired input-output training examples~\cite{Liu2012SupervisedLearning}. The two most common supervised categories are classification and regression. In classification, a class label is predicted for a given sample. In other words, it maps a function from input variables to output variables as target, label or categories~\cite{Sarker2021MachineDirections}.
+    In addition, there are multiple classification problems, such as binary classification, which refers to tasks with two class labels, such as "true and false", multiclass classification, which refers to classification tasks having more than two class labels, and multi-label classification when an example is associated with multiple classes or labels. On the other hand, regression contains approaches for predicting a continuous output variable based on the value of one or more predictor variables. The most important difference between classification and regression is that classification predicts distinct class labels, whereas regression predicts a continuous quantity. A clearer distinction between classification and regression is illustrated in Figure~\ref{fig:regression_vs_classification}.
         
     \begin{figure}[htbp]
         \centering
@@ -326,9 +328,9 @@ The steps taken during a \gls{ML} implementation are defined by the workflows. \
 
 \section{Unsupervised machine learning}
 
-In unsupervised \gls{ML}, several algorithms and computing approaches are utilized. The following are some of the most clustering and dimensionaly reduction algorithms: K-means clustering and \gls{PCA}~\cite{Chugh2018TypesKnow}.
+In unsupervised \gls{ML}, several algorithms and computing approaches are utilized. The following are some of the most popular clustering and dimensionality reduction algorithms: K-means clustering and \gls{PCA}~\cite{Chugh2018TypesKnow}.
 
-K-means clustering is a clustering \gls{ML} technique in which data points are divided into K groups. The data points nearest to a certain centroid will be clustered together. Smaller groupings with more granularity are indicated by a higher K value, whereas bigger groupings with less granularity are indicated by a lower K value~\cite{2020WhatIBMb}.
+K-means clustering is a clustering \gls{ML} technique in which data points are divided into \textit{K} groups. The data points nearest to a certain centroid will be clustered together. Smaller groupings with more granularity are indicated by a higher \textit{K} value, whereas bigger groupings with less granularity are indicated by a lower \textit{K} value~\cite{2020WhatIBMb}.
     
 \begin{figure}[htbp]
     \centering
@@ -337,13 +339,22 @@ K-means clustering is a clustering \gls{ML} technique in which data points are d
     \label{fig:k-means}
 \end{figure}
 
-\gls{PCA} is a dimensionality reduction approach that uses feature extraction to eliminate redundancies and compress datasets~\cite{2020WhatIBMb}. Working with too many variables can be difficult for \gls{ML} since there is a chance of overfitting, a lack of appropriate data for each variable, and a degree of correlation between each variable and the output~\cite{Chugh2018TypesKnow}. Figure~\ref{fig:pca} shows an example of a \gls{PCA} and created principal components PC1 and PC2 in different dimension space.
+\gls{PCA} is a dimensionality reduction approach that uses feature extraction to eliminate redundancies and compress datasets, while retaining as much of the information contained in the original data as possible~\cite{2020WhatIBMb}. Working with too many variables can be difficult for \gls{ML} since there is a chance of overfitting, a lack of appropriate data for each variable, and a degree of correlation between each variable and the output~\cite{Chugh2018TypesKnow}. \gls{PCA} does this by projecting data onto a lower-dimensional subspace that preserves the majority of the variance between data points. Figure~\ref{fig:pca} depicts an example of \gls{PCA}'s influence on 2-dimensional space data.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.85\linewidth]{pca.png}
-    \caption{Visual representation of Principal Component Analysis~\cite{Sah2020MachineTypes}}
+    \includegraphics[width=0.6\linewidth]{pca.jpeg}
+    \caption{Principal Component Analysis application on 2D space data~\cite{Patcher2014WhatDNA}}
     \label{fig:pca}
+\end{figure}
+
+The green line was created through mathematical optimization in order to maximize the variance between the data points as much as possible along that line. This line is referred to as the first principal component. Since a dimension has been lost to separate them, the points on the line are closer to each other than they were in the original 2D environment. However, in many circumstances, the simplification in dimensionality compensates the loss of information. When moving to higher dimensions, it will most likely be necessary to use multiple principal components since the variance described by one principle component will not be enough. Principal components are vectors that form a 90-degree angle between each other (orthogonal vectors), and are independent in a way that the second principal component does not overlap with the variance explained by the first. The first principal component will capture the majority of the variance; the second will catch the second-largest portion of the variance left unexplained by the first, and so on. Figure~\ref{fig:pca2} depicts an example of \gls{PCA}'s influence on 3-dimensional space data.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\linewidth]{pca2.png}
+    \caption{Principal Component Analysis application on 3D space data~\cite{Sarker2021MachineDirections}}
+    \label{fig:pca2}
 \end{figure}
 
 
@@ -378,23 +389,33 @@ Figure~\ref{fig:lgr} shows an example of a binary logistic function.
 
 
 % KNN
-The \gls{KNN} algorithm is a classification/regression technique that classifies data points based on their proximity and correlation with other data~\cite{2020WhatIBM}. This technique assumes that data points that are comparable can be located close together. As a result, it attempts to determine the distance between data points, which is commonly done using Euclidean distance, and then assigns a category based on the most common category or average. Depending on the value of K (the number of nearest neighbors that will participate in the voting process), different results can be obtained. In Figure~\ref{fig:knn}, the test sample should fall into one of two categories: blue squares or red triangles. If K = 1 (inner circle), it is assigned to the class represented by the blue squares because there is only one blue square and zero red triangles inside the circle. If K = 3 (outer circle), since there are two red triangles and one blue square inside the circle, it is classified into the category represented by the red triangles.
+The \gls{KNN} algorithm is a classification/regression technique that classifies data points based on their proximity and correlation with other data~\cite{2020WhatIBM}. This technique assumes that data points that are comparable can be located close together. As a result, it attempts to determine the distance between data points, which is commonly done using Euclidean distance, and then assigns a category based on the most common category or average. Depending on the value of \textit{K} (the number of nearest neighbors that will participate in the voting process), different results can be obtained. In Figure~\ref{fig:knn}, the test sample (green dot) should fall into one of two categories: squares or triangles. If \textit{K} = 3, then only the three nearest neighbors to the test sample will participate in the voting process. In this example, it is assigned to the triangles class since the nearest neighbors are two triangles and only one square. If \textit{K} = 5, it is assigned to the squares class because the five nearest neighbors are three squares and only two triangles.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.65\linewidth]{knn.png}
+    \includegraphics[width=0.4
+    \linewidth]{knn.png}
     \caption{Visual representation of K-Nearest Neighbors~\cite{Bronshtein2017AMedium}}
     \label{fig:knn}
 \end{figure}
 
 % SVM
-\gls{SVM}s are supervised learning models that evaluate data for classification and regression analysis. The kernel function allows \gls{SVM}s to do non-linear as well as linear classification by implicitly mapping their inputs into high-dimensional feature spaces. It is used to draw lines between classes (hyperplanes). The hyper-plane is drawn at the maximum distance between two classes from the training data points (support vectors) since, in general, the greater the margin, the lower the classifier's generalization error~\cite{Mahesh2019MachineReview}.
-    
+\gls{SVM}s are supervised learning models that evaluate data for classification and regression analysis. They create hyperplanes that are drawn at the maximum distance between two classes from the training data points (support vectors), since the greater the margin, the lower the classifier's generalization error. Then, new samples are predicted to belong to a category according to which side of the gap they fall~\cite{Mahesh2019MachineReview}. Figure~\ref{fig:svm} provides an example of a linear classification perfomed by \gls{SVM}. If a new sample fell to the right of the hyperplane, it would be classified as the red dot class, and it would otherwise be classified as the blue dot class if it fell to the left of the hyperplane. 
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.65\linewidth]{svm.png}
     \caption{Visual representation of Support Vector Machines~\cite{MaquinaExplicada}}
     \label{fig:svm}
+\end{figure}
+
+However, with the help of kernel functions, \gls{SVM}s may do non-linear classification as well by implicitly translating their inputs into high-dimensional feature spaces. Some examples of kernel functions used in \gls{SVM} classifiers are linear, polynomial and radial basis functions. Figure~\ref{fig:svm2} shows how an hyperplane is drawn with a kernel function. The training points are mapped to a three-dimensional space with a clearly visible separation hyperplane.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{svm2.png}
+    \caption{Visual representation of Support Vector Machines~\cite{KernelWikipedia}}
+    \label{fig:svm2}
 \end{figure}
 
 % Decision tree
@@ -408,7 +429,7 @@ The \gls{KNN} algorithm is a classification/regression technique that classifies
 \end{figure}
 
 % Random forest
-A \gls{RF} classifier is an ensemble \gls{ML} algorithm. One note should be added regarding ensemble methods before addressing \gls{RF}. Ensemble learning is the process of building and combining many models to tackle a specific computational issue. Ensemble learning is generally used to improve a model's performance or lessen the risk of an unintentional poor model selection~\cite{Mahesh2019MachineReview}. Knowing this, \gls{RF} employs parallel ensembling, in which numerous \gls{DT} classifiers are fitted in parallel on distinct dataset sub-samples, as illustrated in Figure~\ref{fig:random_forest2}, and the final result is determined by majority voting or averages. Therefore, the overfitting problem is reduced, and prediction accuracy and control are improved. As a result, an \gls{RF} learning model based on many \gls{DT}s is usually more accurate than one based on a single \gls{DT}. It combines bagging (which is another ensemble learning method) with random feature selection to create a succession of \gls{DT}s with controlled variance. It works well for both categorical and continuous variables and may be applied to both classification and regression issues~\cite{Sarker2021MachineDirections}.
+A \gls{RF} classifier is an ensemble \gls{ML} algorithm. One note should be added regarding ensemble methods before addressing \gls{RF}. Ensemble learning is the process of building and combining many models to tackle a specific computational issue. Ensemble learning is generally used to improve a model's performance or reduce the risk of an unintentionally poor model selection~\cite{Mahesh2019MachineReview}. Bagging is an ensemble learning technique for reducing variance in a noisy dataset. It consists of selecting a random sample of data from a training set with replacement (individual data points might be used multiple times). These weak models are then trained individually after multiple data samples are collected, and depending on the kind of task (for example, regression or classification), the average or majority of those predictions provides a more accurate estimate. Knowing this, \gls{RF} employs parallel ensembling, in which numerous \gls{DT} classifiers are fitted in parallel on distinct dataset sub-samples, as illustrated in Figure~\ref{fig:random_forest2}, and the final result is determined by majority voting or averages. Therefore, the overfitting problem is reduced, and prediction accuracy and control are improved. As a result, a \gls{RF} learning model based on many \gls{DT}s is usually more accurate than one based on a single \gls{DT}. It combines the previously mentioned bagging technique with random feature selection to create a succession of \gls{DT}s with controlled variance. It works well for both categorical and continuous variables and may be applied to both classification and regression issues~\cite{Sarker2021MachineDirections}.
 
 \begin{figure}[htbp]
     \centering
@@ -487,7 +508,7 @@ One of the advantages of \gls{DL} over traditional \gls{ML} approaches is that i
     \label{fig:DL_vs_ML}
 \end{figure}
 
-The simplest \gls{DL} architecture is the \gls{DNN}. A \gls{DNN} is an \gls{ANN} with various layers between the input layer and the output layers. In other words, a \gls{DNN} has multiple hidden layers~\cite{Schmidhuber2015DeepOverview}. Figure~\ref{fig:ann-vs-dnn} shows a visual distinction between these two.
+The simplest \gls{DL} architecture is the \gls{DNN}. A \gls{DNN} is an \gls{ANN} with various layers between the input layer and the output layers. In other words, a \gls{DNN} has multiple hidden layers~\cite{Schmidhuber2015DeepOverview}. Figure~\ref{fig:ann-vs-dnn} shows a visual distinction between these two architectures.
 
 \begin{figure}[htbp]
     \centering
@@ -640,13 +661,13 @@ In \gls{SGD}, the back-propagation algorithm is used to compute the gradients of
 
 Instead of computing the gradient of the error based on all training samples like GD, \gls{SGD} creates an approximation of the actual gradient error based on a single training sample. As a result of the faster calculation of the approximation, \gls{DNN} can train faster and generalize better with \gls{SGD}~\cite{Amir2021SGDHelp}.
 
-The difference between the non-updated and the updated weight can be controlled using the learning rate hyperparameter. This means that the greater the learning rate, the greater the weight differential. It is therefore possible to define how to calculate the updated weight
+The difference between the non-updated and the updated weight can be controlled using the learning rate hyperparameter and it is possible to define how to calculate the updated weight
 
 \begin{equation}\label{eq:4}
     W_{x}^{'} = W_{x} - a(\frac{\partial Error}{\partial W_{x}})
 \end{equation}
 
-where ~$W_{x}^{'}$ is the new weight, ~$W_{x}$ is the old weight, ~$a$ is the learning rate, and ~$\frac{\partial Error}{\partial W_{x}}$ is the gradient (derivative of error with respect to weight)~\cite{Kim2021EasyAlgorithm}.
+where ~$W_{x}^{'}$ is the new weight, ~$W_{x}$ is the old weight, ~$a$ is the learning rate, and ~$\frac{\partial Error}{\partial W_{x}}$ is the gradient (derivative of error with respect to weight)~\cite{Kim2021EasyAlgorithm}. If the value of the learning rate hyperparameter is close to zero, the difference between the old and new weight would be minimal, meaning that the greater the learning rate, the greater the weight differential.
 
 \subsection{Challenges of deep neural networks}
 
@@ -656,11 +677,11 @@ The complexity of a neural network model is determined by both its structure (nu
 
 Methods that aim to reduce overfitting by maintaining network weights minimal are referred to as regularization methods and the most common ones include early stopping, L1, L2 and dropout~\cite{Brownlee2019HowNetworks}.
 
-Early stopping takes a straightforward strategy, stopping the network's training before it overfits to the training data. The training phase should be terminated when generalization reduces.
+Early stopping takes a straightforward strategy, stopping the network's training when the model does not improve on the validation set score, or, in other words, when the error on the validation set starts to grow.
 
 Weight decay, also known as weight regularization, is another strategy for decreasing overfitting in neural networks. Weight decay penalizes the network for having a high weight distribution by adding a cost to the training loss~\cite{Brownlee2019HowNetworks}. Examples of these methods are L1 and L2. In L1, it applies an L1 penalty equivalent to the absolute value of the magnitude of the coefficient. In L2, It applies an L2 penalty equivalent to the square of the magnitude of the coefficients~\cite{NgFeatureInvariance}.
 
-In dropout, as the name suggests, drops nodes at random in the network's hidden layers. This is accomplished by setting the weight for these randomly chosen nodes to zero and then increasing the other weights. The amount to scale up is proportional to the dropout rate~\cite{Brownlee2019HowNetworks}.
+In dropout, at every iteration of the training process, randomly selected nodes and their connections are dropped from the neural network. This prevents units from over-co-adapting, which would otherwise lead to overfitting problems. The derivative obtained by each parameter in a typical neural network tells it how it should change such that the resultant loss function is minimized, given what the other units are doing. As a result, units may evolve in such a way that they correct the errors of other units, which can lead to complex co-adaptations. This results in overfitting due to the fact that these co-adaptations cannot generalize to unseen data. Dropout makes the presence of additional hidden units unpredictable, preventing co-adaptation. As a result, a hidden unit cannot rely on other units to fix its errors. It must function properly in a wide range of situations created by the other hidden units~\cite{Srivastava2014Dropout:Overfitting}.
 
 In addition to the overfitting problem, \gls{DNN}s also suffer from high computation times. \gls{DNN}s must take into account a variety of training parameters, including the size (number of layers and units per layer), learning rate, and starting weights. Due to the time and processing resources required, sweeping across the parameter space for optimal parameters may not be practical. However, powerful processing hardware such as \gls{GPU}s are ideal for training \gls{DL} models as they can handle numerous computations at the same time. They feature a lot of cores, which makes it easier to run several parallel operations at the same time, resulting in a speed up in the training process.
 
@@ -674,14 +695,15 @@ As mentioned in Section~\ref{sec:dl}, \gls{DNN}s are feed forward networks, in w
 
 \paragraph{Convolutional neural networks} 
 
-A \gls{CNN} is a multilayer supervised neural network that was originally inspired by the neurobiological process of animal visual cortex~\cite{Ganatra2018ATools}. It is commonly utilized in a variety of applications including as image and video recognition, image processing, and classification.
+A \gls{CNN} is a multilayer supervised neural network that was originally inspired by the neurobiological process of animal visual cortex~\cite{Ganatra2018ATools}. It is commonly utilized in a variety of applications such as as image and video recognition, image processing, and classification. 
 
-The \gls{CNN} architecture is composed of multiple layers that perform feature extraction and classification (Figure~\ref{fig:cnn}). The input image is separated into fields, which are then fed into a convolutional layer, which extracts features from the input image. Pooling is the following stage, which decreases the dimensionality of the retrieved features (by down-sampling) while maintaining the most critical information (typically, through max pooling). Following that, another convolution and pooling phase is conducted, which feeds into a fully connected multilayer. This network's final output layer is a collection of nodes that identify image features (in this case, a node per identified number)~\cite{Madhavan2021DeepDeveloper}.
+%The \gls{CNN} architecture is composed of multiple layers that perform feature extraction and classification (Figure~\ref{fig:cnn}). The input image is separated into fields, which are then fed into a convolutional layer, which extracts features from the input image. Pooling is the following stage, which decreases the dimensionality of the retrieved features (by down-sampling) while maintaining the most critical information (typically, through max pooling). Following that, another convolution and pooling phase is conducted, which feeds into a fully connected multilayer. This network's final output layer is a collection of nodes that identify image features (in this case, a node per identified number)~\cite{Madhavan2021DeepDeveloper}.
+
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{cnn.png}
-    \caption{Convolutional Neural Network architecture~\cite{Madhavan2021DeepDeveloper}}
+    \includegraphics[width=0.9\linewidth]{cnn.jpg}
+    \caption{Convolutional Neural Network architecture~\cite{Al-Ajlan2019CNN-MGP:Prediction}}
     \label{fig:cnn}
 \end{figure}
 
@@ -709,12 +731,12 @@ However, RNNs suffer from the vanishing gradients problem, which makes learning 
     \label{fig:lstm}
 \end{figure}
 
-The architecture of the \gls{LSTM} can take several forms, one of which is \gls{GRU}. The rest gate and the update gate are the only two gates that \gls{GRU} uses. The rest gate is used in a model to determine how much information from the past should be forgotten or remembered. It decides which information to forget based on the information in the previous state and the next input candidate. The update gate aids the model in determining how much information from previous time steps should be passed on to future time steps.
+\gls{GRU}s are a simpler \gls{RNN} architecture with only two gates, the rest gate and the update gate. The rest gate is used in a model to determine how much information from the past should be forgotten or remembered. It decides which information to forget based on the information in the previous state and the next input candidate. The update gate aids the model in determining how much information from previous time steps should be passed on to future time steps.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{gru.png}
-    \caption{Gated Recurrent Unit architecture~\cite{Madhavan2021DeepDeveloper}}
+    \includegraphics[width=0.75\linewidth]{gru.png}
+    \caption{Gated Recurrent Unit architecture. Adapted from~\cite{Madhavan2021DeepDeveloper}}.
     \label{fig:gru}
 \end{figure}
 
@@ -751,18 +773,43 @@ The compressed form of the original input must only have essential information. 
     \label{fig:ac_example}
 \end{figure}
 
-\section{Model selection and optimization}
+\section{Automated machine learning}
 
-By automating \gls{ML} workflows, teams may complete some of the more time-consuming tasks associated with model creation with more efficiency. This is commonly referred to as \gls{AutoML}, and there are various modules and platforms available for it.
+%The design and training of a machine learning model is frequently an important step in the analytic process, and it involves a number of difficult procedures, including feature preprocessing, algorithm selection, hyperparameter tuning, and ensemble building. To complete all of these procedures successfully, a great deal of professional expertise is usually required. The area of \gls{AutoML} tries to create ways for creating appropriate machine learning models without (or with as little) human interaction as possible~\cite{Tuggener2019AutomatedResults}. By automating \gls{ML} workflows, teams may complete some of the more time-consuming tasks associated with model creation with more efficiency.
 
-The design and training of a machine learning model is frequently an important step in the analytic process, and it involves a number of difficult procedures, including feature preprocessing, algorithm selection, hyperparameter tuning, and ensemble building. To complete all of these procedures successfully, a great deal of professional expertise is usually required. The area of \gls{AutoML} tries to create ways for creating appropriate machine learning models without (or with as little) human interaction as possible~\cite{Tuggener2019AutomatedResults}.
+%This is commonly referred to as \gls{AutoML}, and there are various modules and platforms available for it.
+
+While \gls{ML} has several proved benefits, its effective use needs a significant amount of work on the part of human specialists, since no algorithm can achieve good performance on all possible challenges. Despite their familiarity with data, researchers frequently lack the \gls{ML} ability required to apply these approaches to large data sets. Researchers can and do collaborate with professional data scientists, but the collaborative approach involves time and effort from both parties. As a result, devising and deploying \gls{ML} solutions is complex, as the process starts with a lengthy data supply procedure, continues with identifying the suitable collaborators, and requires constant back-and-forth between \gls{ML} professionals and domain experts. By automating some of the components that need human skill, sectors will be able to create, verify, and deploy \gls{ML} systems more quickly~\cite{Waring2020AutomatedHealthcare}. As a result, \gls{AutoML} has arisen with the goal of automatically optimizing sections of the \gls{ML} pipeline as shown in Figure~\ref{fig:automl}. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{automl.jpg}
+    \caption{Machine learning pipeline with AutoML~\cite{Waring2020AutomatedHealthcare}}
+    \label{fig:automl}
+\end{figure}
+
+In recent years, multiple packages have been developed that provide \gls{AutoML}. Some examples are:
+
+\begin{itemize}
+    \item \textbf{AutoWEKA} - package for selecting a \gls{ML} algorithm and its hyperparameters at the same time; when paired with the WEKA package, it produces good models for a wide range of data sets automatically.
+    
+    \item \textbf{Auto-PyTorch} - based on the PyTorch \gls{DL} framework and adjusts hyperparameters and neural architecture simultaneously.
+    
+    \item \textbf{MLBoX} is a three-part \gls{AutoML} toolkit that includes preprocessing, optimization, and prediction.
+    
+    \item \textbf{TPOT} - data science assistant that uses genetic programming to enhance \gls{ML} pipelines.
+    
+    \item \textbf{AutoGluon} - multi-layer stacking method for various \gls{ML} models.
+    
+\end{itemize}
+
 
 \section{Python libraries for machine and deep learning}\label{sec:ML_DL_libraries}
 
 While there are many languages to choose from, Python is one of the most developer-friendly \gls{ML} and \gls{DL} programming languages available, and it comes with a large library to suit any use-case or project. Most popular libraries include~\cite{JonssonWaysDevelopment,Paszke2019PyTorch:Library}:
 
 \begin{itemize}
-    \item \textbf{Tensorflow}: high-performance numerical computing open source software framework. This library, which was created by Google researchers and engineers, has a strong support for \gls{ML} and \gls{DL}. It works with tensors, which are structures that imitate scalars, vectors, and matrices and allow for calculations between them. This tool's key features include straightforward numerical calculation, deployment on numerous CPUs or GPUs, and a robust data visualization interface.
+    \item \textbf{Tensorflow}: high-performance numerical computing open source software framework. This library, which was created by Google researchers and engineers, has a strong support for \gls{ML} and \gls{DL}. It works with tensors, which are structures that imitate scalars, vectors, and matrices and allow for calculations between them. This tool's key features include straightforward numerical calculation, deployment on numerous CPUs or \gls{GPU}s, and a robust data visualization interface.
     \item \textbf{Keras}: \gls{DL} framework that provides high-level building blocks for designing practically any type of \gls{DL} model in a far more convenient way than constructing it from the ground up. Keras also enables users to train models on both the CPU and \gls{GPU}.
     \item \textbf{PyTorch}: open-source \gls{ML}/\gls{DL} library created by Facebook and based on Torch. It offers a large number of tools and libraries that assist Computer Vision, \gls{NLP}, and a variety of other \gls{ML} tasks. It enables developers to run Tensor computations with \gls{GPU} acceleration and aids in the creation of computational graphs.
 \end{itemize}

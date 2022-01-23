@@ -2,8 +2,7 @@
 
 \section{Relevant previous work on DNA classification}\label{sec:previous_work}
 
-% [X]
-\citeauthor{Ma2001DNAStudy}~\cite{Ma2001DNAStudy} presented new biosequence classification algorithms, with an emphasis on detecting E. Coli promoters in \gls{DNA}. They wish to know whether or not an unlabeled \gls{DNA} sequence S is an E. Coli promoter. The -35 and -10 binding sites in an E. Coli promoter sequence are found using an expectation maximization technique. They chose features in each E. Coli promoter sequence based on their information content and expressed the features using an orthogonal encoding approach based on the located binding sites. The features are then sent into a neural network for promoter detection.
+
 
 % [X]
 \citeauthor{Nair2010ANNRepresentation}~\cite{Nair2010ANNRepresentation} proposed a unique technique for organism classification based on a combination of \gls{FCGR} and \gls{DNA}. \gls{CGR} displays \gls{DNA} sequences in a unique way and reveals hidden patterns in them. The frequency of sub-sequences contained in the \gls{DNA} sequence is shown by \gls{FCGR}, which is developed from \gls{CGR}. The taxonomic distribution of Eukaryotic species is broken down into eight groups, and \gls{ANN} is used to classify them.
@@ -12,7 +11,7 @@
 \citeauthor{Rizzo2015AClassification}~\cite{Rizzo2015AClassification} introduced a \gls{DNN} based on spectral sequence representation for \gls{DNA} sequence classification. The framework is evaluated on a dataset of 16S genes, and its results are compared to the General Regression Neural Network as well as Naive Bayes, \gls{RF}, and \gls{SVM} classifiers in terms of accuracy and F1 score. When it came to classifying short sequence fragments of 500 bp, the \gls{DL} technique beat all other classifiers.
 
 % [X]
-\citeauthor{Nguyen2016DNANetwork}~\cite{Nguyen2016DNANetwork} developed a new method for classifying \gls{DNA} sequences using a \gls{CNN} while treating them as text input. Because the authors employed one-hot vectors to represent sequences as input to the model, the important position information of each nucleotide in sequences is preserved. The authors investigated the suggested model using 12 \gls{DNA} sequence datasets and found substantial improvements in all of them. This finding suggests that a \gls{CNN} can be used to handle additional sequence challenges in bioinformatics.
+\citeauthor{Nguyen2016DNANetwork}~\cite{Nguyen2016DNANetwork} developed a new method for classifying \gls{DNA} sequences using a \gls{CNN} while treating them as text input. Because the authors employed one-hot vectors to represent sequences as input to the model, the important position information of each nucleotide in sequences is preserved. The authors investigated the suggested model using 12 \gls{DNA} sequence datasets and found substantial improvements in all of them. Out of the 12 datasets used, 10 of them include DNA sequences that wrap around histone proteins (for example, H3 and H4) and the other datasets are Splice and Promoter datasets. This finding suggests that a \gls{CNN} can be used to handle additional sequence challenges in bioinformatics.
 
 % [X]
 \citeauthor{LoBosco2017DeepClassification}~\cite{LoBosco2017DeepClassification} offer two distinct \gls{DL} architectures (\gls{CNN} and \gls{RNN}) for \gls{DNA} sequence classification. For five separate classification tasks, they compare their results using a public data set of \gls{DNA} sequences. Two \gls{DL} architectures were examined in this work for automated classification of bacteria species with no sequence preprocessing procedures. In comparison to a traditional \gls{CNN}, the authors have presented a \gls{LSTM} that utilizes the nucleotide locations in a sequence. The \gls{CNN}s outperform the \gls{LSTM} in the four easiest classification tasks, but their performance deteriorates in the last, when the \gls{LSTM} performs better. %character-level one-hot encoding
@@ -46,8 +45,6 @@ Table~\ref{tab:previous_work} provides an overview of the previous work on DNA c
 	\textbf{Year} & \textbf{Authors} & \textbf{Title} & \textbf{Focus} & \textbf{Classifier} & \textbf{Features / Encoding}\\
 	\midrule
 	
-	\citeyear{Ma2001DNAStudy} & \citeauthor{Ma2001DNAStudy} & \citetitle{Ma2001DNAStudy}~\cite{Ma2001DNAStudy} & E. Coli promoters detection & NN & Orthogonal encoding method\\\midrule
-	
 	\citeyear{Nair2010ANNRepresentation} & \citeauthor{Nair2010ANNRepresentation} & \citetitle{Nair2010ANNRepresentation}~\cite{Nair2010ANNRepresentation} & Taxonomic classification of Eukaryotic species & \gls{ANN} & FCGR\\\midrule
 	
 	\citeyear{Rizzo2015AClassification} & \citeauthor{Rizzo2015AClassification} & \citetitle{Rizzo2015AClassification}~\cite{Rizzo2015AClassification} & Classify 16S bacterial genomic sequences & \gls{DNN}, General Regression Neural Network, Naive Bayes, \gls{RF}, \gls{SVM} & k-mer encoding\\\midrule
@@ -76,7 +73,7 @@ Table~\ref{tab:previous_work} provides an overview of the previous work on DNA c
 
 Vale a pena falar outra vez disto se já tenho a secção~\ref{sec:ML_DL_libraries}?
 
-\section{Notas (TEMPORÁRIO)}
+\section{asdasd}
 
 Understanding the connections between protein structure and function is one of biology's main goals. The basic amino acid sequences provide particularly helpful structural information for understanding the structure-function paradigm. The idea that sequences with similar structures have comparable functions is used to classify DNA sequences. Sequence alignment techniques such as BLAST~\cite{Altschul1990BasicTool} and FASTA~\cite{Pearson1988ImprovedComparison} have historically been used to determine sequence similarity. This decision is based on two primary assumptions: (1) the functional components have similar sequence properties, and (2) the functional elements' relative order is preserved across sequences. These assumptions are applicable in a wide range of situations, but they are not universal~\cite{LoBosco2017DeepClassification}.
 
