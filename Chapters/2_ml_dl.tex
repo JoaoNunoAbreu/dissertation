@@ -695,17 +695,46 @@ As mentioned in Section~\ref{sec:dl}, \gls{DNN}s are feed forward networks, in w
 
 \paragraph{Convolutional neural networks} 
 
-A \gls{CNN} is a multilayer supervised neural network that was originally inspired by the neurobiological process of animal visual cortex~\cite{Ganatra2018ATools}. It is commonly utilized in a variety of applications such as as image and video recognition, image processing, and classification. 
+A \gls{CNN} is a multilayer supervised neural network that was originally inspired by the neurobiological process of animal visual cortex~\cite{Ganatra2018ATools}. It is commonly used for processing data with a grid pattern, such as as images and videos. It is built to learn spatial hierarchies of features automatically, from low-level to high-level patterns. 
 
-%The \gls{CNN} architecture is composed of multiple layers that perform feature extraction and classification (Figure~\ref{fig:cnn}). The input image is separated into fields, which are then fed into a convolutional layer, which extracts features from the input image. Pooling is the following stage, which decreases the dimensionality of the retrieved features (by down-sampling) while maintaining the most critical information (typically, through max pooling). Following that, another convolution and pooling phase is conducted, which feeds into a fully connected multilayer. This network's final output layer is a collection of nodes that identify image features (in this case, a node per identified number)~\cite{Madhavan2021DeepDeveloper}.
-
+\gls{CNN}s are made up of three types of layers: convolutional, pooling, and fully connected layers. In general, the convolutional layer extracts features from the input, the pooling layer minimizes the size of the network, and the fully connected layer maps the features into a final output, such as classification. Figure~\ref{fig:cnn} provides an overview of the architecture of a \gls{CNN} and how it is trained. The performance of a model with certain kernels and weights is determined using a loss function and forward propagation and they are updated using the gradient descent optimization process.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\linewidth]{cnn.jpg}
-    \caption{Convolutional Neural Network architecture~\cite{Al-Ajlan2019CNN-MGP:Prediction}}
+    \includegraphics[width=\linewidth]{cnn.png}
+    \caption{Convolutional Neural Network architecture~\cite{Yamashita2018ConvolutionalRadiology}}
     \label{fig:cnn}
 \end{figure}
+
+% Convolutional layer
+The convolutional layer is a key component of the \gls{CNN} architecture that conducts feature extraction using a mix of linear and nonlinear techniques, such as convolution and activation functions. Convolution is a form of linear operation used for feature extraction in which a tiny array of numbers, called a kernel, is applied over the tensor, which is also an array of numbers. At each point of the tensor, an element-wise product between each element of the kernel and the input tensor is computed and added to generate the output value in the corresponding place of the output tensor, referred to as a feature map (Figure~\ref{fig:merge_cnn}). This technique is done with several kernels to create an arbitrary number of feature maps that reflect distinct features of the input tensors; hence, different kernels may be regarded as different feature extractors. The size and number of kernels are two fundamental hyperparameters that determine the convolution operation~\cite{Yamashita2018ConvolutionalRadiology}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{merge_cnn.jpg}
+    \caption{Convolution operation with a kernel size of 3 × 3, no padding, and a stride of 1~\cite{Yamashita2018ConvolutionalRadiology}}
+    \label{fig:merge_cnn}
+\end{figure}
+
+The stride is the distance between two consecutive kernel points, and a stride of 1 is the most popular choice. However, a stride greater than 1 is occasionally used to accomplish feature map downsampling. The pooling procedure is the alternate approach for downsampling.
+
+It is important to emphasize that the above convolution method prevents the center of each kernel from overlapping the input tensor's outermost element, thereby reducing the output feature map's height and width in comparison to the input tensor. Padding, usually zero padding, is a strategy for dealing with this problem that involves adding rows and columns of zeros on either side of the input tensor in order to fit the center of a kernel on the outermost element while maintaining the same in-plane dimension during the convolution process. After the convolution procedure, each subsequent feature map would be smaller if there was no padding~\cite{Yamashita2018ConvolutionalRadiology}.
+
+Identifying the kernels that perform best for a particular job based on a specific training dataset is the process of training a \gls{CNN} model with relation to the convolution layer. Kernels are the only parameters in the convolution layer that are automatically learnt during the training process. The size and number of the kernels, stride, and padding are hyperparameters that must be defined before the training process begins~\cite{Yamashita2018ConvolutionalRadiology}. Then, the output of the convolution operation is passed through a non-linear activation function, which is usually the ReLU function (Eq.~\ref{eq:3}). 
+
+% Pooling layer
+After receiving the feature maps from the convolutional layer, the pooling layer will perform a standard downsampling operation on them, reducing their in-plane dimensionality in order to introduce translation invariance to tiny shifts and distortions and reducing the number of learnable parameters. Max pooling is the most popular type of pooling procedure, which selects patches from input feature maps, outputs the largest value in each patch, and discards all other values (Figure~\ref{fig:pooling})~\cite{Yamashita2018ConvolutionalRadiology}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pooling.jpg}
+    \caption{Max pooling with a filter size of 2 × 2, no padding, and a stride of 2~\cite{Yamashita2018ConvolutionalRadiology}}
+    \label{fig:pooling}
+\end{figure}
+
+Although max pooling is the most popular type of pooling operations, there is another type called global average pooling. It is an extreme sort of downsampling in which a feature map is downsampled into a 1 x 1 array, by simply taking the average of all the components in each feature map. Before the fully connected layers, this step is usually performed, because it can decrease the number of parameters that may be learned, and it allows the model to take inputs of varying sizes~\cite{Yamashita2018ConvolutionalRadiology}.
+
+After obtaining the feature map of the last convolutional or pooling layer, it is now time to connect it to the fully connected layer. In order to do this, the output needs first to be flattened, or, in other words, needs to be transformed into a one dimensional tensor. After being flattened, the tensor is ready to be fed as input to the fully connected layer and each value of the input is connected to all neurons. 
 
 \paragraph{Recurrent Neural Networks}
 
