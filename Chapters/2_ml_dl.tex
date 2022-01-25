@@ -804,11 +804,7 @@ The compressed form of the original input must only have essential information. 
 
 \section{Automated machine learning}
 
-%The design and training of a machine learning model is frequently an important step in the analytic process, and it involves a number of difficult procedures, including feature preprocessing, algorithm selection, hyperparameter tuning, and ensemble building. To complete all of these procedures successfully, a great deal of professional expertise is usually required. The area of \gls{AutoML} tries to create ways for creating appropriate machine learning models without (or with as little) human interaction as possible~\cite{Tuggener2019AutomatedResults}. By automating \gls{ML} workflows, teams may complete some of the more time-consuming tasks associated with model creation with more efficiency.
-
-%This is commonly referred to as \gls{AutoML}, and there are various modules and platforms available for it.
-
-While \gls{ML} has several proved benefits, its effective use needs a significant amount of work on the part of human specialists, since no algorithm can achieve good performance on all possible challenges. Despite their familiarity with data, researchers frequently lack the \gls{ML} ability required to apply these approaches to large data sets. Researchers can and do collaborate with professional data scientists, but the collaborative approach involves time and effort from both parties. As a result, devising and deploying \gls{ML} solutions is complex, as the process starts with a lengthy data supply procedure, continues with identifying the suitable collaborators, and requires constant back-and-forth between \gls{ML} professionals and domain experts. By automating some of the components that need human skill, sectors will be able to create, verify, and deploy \gls{ML} systems more quickly~\cite{Waring2020AutomatedHealthcare}. As a result, \gls{AutoML} has arisen with the goal of automatically optimizing sections of the \gls{ML} pipeline as shown in Figure~\ref{fig:automl}. 
+While \gls{ML} has several proved benefits, its effective use needs a significant amount of work on the part of human specialists, since no algorithm can achieve good performance on all possible challenges. Despite their familiarity with data, researchers frequently lack the \gls{ML} ability required to apply these approaches to large data sets. Researchers can and do collaborate with professional data scientists, but the collaborative approach involves time and effort from both parties. As a result, devising and deploying \gls{ML} solutions is complex, as the process starts with a lengthy data supply procedure, continues with identifying the suitable collaborators, and requires constant back-and-forth between \gls{ML} professionals and domain experts. By automating some of the components that need human skill, sectors will be able to create, verify, and deploy \gls{ML} systems more quickly~\cite{Waring2020AutomatedHealthcare}. As a result, \gls{AutoML} has arisen with the goal of automatically optimizing sections of the \gls{ML} pipeline, such as feature engineering, model selection, and hyperparameter optimization, as shown in Figure~\ref{fig:automl}. 
 
 \begin{figure}[htbp]
     \centering
@@ -822,13 +818,11 @@ In recent years, multiple packages have been developed that provide \gls{AutoML}
 \begin{itemize}
     \item \textbf{AutoWEKA} - package for selecting a \gls{ML} algorithm and its hyperparameters at the same time; when paired with the WEKA package, it produces good models for a wide range of data sets automatically.
     
-    \item \textbf{Auto-PyTorch} - based on the PyTorch \gls{DL} framework and adjusts hyperparameters and neural architecture simultaneously.
+    \item \textbf{Auto-PyTorch} - it is based on the PyTorch \gls{DL} framework and it optimizes the network architecture and training hyperparameters together and reliably to allow fully automated \gls{DL}.
     
-    \item \textbf{MLBoX} is a three-part \gls{AutoML} toolkit that includes preprocessing, optimization, and prediction.
+    \item \textbf{TPOT} - data science assistant that uses genetic programming to enhance \gls{ML} pipelines and it is built on top of scikit-learn.
     
-    \item \textbf{TPOT} - data science assistant that uses genetic programming to enhance \gls{ML} pipelines.
-    
-    \item \textbf{AutoGluon} - multi-layer stacking method for various \gls{ML} models.
+    \item \textbf{AutoKeras} - open-soruce software library for \gls{AutoML}. It is built in Keras and provides methods for searching for \gls{DL} architectures and hyperparameters for models. 
     
 \end{itemize}
 

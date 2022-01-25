@@ -19,17 +19,46 @@ Since the Human Genome Project's completition~\cite{TheProject}, technological a
 
 \section{DNA sequence classification - Traditional ML}
 
-The fast development of sequencing technology in the post-genomic era has rapidly increased the amount of biological sequence data. However, structural and functional data from wet-lab investigations are still limited due to the time and cost of the research. Many effective and computationally affordable approaches for analyzing sequence data have recently been presented. Because the majority of sequence analysis tasks are expressed as binary or multiclass classification tasks, \gls{ML} techniques have been playing an important role in these types of  challenges~\cite{Liu2019BioSeq-Analysis:Approaches}.
+Understanding the connections between protein structure and function is one of biology's main goals. The basic amino acid sequences provide particularly helpful structural information for understanding the structure-function paradigm. The idea that sequences with similar structures have comparable functions is used to classify \gls{DNA} sequences. Sequence alignment techniques such as BLAST~\cite{Altschul1990BasicTool} and FASTA~\cite{Pearson1988ImprovedComparison} have historically been used to determine sequence similarity, and the majority of sequence classification is still done by these methods. This decision is based on two primary assumptions: the functional components have similar sequence properties, and the functional elements' relative order is preserved across sequences. These assumptions are applicable in a wide range of situations, but they are not universal~\cite{LoBosco2017DeepClassification}.
+
+Regardless, despite recent advancements, the major issue that severely restricts the use of alignment techniques remains their computational time complexity. As a result, many effective and computationally affordable approaches for analyzing sequence data have recently been presented. Since the majority of sequence analysis tasks are expressed as binary or multiclass classification tasks, \gls{ML} techniques have been playing an important role~\cite{Liu2017BioSeq-Analysis:Approaches}.
 
 In \gls{ML}, the goal of classification is to use the training set to create a classification model that can predict the category of unknown incoming samples. \gls{DNA} sequence classification is the process of predicting the kind of \gls{DNA} sequence based on structural or functional similarities, then predicting the sequence function and relationships with other sequences, and finally assisting in the identification of genes in \gls{DNA} molecules~\cite{Yang2020ReviewDNA}.
 
-However, for a \gls{ML} model to be able to predict, it first needs input features, and that is the main problem with sequences. The most difficult component is the feature selection because the sequences only consist of a set of four letters, meaning they lack explicit features. Converting sequences into an effective numerical representation that reflects the underlying relationship with the feature to be predicted can have a big impact on the model's performance~\cite{Chen2020ILearn:Data}.
+However, for a \gls{ML} model to be able to predict, it first needs input features, and that is the main problem with sequences. The most difficult component is the feature selection because the sequences only consist of a set of four letters, meaning they lack explicit features. Converting sequences into an effective numerical representation that reflects the underlying relationship with the feature to be predicted can have a big impact on the model's performance~\cite{LoBosco2017DeepClassification,Chen2019ILearn:Data}.
 
-It is standard practice to encode molecular information as numerical features in order to apply various \gls{ML} algorithms to molecular data. Molecular descriptors are one of the most powerful tools for describing the biological, physical, and chemical features of molecules, and they have been utilized in a variety of research to better understand molecular interactions. These descriptors capture and amplify different features of molecular topology in order to better understand how molecular structure influences molecular properties~\cite{Dong2018PyBioMed:Interactions}. However, it is worth emphasizing that these descriptors need to be manually created, meaning the feature selection is a handcrafted process. Some examples of \gls{DNA} sequence descriptors are the nucleic acid composition, structure composition and sequence length~\cite{Liu2019BioSeq-Analysis:Approaches,Chen2020ILearn:Data,Bonidia2021MathFeature:Descriptors}.
+It is standard practice to encode molecular information as numerical features in order to apply various \gls{ML} algorithms to molecular data. Molecular descriptors are one of the most powerful tools for describing the biological, physical, and chemical features of molecules, and they have been utilized in a variety of research to better understand molecular interactions. These descriptors capture and amplify different features of molecular topology in order to better understand how molecular structure influences molecular properties~\cite{Dong2018PyBioMed:Interactions}. However, it is worth emphasizing that these descriptors need to be manually created, meaning the feature selection is a handcrafted process. Some examples of \gls{DNA} sequence descriptors are the nucleic acid composition, structure composition and sequence length~\cite{Liu2017BioSeq-Analysis:Approaches,Chen2019ILearn:Data,Bonidia2021MathFeature:Descriptors}. Table~\ref{tab:descriptors_DNA} provides an overview of packages capable of calculating descriptors for not only \gls{DNA} but also \gls{RNA} and protein sequences. In addition, some of these packages also perform \gls{ML} functions on the calculated features.
 
-Tools such as \textit{BioSeq-Analysis}~\cite{Liu2019BioSeq-Analysis:Approaches} and \textit{iLearn}~\cite{Chen2020ILearn:Data} are platforms capable of calculating descriptors for not only \gls{DNA} but also \gls{RNA} and protein sequences. In addition, these packages also perform \gls{ML} functions on the calculated features. \textit{BioSeq-Analysis} focuses on automatically completing feature extraction, predictor construction, and performance evaluation. \textit{iLearn} has functions for feature extraction, clustering, feature selection, dimensionality reduction, and ensemble learning, making it a more comprehensive package.
+\begin{table}[ht]
+	\caption{Overview of packages with DNA descriptors}
+	\label{tab:descriptors_DNA}
+\centering
+\begin{tabular}{lp{2cm}p{3.5cm}p{7cm}}
+	\toprule
+	\textbf{Year} & \textbf{Authors} & \textbf{Title} & \textbf{Focus}\\
+	\midrule
+	
+	\citeyear{Liu2014RepDNA:Effects} & \citeauthor{Liu2014RepDNA:Effects} & repDNA~\cite{Liu2014RepDNA:Effects} & Generate widely used features reflecting the physicochemical properties and sequence-order effects of \gls{DNA}s and nucleotides \\\midrule
+	
+	\citeyear{Dong2016BioTriangle:Interactions} & \citeauthor{Dong2016BioTriangle:Interactions} & BioTriangle~\cite{Dong2016BioTriangle:Interactions} & Full pipelining from getting molecular data, molecular representation to constructing \gls{ML} models on \gls{DNA}, \gls{RNA} and protein sequences. \\\midrule
+	
+	\citeyear{Liu2017BioSeq-Analysis:Approaches} & \citeauthor{Liu2017BioSeq-Analysis:Approaches} & BioSeq-Analysis~\cite{Liu2017BioSeq-Analysis:Approaches} & Automatically completing feature extraction, predictor construction, and performance evaluation on \gls{DNA}, \gls{RNA} and protein sequences. \\\midrule
+	
+	\citeyear{Dong2018PyBioMed:Interactions} & \citeauthor{Dong2018PyBioMed:Interactions} & PyBioMed~\cite{Dong2018PyBioMed:Interactions} & Calculate numerous features of biological molecules, with the goal of constructing integrated analytical pipelines from data gathering, data validation, and descriptor calculation to modeling. \\\midrule
+	
+	\citeyear{Nikam2019Seq2Feature:Tool} & \citeauthor{Nikam2019Seq2Feature:Tool} & Seq2Feature~\cite{Nikam2019Seq2Feature:Tool} & Extract protein and \gls{DNA} sequence-based features \\\midrule
+	
+	\citeyear{Muhammod2019PyFeat:Sequences} & \citeauthor{Muhammod2019PyFeat:Sequences} & PyFeat~\cite{Muhammod2019PyFeat:Sequences} & Extract features from proteins, \gls{DNA}s and \gls{RNA}s, with a particular emphasis on features that capture information on the interaction of nearby residues. \\\midrule
+	
+	\citeyear{Chen2019ILearn:Data} & \citeauthor{Chen2019ILearn:Data} & iLearn~\cite{Chen2019ILearn:Data} & Feature extraction, clustering, normalization, selection, dimensionality reduction, predictor construction, best descriptor/model selection, ensemble learning and results visualization for \gls{DNA}, \gls{RNA} and protein sequences.\\\midrule
+	
+	\citeyear{Bonidia2021MathFeature:Descriptors} & \citeauthor{Bonidia2021MathFeature:Descriptors} & MathFeature~\cite{Bonidia2021MathFeature:Descriptors} & Implements mathematical descriptors able to extract relevant numerical information from \gls{DNA}, \gls{RNA} and proteins.\\
+    
+	\bottomrule
+\end{tabular}
+\end{table}
 
-Another important stage in sequence analysis is the creation of predictors. Many \gls{ML} methods have been employed to predict structural and functional characteristics and to help in the annotation of genomic data. \gls{SVM}, \gls{RF}, \gls{ANN}, \gls{KNN}, and \gls{LgR} are some examples of these methods~\cite{Chen2020ILearn:Data}.
+Another important stage in sequence analysis is the creation of predictors. Many \gls{ML} methods have been employed to predict structural and functional characteristics and to help in the annotation of genomic data. \gls{SVM}, \gls{RF}, \gls{ANN}, \gls{KNN}, and \gls{LgR} are some examples of these methods~\cite{Chen2019ILearn:Data}.
 
 
 %Descriptors 
@@ -62,5 +91,3 @@ In the case of the k-mer encoding method, the encoded sequence is not yet ready 
 
 In Section~\ref{sec:previous_work}, relevant previous work on DNA classification will be provided, and it is possible to conclude that \gls{CNN} and \gls{RNN} are the most commonly used \gls{DL} models.
 
-% (over strings?)
-% common architectures
