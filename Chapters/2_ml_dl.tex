@@ -4,7 +4,7 @@ The modern world is overflowing with data. It has reached a stage where humans c
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\linewidth]{volume_of_data.png}
+    \includegraphics[width=0.85\linewidth]{volume_of_data.png}
     \caption{The volume of data created, captured, copied, and consumed from 2010 to 2025~\cite{TotalStatista}}
     \label{fig:volume_of_data}
 \end{figure}
@@ -425,7 +425,7 @@ In general, a biological neuron accepts inputs and arranges them to perform an o
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.75\linewidth]{an.png}
-    \caption{Artificial neuron~\cite{Baheti12Choose}}
+    \caption{Artificial neuron. Adapted from~\cite{Baheti12Choose}}
     \label{fig:an}
 \end{figure}
 
@@ -663,8 +663,8 @@ The convolutional layer is a key component of the \gls{CNN} architecture that co
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{merge_cnn.jpg}
-    \caption{Convolution operation with a kernel size of 3 × 3, no padding, and a stride of 1~\cite{Yamashita2018ConvolutionalRadiology}}
+    \includegraphics[width=0.85\linewidth]{merge_cnn.png}
+    \caption{Convolution operation with a kernel size of 3 × 3, no padding, and a stride of 1. Adapted from~\cite{Yamashita2018ConvolutionalRadiology}}
     \label{fig:merge_cnn}
 \end{figure}
 
@@ -679,8 +679,8 @@ After receiving the feature maps from the convolutional layer, the pooling layer
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{pooling.jpg}
-    \caption{Max pooling with a filter size of 2 × 2, no padding, and a stride of 2~\cite{Yamashita2018ConvolutionalRadiology}}
+    \includegraphics[width=0.5\linewidth]{pooling.png}
+    \caption{Max pooling with a filter size of 2 × 2, no padding, and a stride of 2. Adapted from~\cite{Yamashita2018ConvolutionalRadiology}}
     \label{fig:pooling}
 \end{figure}
 
@@ -697,29 +697,15 @@ A \gls{RNN} can access previous data because of its loop-like structure, making 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.75\linewidth]{rnn.png}
-    \caption{Recurrent Neural Network architecture~\cite{Gupta2017RecurrentLearning}}
+    \caption{Recurrent Neural Network architecture. Adapted from~\cite{Gupta2017RecurrentLearning}}
     \label{fig:rnn}
 \end{figure}
 
-However, RNNs suffer from the vanishing gradients problem, which makes learning large data sequences difficult. Gradients carry the information that is utilized in \gls{RNN} parameter updates, and as they backpropagate through time, they become smaller and smaller. The parameter updates then become so tiny that no significant learning has taken place. Specific \gls{RNN} designs, such as the \gls{LSTM} and \gls{GRU}, were created to overcome the problem of vanishing gradients.
+However, \gls{RNN}s suffer from the vanishing gradients problem, which makes learning large data sequences difficult. Gradients carry the information that is utilized in \gls{RNN} parameter updates, and as they backpropagate through time, they become smaller and smaller. The parameter updates then become so tiny that no significant learning has taken place. Specific \gls{RNN} designs, such as the \gls{LSTM} and \gls{GRU}, were created to overcome the problem of vanishing gradients.
 
 \gls{LSTM} is a \gls{RNN} architecture that was created to more precisely model temporal sequences and their long-range dependencies. \gls{LSTM}s have a similar architecture to RNNs, with the exception that they employ a separate function to calculate hidden state in addition to the gating mechanism. To regulate the information passing through, it has three gates: an input gate, a forget gate, and an output gate. In \gls{LSTM}s, there is a cell that saves past values and keeps them until a forget gate orders the cell to forget them. In another sense, it preserves earlier iterations for as long as they are required. An input gate adds a new input to the cell, while an output gate determines when the vectors from the cell should be sent through to the next hidden state~\cite{Khan2019RNN-LSTM-GRUTransformation}. Each gate is controlled by weights in the cell. The training algorithm, which is usually referred to as \gls{BPTT}, optimizes these weights depending on the network output error~\cite{Madhavan2021DeepDeveloper}.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.75\linewidth]{lstm.png}
-    \caption{Long Short-Term Memory architecture~\cite{Madhavan2021DeepDeveloper}}
-    \label{fig:lstm}
-\end{figure}
-
 \gls{GRU}s are a simpler \gls{RNN} architecture with only two gates, the rest gate and the update gate. The rest gate is used in a model to determine how much information from the past should be forgotten or remembered. It decides which information to forget based on the information in the previous state and the next input candidate. The update gate aids the model in determining how much information from previous time steps should be passed on to future time steps.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.75\linewidth]{gru.png}
-    \caption{Gated Recurrent Unit architecture. Adapted from~\cite{Madhavan2021DeepDeveloper}}.
-    \label{fig:gru}
-\end{figure}
 
 \gls{GRU} is a simple version \gls{LSTM}, so it can be trained faster, and can execute tasks more efficiently. The \gls{LSTM}, on the other hand, is more expressive, and with more data, it can provide better performance.
 
@@ -729,8 +715,8 @@ Autoencoder is an unsupervised neural network that learns how to compress and en
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\linewidth]{autoencoders.png}
-    \caption{Autoencoders architecture~\cite{Madhavan2021DeepDeveloper}}
+    \includegraphics[width=0.5\linewidth]{autoencoders.png}
+    \caption{Autoencoders architecture. Adapted from~\cite{Madhavan2021DeepDeveloper}}
     \label{fig:autoencoders}
 \end{figure}
 
@@ -745,14 +731,7 @@ As a result, autoencoders consists of 4 main parts~\cite{Abirami2020Energy-effic
     \item \textbf{Reconstruction Loss}: This is a way for determining how well a decoder works and how near the output is to the original input. Back propagation is then used in the training to reduce the network's reconstruction loss.
 \end{itemize}
 
-The compressed form of the original input must only have essential information. In other words, an autoencoder can reduce data dimensionality by learning to ignore noise from the input data. Figure~\ref{fig:ac_example} provides an illustration of this process.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.7\linewidth]{ac_example.png}
-    \caption{Autoencoders example~\cite{LopezPinaya2020Autoencoders}}
-    \label{fig:ac_example}
-\end{figure}
+The compressed form of the original input must only have essential information. In other words, an autoencoder can reduce data dimensionality by learning to ignore noise from the input data. 
 
 \section{Automated machine learning}
 
@@ -760,8 +739,8 @@ While \gls{ML} has several proven benefits, its effective use needs a significan
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{automl.jpg}
-    \caption{Machine learning pipeline with AutoML~\cite{Waring2020AutomatedHealthcare}}
+    \includegraphics[width=\linewidth]{automl.png}
+    \caption{Machine learning pipeline with AutoML. Adapted from~\cite{Waring2020AutomatedHealthcare}}
     \label{fig:automl}
 \end{figure}
 
