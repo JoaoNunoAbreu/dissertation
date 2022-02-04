@@ -15,8 +15,6 @@ For a long time, one of the major differences between humans and computers has b
 
 This topic is addressed by \gls{ML}, which entails the development of computer systems that can learn and improve their performance by accumulating more data and experience. A. Samuel was the first scientist to design a self-learning program in 1952 when he developed a program that improved at playing checkers as the number of games increased~\cite{Samuel1959SomeCheckers,Luckert2016UsingDocuments}. 
 
-\section{Concepts and workflow}
-
 \gls{ML} relies solely on the availability of the data and does not need any rule-based programming. There is a distinction to be made between traditional programming and \gls{ML}. In traditional programming, data and programs are sent as inputs to the machine, and it produces an output, whereas in \gls{ML}, data and outputs are inputs to the system, and the machine's output is the program that has been learned to make predictions on unknown examples. The primary difference between traditional programming and \gls{ML}'s approach is represented in Figure~\ref{fig:tradition_vs_ml}.
 
 \begin{figure}[htbp]
@@ -117,6 +115,58 @@ To understand better the concepts of \gls{ML}, Table~\ref{tab:ml_terminologies} 
 \end{tabular}
 \end{table}
 
+The two primary categories of \gls{ML} algorithms are supervised and unsupervised learning. Other categories include semi-supervised learning and reinforcement learning. The following sections provide an overview of the two primary categories, describing their properties and explaining  their algorithms. The supervised learning section is more detailed as it is more relevant to the purpose of this thesis.  
+
+\section{Unsupervised learning}
+
+In unsupervised learning, algorithms are used when the data used in the training process is not categorized. Although they cannot figure out the proper output, they can infer a function to identify trends or hidden structures from unlabeled data in the dataset~\cite{Karazi2019StatisticalProcess-Review}. The two most common unsupervised categories are clustering and dimensionality reduction. Clustering involves grouping input variables with similar qualities, and it is applied in targetted marketing problems and recommender systems \cite{Omran2007AnMethods}. Dimensionality reduction algorithms are techniques that reduce the number of input variables in a dataset, and they are used for big data visualization and structure discovery~\cite{VanDerMaaten2009DimensionalityComparative}. 
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.8\linewidth]{clustering_vs_DR.png}
+        \caption{Clustering vs Dimensionality Reduction. Adapted from~\cite{Beck2020AModelling}}
+        \label{fig:clustering_vs_DR}
+    \end{figure}
+
+In unsupervised \gls{ML}, several algorithms and computing approaches are utilized. The following are some of the most popular clustering and dimensionality reduction algorithms: K-means clustering and \gls{PCA}~\cite{Chugh2018TypesKnow}.
+
+K-means clustering is a clustering \gls{ML} technique in which data points are divided into \textit{K} groups. The data points nearest to a certain centroid will be clustered together. Smaller groupings with more granularity are indicated by a higher \textit{K} value, whereas bigger groupings with less granularity are indicated by a lower \textit{K} value~\cite{2020WhatIBMb}. Figure~\ref{fig:k_means} provides a visual representation of K-means clustering, with \textit{K} = 3. 
+    
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\linewidth]{k-means.png}
+    \caption{Visual representation of K-means clustering. Adapted from~\cite{Beaumont2020ImageMedium}}
+    \label{fig:k_means}
+\end{figure}
+
+\gls{PCA} is a dimensionality reduction approach that uses feature extraction to eliminate redundancies and compress datasets, while retaining as much of the information contained in the original data as possible~\cite{2020WhatIBMb}. Working with too many variables can be difficult for \gls{ML} since there is a chance of overfitting, a lack of appropriate data for each variable, and a degree of correlation between each variable and the output~\cite{Chugh2018TypesKnow}. \gls{PCA} does this by projecting data onto a lower-dimensional subspace that preserves the majority of the variance between data points. Figure~\ref{fig:pca} depicts an example of \gls{PCA}'s influence on 2-dimensional space data.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pca.png}
+    \caption{Principal Component Analysis application on 2D space data. Adapted from~\cite{Patcher2014WhatDNA}}
+    \label{fig:pca}
+\end{figure}
+
+The green line was created through mathematical optimization in order to maximize the variance between the data points as much as possible along that line. This line is referred to as the first principal component. Since a dimension has been lost to separate them, the points on the line are closer to each other than they were in the original 2D environment. However, in many circumstances, the simplification in dimensionality compensates the loss of information. When moving to higher dimensions, it will most likely be necessary to use multiple principal components since the variance described by one principle component will not be enough. Principal components are vectors that form a 90-degree angle between each other (orthogonal vectors), and are independent in a way that the second principal component does not overlap with the variance explained by the first. The first principal component will capture the majority of the variance; the second will catch the second-largest portion of the variance left unexplained by the first, and so on.
+
+\section{Supervised learning}
+
+Supervised learning is a \gls{ML} paradigm for obtaining knowledge about a system's input-output relationship from a set of paired input-output training examples~\cite{Liu2012SupervisedLearning}, with classification and regression being the two most common supervised categories. In classification, a class label is predicted for a given sample. In other words, it maps a function from input variables to output variables as target, label or categories~\cite{Sarker2021MachineDirections}.
+In addition, there are multiple classification problems, such as binary classification, which refers to tasks with two class labels, such as "true and false", multiclass classification, which refers to classification tasks having more than two class labels, and multi-label classification when an example is associated with multiple classes or labels. On the other hand, regression contains approaches for predicting a continuous output variable based on the value of one or more predictor variables. The most important difference between classification and regression is that classification predicts distinct class labels, whereas regression predicts a continuous quantity. A clearer distinction between classification and regression is illustrated in Figure~\ref{fig:regression_vs_classification}.
+    
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{regression-vs-classification.png}
+    \caption{Classification vs Regression. Adapted from~\cite{Matanga2017AnalysisInterfaces}}
+    \label{fig:regression_vs_classification}
+\end{figure}
+
+
+While there are several supervised learning algorithms available, most of them follow the same fundamental steps for producing a predictor model. The next section describes the general workflow process of building a supervised machine learning project.
+
+\subsection{Workflow}
+
 \gls{ML} workflows specify which phases of a \gls{ML} project are implemented. While these measures are widely acknowledged as best practices, there is still potential for improvement. 
 
 When developing a \gls{ML} workflow, the first step is to define the project before determining the best working strategy or attempting to fit the model into a predetermined workflow. Instead, a flexible workflow should be created to start small and work its way up to a production-ready solution.
@@ -212,27 +262,7 @@ The steps taken during a \gls{ML} implementation are defined by workflows. \gls{
     \item \textbf{Building the model} The key goal now is to choose the type of model which fits better the desired problem.
     
     Data can be any of the types listed above (Table~\ref{tab:data_types}), and they can differ from one application to the next in the real world. Therefore, different types of \gls{ML} approaches can be used to evaluate a specific problem field and extract insights or usable knowledge from the data to construct real-world intelligent systems.
-    
-    The two primary categories of \gls{ML} algorithms are supervised and unsupervised learning. Other categories include semi-supervised learning and reinforcement learning.
-    
-    Supervised learning is a \gls{ML} paradigm for obtaining knowledge about a system's input-output relationship from a set of paired input-output training examples~\cite{Liu2012SupervisedLearning}. The two most common supervised categories are classification and regression. In classification, a class label is predicted for a given sample. In other words, it maps a function from input variables to output variables as target, label or categories~\cite{Sarker2021MachineDirections}.
-    In addition, there are multiple classification problems, such as binary classification, which refers to tasks with two class labels, such as "true and false", multiclass classification, which refers to classification tasks having more than two class labels, and multi-label classification when an example is associated with multiple classes or labels. On the other hand, regression contains approaches for predicting a continuous output variable based on the value of one or more predictor variables. The most important difference between classification and regression is that classification predicts distinct class labels, whereas regression predicts a continuous quantity. A clearer distinction between classification and regression is illustrated in Figure~\ref{fig:regression_vs_classification}.
-        
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.75\linewidth]{regression-vs-classification.png}
-        \caption{Classification vs Regression. Adapted from~\cite{Matanga2017AnalysisInterfaces}}
-        \label{fig:regression_vs_classification}
-    \end{figure}
-    
-    In unsupervised learning, algorithms are used when the data used in the training process is not categorized. Although they cannot figure out the proper output, they can infer a function to identify trends or hidden structures from unlabeled data in the dataset~\cite{Karazi2019StatisticalProcess-Review}. The two most common unsupervised categories are clustering and dimensionality reduction. Clustering involves grouping input variables with similar qualities, and it is applied in targetted marketing problems and recommender systems \cite{Omran2007AnMethods}. Dimensionality reduction algorithms are techniques that reduce the number of input variables in a dataset, and they are used for big data visualization and structure discovery~\cite{VanDerMaaten2009DimensionalityComparative}. 
-    
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.8\linewidth]{clustering_vs_DR.png}
-        \caption{Clustering vs Dimensionality Reduction. Adapted from~\cite{Beck2020AModelling}}
-        \label{fig:clustering_vs_DR}
-    \end{figure}
+    One of the models described in Section~\ref{sec:models_and_algo} that best suits the problem's goal should be chosen.
     
     \item \textbf{Training and evaluation} The objective now is to use the pre-processed data to train the best-performing chosen model, followed by its performance evaluation. 
     The training set will be used to train the model and then the model outputs will be compared with the unseen values. To evaluate these outputs, multiple metrics are used which can vary depending on the problem. 
@@ -324,32 +354,7 @@ The steps taken during a \gls{ML} implementation are defined by workflows. \gls{
 
 \end{enumerate}
 
-\section{Unsupervised machine learning}
-
-In unsupervised \gls{ML}, several algorithms and computing approaches are utilized. The following are some of the most popular clustering and dimensionality reduction algorithms: K-means clustering and \gls{PCA}~\cite{Chugh2018TypesKnow}.
-
-K-means clustering is a clustering \gls{ML} technique in which data points are divided into \textit{K} groups. The data points nearest to a certain centroid will be clustered together. Smaller groupings with more granularity are indicated by a higher \textit{K} value, whereas bigger groupings with less granularity are indicated by a lower \textit{K} value~\cite{2020WhatIBMb}. Figure~\ref{fig:k_means} provides a visual representation of K-means clustering, with \textit{K} = 3. 
-    
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.65\linewidth]{k-means.png}
-    \caption{Visual representation of K-means clustering. Adapted from~\cite{Beaumont2020ImageMedium}}
-    \label{fig:k_means}
-\end{figure}
-
-\gls{PCA} is a dimensionality reduction approach that uses feature extraction to eliminate redundancies and compress datasets, while retaining as much of the information contained in the original data as possible~\cite{2020WhatIBMb}. Working with too many variables can be difficult for \gls{ML} since there is a chance of overfitting, a lack of appropriate data for each variable, and a degree of correlation between each variable and the output~\cite{Chugh2018TypesKnow}. \gls{PCA} does this by projecting data onto a lower-dimensional subspace that preserves the majority of the variance between data points. Figure~\ref{fig:pca} depicts an example of \gls{PCA}'s influence on 2-dimensional space data.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.5\linewidth]{pca.png}
-    \caption{Principal Component Analysis application on 2D space data. Adapted from~\cite{Patcher2014WhatDNA}}
-    \label{fig:pca}
-\end{figure}
-
-The green line was created through mathematical optimization in order to maximize the variance between the data points as much as possible along that line. This line is referred to as the first principal component. Since a dimension has been lost to separate them, the points on the line are closer to each other than they were in the original 2D environment. However, in many circumstances, the simplification in dimensionality compensates the loss of information. When moving to higher dimensions, it will most likely be necessary to use multiple principal components since the variance described by one principle component will not be enough. Principal components are vectors that form a 90-degree angle between each other (orthogonal vectors), and are independent in a way that the second principal component does not overlap with the variance explained by the first. The first principal component will capture the majority of the variance; the second will catch the second-largest portion of the variance left unexplained by the first, and so on.
-
-
-\section{Supervised machine learning}
+\subsection{Models and algorithms}\label{sec:models_and_algo}
 
 In supervised \gls{ML}, several algorithms and computing approaches are utilized. The following are some of the most popular classification and regression algorithms: \gls{LR}, \gls{LgR}, \gls{KNN}, \gls{SVM}, \gls{DT}, \gls{RF} and \gls{ANN}~\cite{2020WhatIBM,Chugh2018TypesKnow}.
 
@@ -416,7 +421,7 @@ A \gls{RF} classifier is an ensemble \gls{ML} algorithm. One note should be adde
 % ANN
 \gls{ANN}s-based supervised classifiers are extremely sophisticated and may be further subdivided into a number of distinct but related ideas. They are based on the neural network of the brain. These algorithms are used in most cutting-edge artificial intelligence applications and are typically used when working with very big datasets. They also serve as the foundation for deep learning approaches, as detailed below in both sections~\ref{sec:ann} and ~\ref{sec:dl}.
 
-\section{Artificial neural networks}\label{sec:ann}
+\subsection{Artificial neural networks}\label{sec:ann}
 
 In general, a biological neuron accepts inputs and arranges them to perform an operation, which results in the final output. When looking at biological neurons, there are four major components: dendrites, cell bodies, axons, and synapses. Dendrites are in charge of accepting incoming impulses into the cell body. The cell body subsequently processes these electrical signals and converts them to the final output. The output signal is then transferred from the cell body to the other neurons through the axon, which serves as a transmission line between neurons. Synapses are the locations placed between neurons and dendrites that are responsible for gathering input from neurons~\cite{Imran2019AClassification}. 
 
