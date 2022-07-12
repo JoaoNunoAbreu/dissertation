@@ -1,0 +1,101 @@
+\chapter{Descriptors (falta quillbot'ar este cap todo)}
+\label{cha:descriptors}
+
+In this work, we first examined the state-of-the-art in computationally predicting ... and then comprehensively assessed the predictive power of eight traditional machine learning methods and 17 feature types often used in prior research.
+
+Based on the sequence and physicochemical characteristics, we created and evaluated a total of 17 different kinds of features.
+
+\section{Length}
+
+Length descriptor is a simple descriptor that calculates the length of a sequence.
+
+\section{GC Content}
+
+\gls{GC} content feature enconding represents the quantity of guanine and cytosine nucleotides in a sequence. It can be calculated as follows:
+
+\begin{equation}\label{eq:gc_content}
+    x = \frac{N_{(C)} + N_{(G)}}{N}
+\end{equation}
+
+
+where $N_{(C)}$ donates the number of the nucleotide C in the sequence, $N_{(G)}$ the number of the nucleotide G and $N$ the length of the sequence.
+
+\section{AT Content}
+
+\gls{AT} content feature enconding represents the quantity of adenine and thymine nucleotides in a sequence. It can be calculated as follows:
+
+
+\begin{equation}\label{eq:at_content}
+    x = \frac{N_{(A)} + N_{(T)}}{N}
+\end{equation}
+
+where $N_{(A)}$ donates the number of the nucleotide A in the sequence, $N_{(T)}$ the number of the nucleotide T and $N$ the length of the sequence.
+
+\section{Nucleic Acid Composition}
+
+As one of the commonly used methods to represent \gls{DNA} sequences, the \gls{NAC} encoding [25, 26] reflects the nucleotides frequencies of the sequence. The frequencies of all four natural nucleotides ('A', 'C', 'G' and 'T') can be calculated as:
+
+\begin{equation}\label{eq:NAC}
+    f(i) = \frac{N_{(i)}}{N}, i \in \left\{A,C,T,G\right\}
+\end{equation}
+
+where $N_{(i)}$ donates the number of nucleotide type and $N$ represents the length of a \gls{DNA} sequence.
+
+\section{Di-Nucleotide Composition}
+
+\gls{DNC} feature encoding [27, 28] represents the composition of continuous dinucleotide pairs in a \gls{DNA} sequence. There are 16 descriptors in \gls{DNC} feature encoding, which can be defined as:
+
+\begin{equation}\label{eq:DNC}
+    D(i,j) = \frac{N_{(ij)}}{N-1}, i,j \in \left\{A,C,T,G\right\}
+\end{equation}
+
+
+where $N_{(ij)}$ donates the number of dinucleotide represented by nucleotide types $i$ and $j$.
+
+\section{Tri-Nucleotide Composition}
+
+\gls{TNC} feature encoding [29, 30] represents the composition of the composition of continuous trinucleotide pairs in a \gls{DNA} sequence. There are 64 descriptors in \gls{TNC} feature encoding ('AAA', 'AAC', 'AAG', 'AAT', ..., 'TTT'), which can be defined as:
+
+\begin{equation}\label{eq:TNC}
+    D(i,j,k) = \frac{N_{(ijk)}}{N-2}, i,j,k \in \left\{A,C,T,G\right\}
+\end{equation}
+
+where $N_{(ijk)}$ donates the number of trinucleotides represented by nucleotide types $i$, $j$ and $k$.
+
+
+\section{Composition of K-spaced nucleic acid pairs}
+
+\gls{CKSNAP} feature encoding [21, 22] represents the composition of nucleotide pairs that are K-steps away from each other in a segment. Specifically, we calculated the frequency of a nucleotide pair with the two nucleotides at positions $i$ and $i + K + 1$, respectively, where $i$ = 1, ..., ($l$ − $K$ − 1) and l being the length of the sequence. For example, given the sequence $ACGTACGT$ and $K$ = 2, the nucleotide AT will occur twice in the sequence, where A and T occur at positions 1 and 4 and also at positions 5 and 8. 
+
+It is important to note that there are only a total of 16 possible nucleotide pairs regardless of the value of $K$. This coding system reflects the short-range interactions of nucleic acids within a \gls{DNA} sequence segment.
+
+\section{K-mer}
+
+The K-mer encoding [34, 35] calculates the occurrence frequencies of k neighboring nucleotide in a \gls{DNA} sequence, which was commonly used in the field of enhancer identification and regulatory sequence prediction (2). The K-mer (k = 4) descriptor can be defined as:
+
+\begin{equation}\label{eq:K-mer}
+    K(i) = \frac{N_{(i)}}{N}, i \in \left\{AAAA, AAAC, AAAG,...,TTTT\right\}
+\end{equation}
+
+where $N_{i}$ donates the number of types $i$ descriptor of K-mer and $N$ representes the length of the DNA sequence.
+
+The implemented K-mer descriptor also includes the \gls{RCKmer}. The \gls{RCKmer} encoding [36] is a variant of K-mer descriptor, which calculates the occurrence frequencies of reverse compliment k neighboring nucleotide in the \gls{DNA} sequence. For example, there are 16 types of 2-mers in a \gls{DNA} sequence. Among them, 'TT' is reverse compliment with 'AA'. Thus, there are only 10 types of 2-mers in the \gls{RCKmer} approach (i.e. 'AA', 'AC', 'AG', 'AT', 'CA', 'CC', 'CG', 'GA', 'GC' and 'TA') by removing the reverse complimentary K-mers.
+
+\section{Accumulated Nucleotide Frequency}
+
+The nucleotide density and distribution of each nucleotide in a \gls{DNA} segment are represented by the \gls{ANF} feature encoding scheme [17]. The formula below describes how to calculate the \gls{ANF} of a \gls{DNA} segment of length L.
+
+\begin{equation}\label{eq:K-mer}
+    d_{l} = \frac{1}{l}\sum_{j=1}^{l}f(n_{j}), f(n_{j}) = \begin{cases}1 & n_{j} = q\\0 & other\end{cases}, l = 1,...,L
+\end{equation}
+
+where $n_{j}$ represents the nucleotide at the j-th position and $q \in (A,C,T,G)$. Taking the sequence of 'TGCTACGC' as an example, when $l$ = 3, the nucleotide at the $l$-th position is C and the density of this position is calculated as $d_{3} = \frac{1}{3}\sum_{j=1}^{3}f(n_{j}) = \frac{1}{3} [f(C) + f(A) + f(C)] = \frac{1}{3} [1+0+1] = 0.667$. The density of all L positions can be similarly calculated. However, if we calculate the ANF for each position, we would get L values, which is not a fixed length vector. To avoid this, we only calculated the ANF for 3 positions, which were at 25, 50 and 75\% of the length of the sequence.
+
+\section{DAC}
+\section{DCC}
+\section{DACC}
+\section{TAC}
+\section{TCC}
+\section{TACC}
+\section{PseDNC}
+\section{PseKNC}
