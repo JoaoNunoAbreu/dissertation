@@ -1,17 +1,54 @@
-\chapter{Descriptors (falta quillbot'ar este cap todo)}
+\section{Setting up the Data}
+
+\subsection{Descriptors}
 \label{cha:descriptors}
 
 In this work, we first examined the state-of-the-art in computationally predicting ... and then comprehensively assessed the predictive power of eight traditional machine learning methods and 17 feature types often used in prior research.
 
-Based on the sequence and physicochemical characteristics, we created and evaluated a total of 17 different kinds of features.
+Based on the sequence and physicochemical characteristics, a total of 17 different kinds of features were created and evaluated. Table~\ref{tab:descriptors_classes} provides the list of all the descriptors as well as their respective group.
 
-\section{Psycho chemical}
+\begin{table}[ht]
+	\caption{List of descriptors calculated.}
+	\label{tab:descriptors_classes}
+    \centering
+    \begin{tabular}{ll}
+    	\toprule
+    	\textbf{Descriptor groups} & \textbf{Descriptor} \\\midrule
+    	
+    	\multirow{3}{*}{Psychochemical} & Length \\
+    	& GC Content\\
+    	& AT Content\\\midrule
+    	
+    	\multirow{6}{*}{Nucleic Acid Composition} & Nucleic Acid Compostion (NAC) \\
+    	
+    	& Dinucleotide Acid Compostion (DNC)\\
+    	& Trinucleotide Acid Compostion (TNC)\\
+    	& Composition of K-spaced nucleic acid pairs (CKSNAP)\\
+    	& K-mer\\
+    	& Accumulated Nucleotide Frequency (ANF)\\\midrule
+    	
+    	\multirow{6}{*}{Autocorrelation} & Dinucleotide-based Auto Covariance (DAC) \\
+    	& Dinucleotide-based Cross Covariance (DCC)\\
+    	& Dinucleotide-based Auto-Cross Covariance (DACC)\\
+    	& Trinucleotide-based Auto Covariance (TAC) \\
+    	& Trinucleotide-based Cross Covariance (TCC) \\
+    	& Trinucleotide-based Auto-Cross Covariance (TACC)\\\midrule
+    	
+    	\multirow{2}{*}{Pseudo Nucleic Acid Composition} & Pseudo Dinucleotide Compostion (PseDNC) \\
+    	& Pseudo K-tupler Compostion (PseKNC) \\
+    	
+        
+    	\bottomrule
+    \end{tabular}
+\end{table}
 
-\subsection{Length}
+Both the psychochemical properties and the nucleic acid composition are the most straight-forward approaches to represent the DNA sequences.
+
+\paragraph{Length}
 
 Length descriptor is a simple descriptor that calculates the length of a sequence.
 
-\subsection{GC Content}
+\paragraph{GC Content}
 
 \gls{GC} content feature enconding represents the quantity of guanine and cytosine nucleotides in a sequence. It can be calculated as follows:
 
@@ -22,7 +59,7 @@ Length descriptor is a simple descriptor that calculates the length of a sequenc
 
 where $N_{(C)}$ donates the number of the nucleotide C in the sequence, $N_{(G)}$ the number of the nucleotide G and $N$ the length of the sequence.
 
-\subsection{AT Content}
+\paragraph{AT Content}
 
 \gls{AT} content feature enconding represents the quantity of adenine and thymine nucleotides in a sequence. It can be calculated as follows:
 
@@ -33,9 +70,8 @@ where $N_{(C)}$ donates the number of the nucleotide C in the sequence, $N_{(G)}
 
 where $N_{(A)}$ donates the number of the nucleotide A in the sequence, $N_{(T)}$ the number of the nucleotide T and $N$ the length of the sequence.
 
-\section{Nucleic acid composition}
 
-\subsection{Nucleic Acid Composition}
+\paragraph{Nucleic Acid Composition}
 
 As one of the commonly used methods to represent \gls{DNA} sequences, the \gls{NAC} encoding [25, 26] reflects the nucleotides frequencies of the sequence. The frequencies of all four natural nucleotides ('A', 'C', 'G' and 'T') can be calculated as:
 
@@ -45,7 +81,7 @@ As one of the commonly used methods to represent \gls{DNA} sequences, the \gls{N
 
 where $N_{(i)}$ donates the number of nucleotide type and $N$ represents the length of a \gls{DNA} sequence.
 
-\subsection{Di-Nucleotide Composition}
+\paragraph{Di-Nucleotide Composition}
 
 \gls{DNC} feature encoding [27, 28] represents the composition of continuous dinucleotide pairs in a \gls{DNA} sequence. There are 16 descriptors in \gls{DNC} feature encoding, which can be defined as:
 
@@ -56,7 +92,7 @@ where $N_{(i)}$ donates the number of nucleotide type and $N$ represents the len
 
 where $N_{(ij)}$ donates the number of dinucleotide represented by nucleotide types $i$ and $j$.
 
-\subsection{Tri-Nucleotide Composition}
+\paragraph{Tri-Nucleotide Composition}
 
 \gls{TNC} feature encoding [29, 30] represents the composition of the composition of continuous trinucleotide pairs in a \gls{DNA} sequence. There are 64 descriptors in \gls{TNC} feature encoding ('AAA', 'AAC', 'AAG', 'AAT', ..., 'TTT'), which can be defined as:
 
@@ -67,13 +103,13 @@ where $N_{(ij)}$ donates the number of dinucleotide represented by nucleotide ty
 where $N_{(ijk)}$ donates the number of trinucleotides represented by nucleotide types $i$, $j$ and $k$.
 
 
-\subsection{Composition of K-spaced nucleic acid pairs}
+\paragraph{Composition of K-spaced nucleic acid pairs}
 
 \gls{CKSNAP} feature encoding [21, 22] represents the composition of nucleotide pairs that are K-steps away from each other in a segment. Specifically, we calculated the frequency of a nucleotide pair with the two nucleotides at positions $i$ and $i + K + 1$, respectively, where $i$ = 1, ..., ($l$ − $K$ − 1) and l being the length of the sequence. For example, given the sequence $ACGTACGT$ and $K$ = 2, the nucleotide AT will occur twice in the sequence, where A and T occur at positions 1 and 4 and also at positions 5 and 8. 
 
 It is important to note that there are only a total of 16 possible nucleotide pairs regardless of the value of $K$. This coding system reflects the short-range interactions of nucleic acids within a \gls{DNA} sequence segment.
 
-\subsection{K-mer}
+\paragraph{K-mer}
 
 The K-mer encoding [34, 35] calculates the occurrence frequencies of k neighboring nucleotide in a \gls{DNA} sequence, which was commonly used in the field of enhancer identification and regulatory sequence prediction (2). The K-mer (k = 4) descriptor can be defined as:
 
@@ -85,7 +121,7 @@ where $N_{i}$ donates the number of types $i$ descriptor of K-mer and $N$ repres
 
 The implemented K-mer descriptor also includes the \gls{RCKmer}. The \gls{RCKmer} encoding [36] is a variant of K-mer descriptor, which calculates the occurrence frequencies of reverse compliment k neighboring nucleotide in the \gls{DNA} sequence. For example, there are 16 types of 2-mers in a \gls{DNA} sequence. Among them, 'TT' is reverse compliment with 'AA'. Thus, there are only 10 types of 2-mers in the \gls{RCKmer} approach (i.e. 'AA', 'AC', 'AG', 'AT', 'CA', 'CC', 'CG', 'GA', 'GC' and 'TA') by removing the reverse complimentary K-mers.
 
-\subsection{Accumulated Nucleotide Frequency}
+\paragraph{Accumulated Nucleotide Frequency}
 
 The nucleotide density and distribution of each nucleotide in a \gls{DNA} segment are represented by the \gls{ANF} feature encoding scheme [17]. The formula below describes how to calculate the \gls{ANF} of a \gls{DNA} segment of length L.
 
@@ -95,11 +131,11 @@ The nucleotide density and distribution of each nucleotide in a \gls{DNA} segmen
 
 where $n_{j}$ represents the nucleotide at the j-th position and $q \in (A,C,T,G)$. Taking the sequence of 'TGCTACGC' as an example, when $l$ = 3, the nucleotide at the $l$-th position is C and the density of this position is calculated as $d_{3} = \frac{1}{3}\sum_{j=1}^{3}f(n_{j}) = \frac{1}{3} [f(C) + f(A) + f(C)] = \frac{1}{3} [1+0+1] = 0.667$. The density of all L positions can be similarly calculated. However, if we calculate the ANF for each position, we would get L values, which is not a fixed length vector. To avoid this, we only calculated the ANF for 3 positions, which were at 25, 50 and 75\% of the length of the sequence.
 
-\section{Autocorrelation}
+\paragraph{Dinucleotide-based Auto Covariance}
 
-Autocorrelation, as one of the multivariate modeling tools, can transform the DNA sequences of different lengths into fixed-length vectors by measuring the correlation between any two physicochemical properties. Autocorrelation results in two kinds of variables: autocorrelation (AC) between the same property, and cross-covariance (CC) between two different properties.
+The first autocorrelation descriptor is called \gls{DAC}. Autocorrelation, as one of the multivariate modeling tools, can transform the DNA sequences of different lengths into fixed-length vectors by measuring the correlation between any two physicochemical properties. Autocorrelation results in two kinds of variables: autocorrelation (AC) between the same property, and cross-covariance (CC) between two different properties.
 
-It has been proved that DNA physicochemical properties play important roles in gene expression regulation [31â€“33]. For example, DNA physicochemical property is evolutionarily more constrained than the underlying actual sequence, and the topography-informed constrained regions usually correlate with functional noncoding elements such as enhancers [34].
+It has been proved that DNA physicochemical properties play important roles in gene expression regulation [31-33]. For example, DNA physicochemical property is evolutionarily more constrained than the underlying actual sequence, and the topography-informed constrained regions usually correlate with functional noncoding elements such as enhancers [34].
 
 Listed in Table~\ref{tab:38_di}, Table~\ref{tab:12_tri} are 38 dinucleotide physicochemical properties and 12 trinucleotide physicochemical properties that can be used to generate various different modes of dinucleotide and trinucleotide, respectively, autocorrelation features. Because so far not much physicochemical property data are available for the K-tuple nucleotides when $K = 4$ (tetranucleotides) and above, the current study was limited to dinucleotide and trinucleotide autocorrelation descriptors only. Nevertheless, the formulations presented here can be easily extended to cover the case of $K \geq 4$ when the corresponding physicochemical property data are available.
 
@@ -184,9 +220,6 @@ Listed in Table~\ref{tab:38_di}, Table~\ref{tab:12_tri} are 38 dinucleotide phys
     \end{longtable}
 \end{footnotesize}
 
-
-\subsection{Dinucleotide-based Auto Covariance}
-
 Suppose a DNA sequence D with L nucleic acid residues; i.e. 
 
 \begin{equation}\label{eq:d-seq}
@@ -209,7 +242,7 @@ where $u$ is a physicochemical index, $L$ is the length of the DNA sequence, $P_
 
 In such a way, the length of \gls{DAC} feature vector is $N*LAG$, where $N$ is the number of physicochemical indices and $LAG$ is the maximum of $lag, lag \in [1,2,...,LAG]$.
 
-\subsection{Dinucleotide-based Cross Covariance}
+\paragraph{Dinucleotide-based Cross Covariance}
 Given a DNA sequence D (Eq.~\ref{eq:d-seq}), the \gls{DCC} approach measures the correlation of two different physicochemical indices between two dinucleotides separated by lag nucleic acids along the sequence, which can be calculated by:
 
 \begin{equation}\label{eq:DCC}
@@ -224,11 +257,11 @@ where $u_{1}$, $u_{2}$ are two different physicochemical indices, $L$ is the len
 
 In such a way, the length of \gls{DCC} feature vector is $N*(N-1)*LAG$, where $N$ is the number of physicochemical indices and $LAG$ is the maximum of $lag, lag \in [1,2,...,LAG]$.
 
-\subsection{Dinucleotide-based Auto-Cross Covariance}
+\paragraph{Dinucleotide-based Auto-Cross Covariance}
 \gls{DACC} is a combination of \gls{DAC} and \gls{DCC}. Therefore, the length of the \gls{DACC} feature vector is $N*N*LAG$, where $N$ is the number of physicochemical indices and $LAG$ is the maximum of $lag, lag \in [1,2,...,LAG]$.
 
 
-\subsection{Trinucleotide-based Auto Covariance}
+\paragraph{Trinucleotide-based Auto Covariance}
 Given a DNA sequence D (Eq.~\ref{eq:d-seq}), the \gls{TCC} approach measures the correlation of the same physicochemical index between two trinucleotides separated by \textit{lag} nucleic acids along the sequence, which can be calculated as:
 
 \begin{equation}\label{eq:tac}
@@ -250,35 +283,33 @@ where $u$ is a physicochemical index, $L$ is the length of the DNA sequence, $P_
 
 In such a way, the length of \gls{TAC} feature vector is $N*LAG$, where $N$ is the number of physicochemical indices and $LAG$ is the maximum of $lag, lag \in [1,2,...,LAG]$.
 
-\subsection{Trinucleotide-based Cross Covariance}
+\paragraph{Trinucleotide-based Cross Covariance}
 
 Given a DNA sequence D (Eq.~\ref{eq:d-seq}), the \gls{TCC} approach measures the correlation of two different physicochemical indices between two trinucleotides separated by \textit{lag} nucleic acids along the sequence, which can be calculated by:
 
-\begin{equation}\label{eq:DCC}
+\begin{equation}\label{eq:TCC}
     TCC(u_{1},u_{2},lag) = \frac{\sum_{i=1}^{L-lag-2}(P_{u_{1}}(R_{i}\;R_{i+1}\;R_{i+2}) - \overline{P_{u_{1}}})(P_{u_{2}}(R_{i+lag}\;R_{i+lag+1}\;R_{i+lag+2}) - \overline{P_{u_{2}}})}{L-lag-2}
 \end{equation}
 
 where $u_{1}$, $u_{2}$ are two different physicochemical indices, $L$ is the length of the DNA sequence, $P_{u_{1}}(R_{i}R_{i+1}R_{i+2}) (P_{u_{2}}(R_{i}R_{i+1}R_{i+2}))$ is the numerical value of the physicochemical index $u_{1}(u_{2})$ for the trinucleotide $R_{i}R_{i+1}R_{i+2}$ at position $i$, $\overline{P_{u_{1}}}\;(\overline{P_{u_{2}}})$ is the average value for physicochemical index value $u_{1}$, $u_{2}$ along the whole sequence:
 
-\begin{equation}\label{eq:DAC-PU2}
+\begin{equation}\label{eq:TCC-PU2}
     \overline{P_{u}} = \frac{\sum_{j=1}^{L-2}P_{u}(R_{j}R_{j+1}R_{j+2})}{L-2}
 \end{equation}
 
 In such a way, the length of \gls{TCC} feature vector is $N*(N-1)*LAG$, where $N$ is the number of physicochemical indices and $LAG$ is the maximum of $lag, lag \in [1,2,...,LAG]$.
 
 
-\subsection{Trinucleotide-based Auto-Cross Covariance}
+\paragraph{Trinucleotide-based Auto-Cross Covariance}
 \gls{TACC} is a combination of \gls{TAC} and \gls{TCC}. Therefore, the length of the \gls{TACC} feature vector is $N*N*LAG$, where $N$ is the number of physicochemical indices and $LAG$ is the maximum of $lag, lag \in [1,2,...,LAG]$.
 
-\section{Pseudo Nucleic Acid Composition}
-
-All these methods above were merely based on the nucleic acid composition alone without taking into account the sequence order effect.
-\gls{PseNAC} is a kind of powerful approaches to represent the DNA sequences considering both DNA local sequence-order information and long range or global sequence-order effects.
-
-\subsection{Pseudo Dinucleotide Composition}
+\paragraph{Pseudo Dinucleotide Composition}
 
 % https://academic.oup.com/nar/article/41/6/e68/2902382
 % https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8138820/
+
+All these methods above were merely based on the nucleic acid composition alone without taking into account the sequence order effect.
+\gls{PseNAC} is a kind of powerful approaches to represent the DNA sequences considering both DNA local sequence-order information and long range or global sequence-order effects.
 
 \gls{PseDNC} is an approach incorporating the contiguous local sequence-order information and the global sequence-order information into the feature vector of the DNA sequence. 
 
@@ -423,7 +454,7 @@ where $f_{k} (k = 1,2,...,16)$ are the same as those in Eq.~\ref{eq:PseDNC-1-1},
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Pseudo K-tupler Composition}
+\paragraph{Pseudo K-tupler Composition}
 
 % https://github.com/liufule12/repDNA/blob/master/repDNA/doc/repDNA_manual.pdf
 
@@ -461,3 +492,51 @@ contiguous dinucleotides. The correlation function $\Theta(R_{i}R_{i+1}, R_{i+j}
 \end{equation}
 
 where $\mu$ is the number of physicochemical indices, in this study, 6 indices reflecting the local DNA structural properties (Table~\ref{tab:normalized_values}) were employed to generate the \gls{PseKNC} feature vector; $P_{v} (R_{i}R_{i+1})$ represents the numerical value of the v-th physicochemical indices for the dinucleotide $R_{i}R_{i+1}$ at position i and $P_{v} (R_{i+j}R_{i+j+1})$ represents the corresponding value for the dinucleotide $R_{i+j}R_{i+j+1}$ at position i+j.
+
+\subsection{Encoders}
+
+\gls{DNA} sequences consist of continuous sequential letters from a 4-letter alphabet, and, as mentioned in~\ref{sec:dna-dl}, it is first required to transform the string sequence into a numerical value in order to create an input matrix for the model. The encoders that have been implemented are listed below.
+
+\paragraph{One-Hot Encoding}
+
+One-hot encoding is extensively used in deep learning models and is well suited for most models. In addition, the performance of one-hot encoding is very stable across various data sets, however an appropriate model is necessary to get acceptable performance. This approach preserves the positional information of each nucleotide in sequences but disregards high-order relationships between nucleotides~\cite{Zhang2019ModelingNetwork}.
+
+As a result, \gls{A} is encoded to (1, 0, 0, 0), \gls{C} to (0, 1, 0, 0), \gls{G} to (0, 0, 1, 0), and \gls{T} to (0, 0, 0, 1). The final vector's dimension will be $L * 4$ where $L$ is the length of the sequence.
+
+\paragraph{Chemical Encoding}
+
+The four nucleic acids each have unique chemical characteristics~\cite{GolamBari2013DNASequence}. \gls{A} and \gls{G} are purines with two ring structures, whereas \gls{C} and \gls{T} are pyrimidines with one ring structure. \gls{C} and \gls{G} create strong hydrogen bonds while building secondary structures, whereas \gls{A} and \gls{T} form weak hydrogen bonds. In terms of their chemical functionality, \gls{A} and \gls{C} belong to the amino group, while \gls{G} and \gls{T} belong to the keto group. Accordingly, the four nucleic acids may be categorized into three separate categories (Table~\ref{tab:chemical_encoding}).
+
+\begin{table}[ht]
+	\caption{Cluster of nucleotides based on chemical properties~\cite{GolamBari2013DNASequence}}
+	\label{tab:chemical_encoding}
+    \centering
+    \begin{tabular}{lll}
+    	\toprule
+    	\textbf{Chemical property} & \textbf{Class} & \textbf{Nucleotides} \\\midrule
+    	
+    	\multirow{2}{*}{Ring structure} & Purine & A,G \\
+    	& Pyrimidine & C,T\\\midrule
+    	
+    	\multirow{2}{*}{Hydrogen bond} & Weak & A,T\\
+    	& Strong & C,G\\\midrule
+    	
+    	\multirow{2}{*}{Functional group} & Amino & A,C\\
+    	& Keto & G,T\\
+        
+    	\bottomrule
+    \end{tabular}
+\end{table}
+
+Three coordinates $(x, y, z)$ were utilized to represent the chemical characteristics of the four nucleotides, and the values 0 and 1 were given to the coordinates in order to incorporate these attributes. If $x$, $y$, and $z$ coordinates respectively represent the ring structure, the hydrogen bond, and the chemical functionality, then each nucleotide may be encoded as ($x_{i}$, $y_{i}$, $z_{i}$), where $x_{i}$ represents the ring structure, $y_{i}$ represents the hydrogen bond, and $z_{i}$ represents the chemical functionality.
+
+As a result, \gls{A} is encoded to (1, 1, 1), \gls{C} to (0, 0, 1), \gls{G} to (1, 0, 0), and \gls{T} to (0, 1, 0). The final vector's dimension will be $L * 3$ where $L$ is the length of the sequence.
+
+
+\paragraph{K-mer One-Hot Encoding}
+
+As mentioned before, using one-hot encoding on \gls{DNA} sequences solely preserves the positional information of each nucleotide. Recent investigations, however, have shown that including high-order dependencies among nucleotides may enhance the efficacy of DNA models~\cite{Zhang2019ModelingNetwork}. To capture the dependencies, all instances are turned into image-like matrices of high-order relationships using the k-mer encoding method.
+
+For example, in 1-mer one-hot encoding (which is the same as the regular one-hot encoding), each nucleotide is mapped into a vector of size 4 ($A = [1, 0, 0, 0]^{T}$, $C = [0, 1, 0, 0]^{T}$, $G = [0, 0, 1, 0]^{T}$, and $T = [0, 0, 0, 1]^{T}$). The 2-mer encoding is based on the dependencies between two nearby nucleotides, and each dinucleotide is mapped to a 16-dimensional vector ($AA = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]^{T}$, ..., $TT = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]^{T})$. The 3-mer encoding is based on the dependencies between three nearby nucleotides, and each dinucleotide is mapped to a 64-dimensional vector ($AAA = [1, 0, 0, 0, ..., 0, 0, 0, 0, 0]^{T}$, ... , $TTT = [0, 0, 0, 0, ..., 0, 0, 0, 0, 0, 1]^{T}$).
+
+As a result, the final vector's dimension will be $(L - k + 1) * 4^{k}$ where $L$ is the length of the sequence.
