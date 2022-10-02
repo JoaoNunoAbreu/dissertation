@@ -33,9 +33,18 @@ The implemented \gls{DL} steps were encoding, data processing, model building an
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{Chapters/Figures/meu}
+    \includegraphics[width=\linewidth]{meu}
     \caption{Implemented workflow in ProPythia for Deep Learning DNA classifications.}
     \label{fig:meu}
+\end{figure}
+
+Figure~\ref{fig:integration_propythia} provides a visualization of how the implemented modules of \gls{DL} \gls{DNA} classification is integrated in \textit{Propythia}. The coloured modules were the new ones implemented and the gray ones are from \textit{ProPythia}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{integration_propythia}
+    \caption{Integration of implemented modules in ProPythia.}
+    \label{fig:integration_propythia}
 \end{figure}
 
 Both implementations of \gls{DNA} descriptors and the \gls{DL} pipeline had a step in common; the data reading process. As a result, a data reading module was developed to read \gls{DNA} sequences from \textit{CSV} or \textit{FASTA} files. The data is then validated, which means that every letter in the sequence has to be either an \gls{A}, \gls{C}, \gls{G}, or \gls{T}.

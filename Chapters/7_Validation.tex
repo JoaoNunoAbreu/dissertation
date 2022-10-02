@@ -40,29 +40,29 @@ Then, for the non-essential gene dataset, the authors only stated that they obta
 
 As expected, the results of attempting to replicate these steps for the positive and negative datasets were not the same to those in the study. Only 2010 sequences were retrieved for the positive dataset, while 14416 unique sequences were obtained for the negative dataset. The size of the positive dataset is comparable to that of the study, but the negative still had a relevant discrepancy. 
 
-However, it is important to note that the sequences did not have the same length, unlike the two first datasets. Figures~\ref{fig:deg_length} and~\ref{fig:deep_length}  provide a visualization of the sequence's length distribution in each dataset.
+However, it is important to note that the sequences did not have the same length, unlike the two first datasets. Figures~\ref{fig:deg_length} and~\ref{fig:negative}  provide a visualization of the sequence's length distribution in each dataset.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\linewidth]{deg}
+    \includegraphics[width=0.7\linewidth]{positive}
     \caption{Sequence length and its occurrence in the positive dataset.}
     \label{fig:deg_length}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\linewidth]{deep_length}
+    \includegraphics[width=0.7\linewidth]{negative}
     \caption{Sequence length and its occurrence in the negative dataset.}
-    \label{fig:deep_length}
+    \label{fig:negative}
 \end{figure}
 
 A significant disparity in the length of the sequences was found in both datasets, especially in the negative one. The majority of the sequences have a length between 0 and 0.1e6. To remove some data noise, sequences that had length bigger than 0.1e6 were deleted, resulting in 11900 sequences (which is closer to the number of the negative dataset in the paper). Even though the lenghts of the positive dataset are not balanced either, no sequences were removed because the number of sequences was already very close to the paper's.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\linewidth]{cut_100k}
+    \includegraphics[width=0.7\linewidth]{negative_less_100k}
     \caption{Sequence length and its occurrence after removing sequences bigger than 0.1e6.}
-    \label{fig:cut_100k}
+    \label{fig:negative_less_100k}
 \end{figure}
 
 It is important to note that the final version of this dataset (2010 positives and 11900 negatives) is not balanced. Class weight were used to impose a heavier penalty when misclassifying an instance in the minority class, which is the class of important genes, to address the uneven data distributions between the two classes.
