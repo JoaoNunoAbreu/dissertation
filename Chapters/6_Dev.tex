@@ -15,7 +15,7 @@ In this study, descriptors were calculated and used as features for shallow \gls
 
 \subsection{ProPythia}
 
-As mentioned in section~\ref{sec:context_and_motivation}, \textit{ProPythia} is a platform devoted to the classification of peptides/proteins sequences using \gls{ML} and \gls{DL}, developed within the Biosystems group at CEB/ U. Minho. Included in \textit{ProPythia} are modules to read and modify sequences, calculate various types of protein descriptors, pre-process datasets, execute feature selection and dimensionality reduction, visualize t-SNE and UMAP, perform clustering, train and optimize \gls{ML} and \gls{DL} models, and make predictions using various algorithms. \textit{ProPythia} features an adjustable modular design that makes it a flexible and user-friendly tool for \gls{ML}/\gls{DL} analysis of protein sequences~\cite{Sequeira2020ProPythia:Learning}. A schematic view
+As mentioned in section~\ref{sec:context_and_motivation}, \textit{ProPythia}~\cite{Sequeira2020ProPythia:Learning} is a platform devoted to the classification of peptides/proteins sequences using \gls{ML} and \gls{DL}, developed within the Biosystems group at CEB/ U. Minho. Included in \textit{ProPythia} are modules to read and modify sequences, calculate various types of protein descriptors, pre-process datasets, execute feature selection and dimensionality reduction, visualize t-SNE and UMAP, perform clustering, train and optimize \gls{ML} and \gls{DL} models, and make predictions using various algorithms. \textit{ProPythia} features an adjustable modular design that makes it a flexible and user-friendly tool for \gls{ML}/\gls{DL} analysis of protein sequences~\cite{Sequeira2020ProPythia:Learning}. A schematic view
 of the package can be seen in Figure~\ref{fig:propythia_workflow}.
 
 \begin{figure}[htbp]
@@ -49,7 +49,37 @@ Figure~\ref{fig:integration_propythia} provides a visualization of how the imple
 
 Both implementations of \gls{DNA} descriptors and the \gls{DL} pipeline had a step in common; the data reading process. As a result, a data reading module was developed to read \gls{DNA} sequences from \textit{CSV} or \textit{FASTA} files. The data is then validated, which means that every letter in the sequence has to be either an \gls{A}, \gls{C}, \gls{G}, or \gls{T}.
 
-\subsection{Omnia}
+\subsection{OMNIA}
+
+\textit{OMNIA} is the \gls{AutoML} platform for bioinformatics of \textit{OmniumAI}. It contains a set of methods for the analysis of biological data. Currently, it offers tools for analyzing the data in the following categories - compounds, proteins, metabolomics, transcriptomics, single-cell transcriptomics and text mining. An overview of this platform is depicted in Figure~\ref{fig:omnia_before}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{omnia_before}
+    \caption{OMNIA overview before implementations.}
+    \label{fig:omnia_before}
+\end{figure}
+
+The first main objective in \textit{OMNIA} was similar to the \textit{ProPythia}'s one, which was the creation of a module that calculates \gls{DNA} descriptors. The implementation from \textit{ProPythia} was re-utilized but adapted to the \textit{OMNIA} requirements and dependencies.
+
+Then, the other key objective was the addition of \gls{DL} \textit{PyTorch} models as well as the functions that allow the \textit{OMNIA} to use them. These functions include train, test, validation and data related processes, which were also implemented with \textit{PyTorch}. Identical to the previous objective, the \textit{PyTorch} models and functions were re-utilized from \textit{ProPythia} but adapted to the \textit{OMNIA} requirements and dependencies.
+
+Figure~\ref{fig:done-in-omnia} illustrates how the \textit{OMNIA} platform incorporates both of these goals, and Figure~\ref{fig:omnia-integration} provides the overview of the entire platform, highlighting the implemented modules.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{done-in-omnia}
+    \caption{Modules integration in OMNIA.}
+    \label{fig:done-in-omnia}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{omnia-integration}
+    \caption{OMNIA overview after implementations.}
+    \label{fig:omnia-integration}
+\end{figure}
+
 
 \input{Chapters/6.1_setting_up_data}
 
