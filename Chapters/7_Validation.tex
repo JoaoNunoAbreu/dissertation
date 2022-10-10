@@ -40,7 +40,7 @@ Then, for the non-essential gene dataset, the authors only stated that they obta
 
 As expected, the results of attempting to replicate these steps for the positive and negative datasets were not the same to those in the study. Only 2010 sequences were retrieved for the positive dataset, while 14416 unique sequences were obtained for the negative dataset. The size of the positive dataset is comparable to that of the study, but the negative still had a relevant discrepancy. 
 
-However, it is important to note that the sequences did not have the same length, unlike the two first datasets. Figures~\ref{fig:deg_length} and~\ref{fig:negative}  provide a visualization of the sequence's length distribution in each dataset.
+However, it is important to note that the sequences did not have the same length, unlike the two first datasets. Figures~\ref{fig:deg_length} and~\ref{fig:negative}  provide a visualization of the sequences length distribution in each dataset.
 
 \begin{figure}[htbp]
     \centering
@@ -65,11 +65,11 @@ A significant disparity in the length of the sequences was found in both dataset
     \label{fig:negative_less_100k}
 \end{figure}
 
-It is important to note that the final version of this dataset (2010 positives and 11900 negatives) is not balanced. Class weight were used to impose a heavier penalty when misclassifying an instance in the minority class, which is the class of important genes, to address the uneven data distributions between the two classes.
+It is important to note that the final version of this dataset (2010 positives and 11900 negatives) is not balanced. Class weights were used to impose a heavier penalty when misclassifying an instance in the minority class, which is the class of important genes, to address the uneven data distributions between the two classes.
 
 \section{Results and discussion of results}
 
-To acquire the best possible results, it was necessary to test every combination of feature extraction - model - dataset. There are a total of four types of feature extraction techniques, twelve distinct models, and three datasets. This would need testing $4*12*3 = 144$ possibilities, however it is not necessary since some of these combinations are incompatible (some models only accept encodings and not descriptors and vice-versa). Therefore, 96 combinations were examined, and the results are shown below.
+To acquire the best possible results, it was necessary to test every combination of feature extraction - model - dataset. There are a total of four types of feature extraction techniques, twelve distinct models, and three datasets. This would need testing $4*12*3 = 144$ possibilities, however it is not necessary since some of these combinations are incompatible (some models only accept encodings and not descriptors and vice-versa). Therefore, 96 combinations were examined, and the results are shown below. It also worth mentioning that these results were obtained using the cross entropy loss function, which is the default loss function to use for binary classification problems~\cite{BrownleeHowNetworks}, and the Adam optimizer, which was the optimizer used in both case studies.
 
 \begin{itemize}
     \item ('mlp', 'descriptor', 'primer')
