@@ -1,88 +1,19 @@
-\chapter{Development/Design and Implementation}\label{cha:dev}
+\chapter{Development and Implementation}\label{cha:dev}
 
-\section{Development Strategy}
+\section{Development Strategy}\label{sec:dev_strat}
 
-The main goal of this study was to create a tool that can automatically classify \gls{DNA} sequences using \gls{ML}/\gls{DL} models, followed by its integration into \textit{ProPythia}. Another important objective was to integrate automated machine learning classifiers into the \textit{OmniumAI} software platforms.
+The main goal of this study was to create a tool that can automatically classify \gls{DNA} sequences using \gls{ML}/\gls{DL} models, followed by its integration into \textit{ProPythia}. The other key objective was to integrate automated machine learning classifiers into the \textit{OmniumAI} software platforms.
 
-However, it is crucial to understand the steps and the technologies necessary to build such tools.
+However, it is crucial to understand the steps and the technologies necessary to build such tools. These tools were built with \textit{Python}, which is a high-level interpreted general-purpose programming language that supports vast and extensive external libraries that are constantly evolving. \textit{PyCharm Code Editor} was used to combine \textit{Python} code development, while also improving usability and user experience. Additionally, the \textit{Anaconda} software application was employed to facilitate package management and distribution. Then, for building the entire classification pipeline, the \textit{PyTorch} framework was used as it is one of the most popular free open source and powerful \gls{DL} frameworks.
 
-After selecting the dataset, the first step of an \gls{ML} project is the data processing task since, in most cases, the data is not ready to be fed into a model. The sequences need first to be converted into a numerical representation, and how this step is executed has a substantial influence on the model's ultimate performance. 
-As mentioned in section~\ref{sec:workflow}, data processing can be subdivided into feature extraction and feature selection. The first is the process of transforming raw data into suitable modelling features, and the second consists of filtering irrelevant features, keeping the essential ones. If the model is a \gls{DL} model, the user may not need to perform this step since these kind of models can extract the features from the training data on their own.
+In an \gls{ML} project, after selecting the dataset, the first step is the data processing task since, in most cases, the data is not ready to be fed into a model. The sequences need first to be converted into a numerical representation, and how this step is executed has a substantial influence on the model's ultimate performance. 
+As mentioned in Section~\ref{sec:workflow}, data processing can be subdivided into feature extraction and feature selection. The first is the process of transforming raw data into suitable modelling features, and the second consists of filtering irrelevant features, keeping the essential ones. If working with a \gls{DL} model, the user may not need to perform this step since these kind of models can extract the features from the training data on their own.
 
-In this study, descriptors were calculated and used as features for shallow \gls{ML} classification models, which is a manual feature extraction process. For \gls{DL} models, they only need the sequences as input but they still need to be in a numerical format. Encoders were utilized to address this problem since they can create numerical representations of a string of letters.
+In this study, descriptors were chosen to be the features for shallow \gls{ML} classification models, which is a manual feature extraction process. For \gls{DL} models, they only need the sequences as input, but they still need to be in a numerical format. Encoders were utilized to address this problem, since they can create numerical representations of a string of letters.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{ProPythia}
-
-As mentioned in section~\ref{sec:context_and_motivation}, \textit{ProPythia}~\cite{Sequeira2020ProPythia:Learning} is a platform devoted to the classification of peptides/proteins sequences using \gls{ML} and \gls{DL}, developed within the Biosystems group at CEB/ U. Minho. Included in \textit{ProPythia} are modules to read and modify sequences, calculate various types of protein descriptors, pre-process datasets, execute feature selection and dimensionality reduction, visualize t-SNE and UMAP, perform clustering, train and optimize \gls{ML} and \gls{DL} models, and make predictions using various algorithms. \textit{ProPythia} features an adjustable modular design that makes it a flexible and user-friendly tool for \gls{ML}/\gls{DL} analysis of protein sequences~\cite{Sequeira2020ProPythia:Learning}. A schematic view
-of the package can be seen in Figure~\ref{fig:propythia_workflow}.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth]{propythia_workflow}
-    \caption{Schematic representation of the modules in ProPythia~\cite{Sequeira2020ProPythia:Learning}.}
-    \label{fig:propythia_workflow}
-\end{figure}
-
-The first main objective of this study regarding \textit{ProPythia} was to extend its calculation of descriptors for proteins to also include \gls{DNA} descriptors. To accomplish this, a module (similar to the one for proteins) was developed that can be simply imported by other modules to create a \textit{Python} dictionary containing all calculated descriptors. As the remaining \gls{ML} steps are independent of one another, \textit{ProPythia} is now capable of performing the whole \gls{ML} pipeline for \gls{DNA} data. The list of implemented \gls{DNA} descriptors can be found later in section~\ref{cha:descriptors}.
-
-The other key objective was the development of a complete \gls{DL} pipeline for the classification of \gls{DNA} sequences. Although \textit{ProPythia} already includes a module for \gls{DL} classifications, it was not used to complete this step since it was not built in \textit{PyTorch} but rather in \textit{Tensorflow/Keras}.
-
-The implemented \gls{DL} steps were encoding, data processing, model building and training, model evaluation, and finally hyperparameter tuning. Each one of these steps were built as separate independent modules that can be used between themeselves and also between the modules that were already in \textit{ProPythia}. For example, it is possible to use the new \gls{DNA} encodings to train a \textit{ProPythia}'s \gls{DL} model and also use \textit{ProPythia}'s protein encoders to train a \gls{DL} \textit{PyTorch} model. Figure~\ref{fig:meu} provides an overview of the developed workflow.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth]{meu}
-    \caption{Implemented workflow in ProPythia for Deep Learning DNA classifications.}
-    \label{fig:meu}
-\end{figure}
-
-Figure~\ref{fig:integration_propythia} provides a visualization of how the implemented modules of \gls{DL} \gls{DNA} classification is integrated in \textit{Propythia}. The coloured modules were the new ones implemented and the gray ones are from \textit{ProPythia}.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth]{integration_propythia}
-    \caption{Integration of implemented modules in ProPythia.}
-    \label{fig:integration_propythia}
-\end{figure}
-
-Both implementations of \gls{DNA} descriptors and the \gls{DL} pipeline had a step in common; the data reading process. As a result, a data reading module was developed to read \gls{DNA} sequences from \textit{CSV} or \textit{FASTA} files. The data is then validated, which means that every letter in the sequence has to be either an \gls{A}, \gls{C}, \gls{G}, or \gls{T}.
-
-\subsection{OMNIA}
-
-\textit{OMNIA} is the \gls{AutoML} platform for bioinformatics of \textit{OmniumAI}. It contains a set of methods for the analysis of biological data. Currently, it offers tools for analyzing the data in the following categories - compounds, proteins, metabolomics, transcriptomics, single-cell transcriptomics and text mining. An overview of this platform is depicted in Figure~\ref{fig:omnia_before}.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{omnia_before}
-    \caption{OMNIA overview before implementations.}
-    \label{fig:omnia_before}
-\end{figure}
-
-The first main objective in \textit{OMNIA} was similar to the \textit{ProPythia}'s one, which was the creation of a module that calculates \gls{DNA} descriptors. The implementation from \textit{ProPythia} was re-utilized but adapted to the \textit{OMNIA} requirements and dependencies.
-
-Then, the other key objective was the addition of \gls{DL} \textit{PyTorch} models as well as the functions that allow the \textit{OMNIA} to use them. These functions include train, test, validation and data related processes, which were also implemented with \textit{PyTorch}. Identical to the previous objective, the \textit{PyTorch} models and functions were re-utilized from \textit{ProPythia} but adapted to the \textit{OMNIA} requirements and dependencies.
-
-Figure~\ref{fig:done-in-omnia} illustrates how the \textit{OMNIA} platform incorporates both of these goals, and Figure~\ref{fig:omnia-integration} provides the overview of the entire platform, highlighting the implemented modules.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{done-in-omnia}
-    \caption{Modules integration in OMNIA.}
-    \label{fig:done-in-omnia}
-\end{figure}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth]{omnia-integration}
-    \caption{OMNIA overview after implementations.}
-    \label{fig:omnia-integration}
-\end{figure}
 
 
 \input{Chapters/6.1_setting_up_data}
 
 \input{Chapters/6.2_classifiers}
-
-\input{Chapters/6.3_technologies}

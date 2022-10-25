@@ -1,1 +1,46 @@
-\chapter{Future Work and Conclusions}
+\chapter{Conclusion}
+
+The main goal of this study consists in creating a solution to keep up with the exponential biomedical data growth, which current methods involve the use of homologies, a very slow and expensive process. 
+
+The solution takes the form of a tool that uses \gls{ML} and \gls{DL} models to automatically classify \gls{DNA} sequences, improving response times and even classification accuracy. It is then integrated into \textit{ProPythia} and \textit{OmniumAI} software platforms.
+
+Some previous studies have been done in this field, but the objective is for the tool to generalize well to data from different studies and sources, not just one in particular. The objectives outlined in Chapter~\ref{cha:introduction} were taken into consideration when the problem's solution was being developed.
+
+It was required to first understand the state of the art regarding the creation of \gls{ML}/\gls{DL} models, in a broad sense, and also specifically classifiers for \gls{DNA} sequences. Then, for the \gls{DNA} sequence classifiers, it was also important to find the current approaches to the data preprocessing step, which is the most crucial step of this study due to the lack of numerical properties in the sequence that the model requires. Chapters~\ref{chap:ml} and~\ref{chap:dna_sequences} provide the research on these subjects.
+
+After reviewing the state of the art, it was necessary to decide which pre-processing methods and which \gls{ML}/\gls{DL} models were going to be built and used. This challenge was tackled in both situations in the same manner, by picking the most common or best performing ones from previous studies in \gls{DNA} classification problems. Descriptors were calculated for the shallow \gls{ML} models (the \gls{MLP} model), as well as encodings for the \gls{DL} models (\gls{CNN}, \gls{LSTM}, \gls{GRU}, CNN-LSTM, and CNN-GRU). More detailed information can be found in Chapter~\ref{cha:dev}.
+
+Following the implementation, the next step was to integrate it into \textit{ProPythia} and into \textit{OmniumAI} software platforms, in particular \textit{OMNIA}. In \textit{ProPythia}, the objectives were to extend its calculation of descriptors for proteins to also include \gls{DNA} descriptors and also the development of a complete \gls{DL} pipeline (data reading and validation, encodings, \gls{DL} models, model training and building, hyparameter tuning and model validation and selection) for the classification of \gls{DNA} sequences. Then, for \textit{OMNIA}, the objectives were similar, which were the creation of a module that calculates \gls{DNA} descriptors and the addition of \gls{DL} models as well as train, test, validation and data related processes functions. Chapter~\ref{chap:integration} contains an explanation of how the implemented modules were integrated into both platforms.
+
+Finally, the implemented tool needed to be tested with real-world case studies. The main goal of this step is to evaluate the performance of the implemented tool and to compare it with the state of the art. The expected results are that the tool will be able generalize well to new data from different sources and that it will be able to classify \gls{DNA} sequences with high accuracy. The case studies are transcription factor annotation and essential gene determination, and the results of each one can be found in Chapter~\ref{chap:validation}.
+
+Discussions of the initially stated objectives and the results of the case studies in Chapter~\ref{chap:validation} are both discussed in this chapter, as well as some ideas for future work.
+
+\section{Objectives: Discussion and Results}
+
+The goals for this dissertation were outlined in Section~\ref{sec:research_objectives}. The primary goal of this dissertation is to develop a tool that can automatically classify \gls{DNA} sequences using \gls{ML}/\gls{DL} algorithms. 
+
+Given that the tool created is able to replicate and even outperform classifications problems from multiple relevant studies, it can be considered that this key objective was successfully achieved. It is worth mentioning, however, that there were several decisions that may have impacted the outcomes, which are listed below.
+
+\begin{itemize}
+    \item Loss function
+    \item Optimizer
+    \item Seed number
+    \item Early stopping patience
+    \item Sequences cutting length for the essential genes dataset.
+    \item Number of epochs
+    \item Model's architecture
+    \item Model's parameters (strides, paddings)
+    \item Hyperparameter search space
+    \item Number of samples in the Hyperparameter Tuning
+\end{itemize}
+
+All of the experiments were performed with a fixed value for each one of the above parameters because it was not the goal of this work to find the best possible model combination, but to compare the performance of the different pre-processing methods and models, and understand if they can generalize well to all the datasets. In fact, it was not feasible to experiment all the possible combinations of the above parameters, and the ones that were chosen were the ones that were considered to be the best fit for the problem at hand. For example, the early stopping patience value, which is the threshold for the number of epochs without improvement in the validation loss, was set to 2 because it was observed that the model already converged at this point, and increasing the value would improve the results, but not by a significant amount. 
+
+\section{Future Work}
+
+For the future work, one of the improvements for the developed tool would be the support for multiclass classification problems. As can be seen in Section~\ref{sec:datasets}, the datasets from the case studies are binary classification problems, which means that the model will predict if a sequence will belong to a certain class or not. Multiclass classification support was not thoroughly investigated due to the lack of accessible datasets from relevant studies. However, given the tool's level of abstraction and modularization, extending it to handle multiclass classifications would not be a particularly laborious task. Training, testing, and metric calculation methods are the only components that would need to be adapted for this to be implemented.
+
+Another enhancement to the tool would be the development of a graphical user interface, such as a publicly accessible web application. Since the only means to engage with the system is through the command line, which needs some level of technical knowledge, it would be ideal to have an intuitive interface that would enable all users to interact, regardless of their level of technical expertise. Most of the \gls{DNA} descriptors packages mentioned in Table~\ref{tab:descriptors_DNA} provide a web server to ease and enhance the users' experience. For instance, this web application could be implemented using the Python-based Flask\footnote{\href{https://flask.palletsprojects.com/en/2.2.x/}{https://flask.palletsprojects.com}} framework for the \textit{backend}, and React.js\footnote{\href{https://reactjs.org/}{https://reactjs.org/}} or Vue.js\footnote{\href{https://vuejs.org/}{https://vuejs.org/}} for the \textit{frontend}. The web application would be able to receive the \gls{DNA} sequences from the users, allow them to choose the pre-processing methods and \gls{ML}/\gls{DL} models, and return the results in a user-friendly format.
+
+The last improvement would be to this research results, and not to the developed tool itself. As mentioned in the previously section, the experiments were performed with a fixed value for a set of parameters. Among them, the hyperparameter search space and the number of samples in the hyperparameter tuning are the ones with most potential to improve even further the results. The hyperparameter search space is the set of values that the hyperparameters can take, and the number of samples is the number of combinations of hyperparameters that will be tested. The more combinations that are tested, the more likely it is that the best combination will be found. However, the more combinations that are tested, the longer the hyperparameter tuning will take. Therefore, it was important to find a balance between the number of combinations and the time it takes to perform the hyperparameter tuning. If greater computer resources were available, it would be conceivable to obtain faster training times and to test even more combinations of hyperparameters in order to boost the results even more. The lack of computational resources, particularly memory, was also the reason why the k-mer one-hot encoding method was not tested for k values greater than 3, as mentioned in Section~\ref{lab:results}. The k-mer one-hot encoding method is the most computationally expensive pre-processing method but also the one that obtained the best results. Although the results were already excellent and probably could not be improved much more, it still would be interesting to explore more tuning combinations and test the k-mer one-hot encoding method with k values greater than 3 to see how it would impact the results.

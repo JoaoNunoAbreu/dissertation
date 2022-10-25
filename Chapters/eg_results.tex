@@ -1,0 +1,287 @@
+\begin{longtable}{llllll}
+	\caption{Results on Essential Genes dataset.}
+	\label{tab:eg_results}
+    \endfirsthead
+    \endhead
+    
+	\textbf{Model} & \textbf{Feature Extraction} & \textbf{Accuracy}  & \textbf{MCC} & \textbf{Confusion Matrix}\\\midrule
+	
+	MLP & Descriptor & 0.978 & 0.911 & 
+	$\begin{bmatrix}
+        2485 & 40\\ 
+        23 & 379
+    \end{bmatrix}$
+    \\\midrule
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    CNN & One-Hot & 0.964 & 0.845 &
+	$\begin{bmatrix}
+        2478 & 47\\ 
+        59 & 343
+    \end{bmatrix}$
+    \\
+
+    CNN & Chemical & 0.950 & 0.782 &
+	$\begin{bmatrix}
+        2476 & 49\\ 
+        96 & 306
+    \end{bmatrix}$
+    \\
+
+    CNN & 2-mer one-hot & 0.965 & 0.855 & 
+	$\begin{bmatrix}
+        2462 & 63\\ 
+        40 & 362
+    \end{bmatrix}$
+    \\
+
+    CNN & 3-mer one-hot & 0.978 & 0.912 & 
+	$\begin{bmatrix}
+        2483 & 42\\ 
+        21 & 381
+    \end{bmatrix}$
+    \\\midrule
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    LSTM & One-hot & 0.980 & 0.916 & 
+	$\begin{bmatrix}
+        2489 & 36\\ 
+        23 & 379
+    \end{bmatrix}$
+    \\
+
+    LSTM & Chemical & ??? & ??? & 
+	$\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\
+
+    LSTM & 2-mer one-hot & ??? & ??? & 
+	$\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\
+
+    LSTM & 3-mer one-hot & ??? & ??? & 
+	$\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\\midrule
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    BiLSTM & One-hot & ??? & ??? &
+    $\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\
+
+    BiLSTM & Chemical & ??? & ??? &
+    $\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\
+
+    BiLSTM & 2-mer one-hot & ??? & ??? &
+    $\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\
+
+    BiLSTM & 3-mer one-hot & ??? & ??? &
+    $\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\\midrule
+            
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    GRU & One-hot & 0.977 & 0.900 &
+    $\begin{bmatrix}
+        2506 & 19\\ 
+        49 & 353
+    \end{bmatrix}$
+    \\
+
+    GRU & Chemical & ??? & ??? &
+    $\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\
+
+    GRU & 2-mer one-hot & ??? & ??? &
+    $\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\
+
+    GRU & 3-mer one-hot & ??? & ??? &
+    $\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\\midrule
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    Bi-GRU & One-hot & ??? & ??? &
+    $\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\
+
+    Bi-GRU & Chemical & ??? & ??? &
+    $\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\
+
+    Bi-GRU & 2-mer one-hot & ??? & ??? &
+    $\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\
+
+    Bi-GRU & 3-mer one-hot & ??? & ??? &
+    $\begin{bmatrix}
+        ??? & ???\\ 
+        ??? & ???
+    \end{bmatrix}$
+    \\\midrule
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    CNN-LSTM & One-hot & 0.958 & 0.821 &
+    $\begin{bmatrix}
+        2468 & 57\\
+        66 & 336
+    \end{bmatrix}$
+    \\
+
+    CNN-LSTM & Chemical & 0.942 & 0.742 &
+    $\begin{bmatrix}
+        2465 & 60\\ 
+        111 & 291
+    \end{bmatrix}$
+    \\
+
+    CNN-LSTM & 2-mer one-hot & 0.971 & 0.878 &
+    $\begin{bmatrix}
+        2482 & 43\\ 
+        42 & 360
+    \end{bmatrix}$
+    \\
+
+    CNN-LSTM & 3-mer one-hot & 0.973 & 0.885 &
+    $\begin{bmatrix}
+        2489 & 36\\ 
+        43 & 359
+    \end{bmatrix}$
+    \\\midrule
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    CNN-BiLSTM & One-hot & 0.960 & 0.836 &
+    $\begin{bmatrix}
+        2454 & 71\\ 
+        46 & 356
+    \end{bmatrix}$
+    \\
+
+    CNN-BiLSTM & Chemical & 0.936 & 0.713 &
+    $\begin{bmatrix}
+        2473 & 52\\
+        134 & 268
+    \end{bmatrix}$
+    \\
+
+    CNN-BiLSTM & 2-mer one-hot & 0.967 & 0.869 &
+    $\begin{bmatrix}
+        2456 & 69\\ 
+        27 & 375
+    \end{bmatrix}$
+    \\
+
+    CNN-BiLSTM & 3-mer one-hot & 0.976 & 0.904 &
+    $\begin{bmatrix}
+        2476 & 49\\ 
+        20 & 382
+    \end{bmatrix}$
+    \\\midrule
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    CNN-GRU & One-hot & 0.963 & 0.842 &
+    $\begin{bmatrix}
+        2474 & 51\\ 
+        58 & 344
+    \end{bmatrix}$
+    \\
+
+    CNN-GRU & Chemical & 0.943 & 0.744 &
+    $\begin{bmatrix}
+        2473 & 52\\ 
+        116 & 286
+    \end{bmatrix}$
+    \\
+
+    CNN-GRU & 2-mer one-hot & 0.970 & 0.874 &
+    $\begin{bmatrix}
+        2484 & 41\\ 
+        46 & 356
+    \end{bmatrix}$
+    \\
+
+    CNN-GRU & 3-mer one-hot & 0.978 & 0.911 &
+    $\begin{bmatrix}
+        2486 & 39\\ 
+        24 & 378
+    \end{bmatrix}$
+    \\\midrule
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    CNN-BiGRU & One-hot & 0.962 & 0.837 &
+    $\begin{bmatrix}
+        2475 & 50\\ 
+        62 & 340
+    \end{bmatrix}$
+    \\
+
+    CNN-BiGRU & Chemical & 0.946 & 0.778 &
+    $\begin{bmatrix}
+        2434 & 91\\ 
+        67 & 335
+    \end{bmatrix}$
+    \\
+
+    CNN-BiGRU & 2-mer one-hot & 0.971 & 0.880 &
+    $\begin{bmatrix}
+        2475 & 50\\ 
+        35 & 367
+    \end{bmatrix}$
+    \\
+
+    CNN-BiGRU & 3-mer one-hot & 0.977 & 0.908 &
+    $\begin{bmatrix}
+        2480 & 45\\ 
+        21 & 381
+    \end{bmatrix}$
+    \\
+    
+	\bottomrule
+\end{longtable}

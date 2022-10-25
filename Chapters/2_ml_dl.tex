@@ -1,4 +1,4 @@
-\chapter{Machine and Deep Learning} \label{sec:ml}
+\chapter{Machine and Deep Learning} \label{chap:ml}
 
 The modern world is overflowing with data. It has reached a stage where humans can no longer regulate it since the rate of analysis is far slower than the continuous growth of data. According to Figure~\ref{fig:volume_of_data}, this rapid growth is not expected to stop anytime soon, so tools and technologies are needed to make the process of making sense of data more efficient.
 
@@ -139,7 +139,7 @@ K-means clustering is a clustering \gls{ML} technique in which data points are d
     \label{fig:k_means}
 \end{figure}
 
-\gls{PCA} is a dimensionality reduction approach that uses feature extraction to eliminate redundancies and compress datasets, while retaining as much of the information contained in the original data as possible~\cite{2020WhatIBMb}. Working with too many variables can be difficult for \gls{ML} since there is a chance of overfitting, a lack of appropriate data for each variable, and a degree of correlation between each variable and the output~\cite{Chugh2018TypesKnow}. \gls{PCA} does this by projecting data onto a lower-dimensional subspace that preserves the majority of the variance between data points. Figure~\ref{fig:pca} depicts an example of \gls{PCA}'s influence on 2-dimensional space data.
+\gls{PCA} is a dimensionality reduction approach that uses feature extraction to eliminate redundancies and compress datasets, while retaining as much of the information contained in the original data as possible~\cite{2020WhatIBMb}. Working with too many variables can be difficult for \gls{ML} since there is a chance of overfitting, a lack of appropriate data for each variable, and a degree of correlation between each variable and the output~\cite{Chugh2018TypesKnow}. In order to do this, \gls{PCA} projects the data into a lower-dimensional subspace that mostly retains the variance between the data points.. Figure~\ref{fig:pca} depicts an example of \gls{PCA}'s influence on 2-dimensional space data.
 
 \begin{figure}[htbp]
     \centering
@@ -153,7 +153,7 @@ The green line was created through mathematical optimization in order to maximiz
 \section{Supervised learning}
 
 Supervised learning is a \gls{ML} paradigm for obtaining knowledge about a system's input-output relationship from a set of paired input-output training examples~\cite{Liu2012SupervisedLearning}, with classification and regression being the two most common supervised categories. In classification, a class label is predicted for a given sample. In other words, it maps a function from input variables to output variables as target, label or categories~\cite{Sarker2021MachineDirections}.
-In addition, there are multiple classification problems, such as binary classification, which refers to tasks with two class labels, such as "true and false", multiclass classification, which refers to classification tasks having more than two class labels, and multi-label classification when an example is associated with multiple classes or labels. On the other hand, regression contains approaches for predicting a continuous output variable based on the value of one or more predictor variables. The most important difference between classification and regression is that classification predicts distinct class labels, whereas regression predicts a continuous quantity. A clearer distinction between classification and regression is illustrated in Figure~\ref{fig:regression_vs_classification}.
+In addition, there are multiple classification problems, such as binary classification, which refers to tasks with two class labels, such as "true and false", multiclass classification, which refers to classification tasks having more than two class labels, and multi-label classification when an example is associated with multiple classes or labels. On the other hand, regression contains approaches for predicting a continuous output variable based on the value of one or more predictor variables. The key difference between classification and regression is that the former predicts labels for certain classes while the latter permits the prediction of a continuous variable. A clearer distinction between classification and regression is illustrated in Figure~\ref{fig:regression_vs_classification}.
     
 \begin{figure}[htbp]
     \centering
@@ -369,7 +369,7 @@ In supervised \gls{ML}, several algorithms and computing approaches are utilized
 \end{figure}
 
 % Logistic Regression
-\gls{LgR} is similar to \gls{LR} but it is used for classification problems. To model a binary output variable, logistic regression employs the logistic function given below (Eq~\ref{eq:5}). The main distinction between linear and logistic regression is that the range of logistic regression is limited to 0 and 1. Furthermore, logistic regression does not require a linear connection between input and output variables, unlike linear regression. Also unlike linear regression, which employs \gls{MSE} as the loss function, logistic regression utilizes a conditional probability loss function called \gls{MLE}. The predictions will be categorized as class 0 if the probability is larger than 0.5. Otherwise, you will be allocated to class 1~\cite{Belyadi2021SupervisedLearning}. By default, logistic regression cannot be utilized for multi-class classification problems, which have more than two class labels. However, it is possible to adapt logistic regression to solve  multi-class classification problems. One approach example is to divide the multi-class classification issue into several binary classification problems and apply a typical logistic regression model to each subproblem. 
+\gls{LgR} is similar to \gls{LR} but it is used for classification problems. To model a binary output variable, logistic regression employs the logistic function given below (Eq~\ref{eq:5}). Logistic regression's range is constrained to 0 and 1, which is the main difference between it and linear regression. In contrast to linear regression, logistic regression does not need a linear relationship between the input and output variables. Also unlike linear regression, which employs \gls{MSE} as the loss function, logistic regression utilizes a conditional probability loss function called \gls{MLE}. If the probability is greater than 0.5, the predictions will be labeled as class 0. Otherwise, you will be allocated to class 1~\cite{Belyadi2021SupervisedLearning}. By default, logistic regression cannot be utilized for multi-class classification problems, which have more than two class labels. However, it is possible to adapt logistic regression to solve  multi-class classification problems. One approach example is to divide the multi-class classification issue into several binary classification problems and apply a typical logistic regression model to each subproblem. 
 
 \begin{equation}\label{eq:5}
     f(x) = \frac{1}{1+e^{-x}}
@@ -531,8 +531,8 @@ To understand better the concepts of \gls{DL}, Table~\ref{tab:dl_terminologies} 
     Gradient
     & 
     \begin{tabular}[c]{@{}c@{}}
-        Vector of partial derivatives with respect to all of the\\
-		independent variables.
+        Partial derivatives vector with regard to all independent\\
+        variables.
     \end{tabular} 
     \\\midrule
 
@@ -540,7 +540,7 @@ To understand better the concepts of \gls{DL}, Table~\ref{tab:dl_terminologies} 
     & 
     \begin{tabular}[c]{@{}c@{}}
         Technique to minimize loss by computing the gradients of loss with\\
-		respect to the model's parameters, conditioned on training data.
+		regard to the parameters of the model in training data.
     \end{tabular} 
     \\\midrule
 
@@ -610,7 +610,7 @@ To understand better the concepts of \gls{DL}, Table~\ref{tab:dl_terminologies} 
 
 \subsection{Training phase}
 
-In order to start training a \gls{DL} model, just as \gls{ANN}, the initial model weights are chosen randomly. Then, the model weights are updated to reduce the error between the algorithm's current output and the expected output. This error is measured by the loss function and weight-finding algorithms are used to minimize this function, knows as optimization algorithms. These algorithms are specific implementations of the gradient descent algorithm, which is a technique to minimize loss by computing the gradients of loss with respect to the model's parameters, conditioned on training data. 
+In order to start training a \gls{DL} model, just as \gls{ANN}, the initial model weights are chosen randomly. Then, the model weights are updated to reduce the error between the algorithm's current output and the expected output. This error is measured by the loss function and weight-finding algorithms are used to minimize this function, knows as optimization algorithms. These algorithms are specific implementations of the gradient descent algorithm, which is a technique to minimize loss by computing the gradients of loss with regard to the parameters of the model in training data. 
 
 Various optimizers are researched within the last few couples of years each having its advantages and disadvantages, but the most commonly used is \gls{SGD}~\cite{Chauhan2020OptimizationNetworks}.
 
@@ -669,7 +669,7 @@ The convolutional layer is a key component of the \gls{CNN} architecture that co
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\linewidth]{merge_cnn}
-    \caption{Convolution operation with a kernel size of 3 × 3, no padding, and a stride of 1. Adapted from~\cite{Yamashita2018ConvolutionalRadiology}}
+    \caption{Convolution operation with a kernel size of 3 × 3, stride of 1, and no padding. Adapted from~\cite{Yamashita2018ConvolutionalRadiology}}
     \label{fig:merge_cnn}
 \end{figure}
 
@@ -754,23 +754,23 @@ While \gls{ML} has several proven benefits, its effective use needs a significan
 In recent years, multiple packages have been developed that provide \gls{AutoML}. Some examples are:
 
 \begin{itemize}
-    \item \textbf{AutoWEKA} - package for selecting a \gls{ML} algorithm and its hyperparameters at the same time; when paired with the WEKA package, it produces good models for a wide range of data sets automatically.
+    \item \textbf{AutoWEKA}~\cite{ThorntonAuto-WEKA:Algorithms} - package for selecting a \gls{ML} algorithm and its hyperparameters at the same time; when paired with the WEKA package, it produces good models for a wide range of data sets automatically.
     
-    \item \textbf{Auto-PyTorch} - it is based on the PyTorch \gls{DL} framework and it optimizes the network architecture and training hyperparameters together and reliably to allow fully automated \gls{DL}.
+    \item \textbf{Auto-PyTorch}~\cite{Zimmer2020Auto-PyTorchAutoDL} - it is based on the PyTorch \gls{DL} framework and it optimizes the network architecture and training hyperparameters together and reliably to allow fully automated \gls{DL}.
     
-    \item \textbf{TPOT} - data science assistant that uses genetic programming to enhance \gls{ML} pipelines and it is built on top of scikit-learn.
+    \item \textbf{TPOT}~\cite{Olson2016TPOT:Learning} - data science assistant that uses genetic programming to enhance \gls{ML} pipelines and it is built on top of scikit-learn.
     
-    \item \textbf{AutoKeras} - open-source software library for \gls{AutoML}. It is built in Keras and provides methods for searching for \gls{DL} architectures and hyperparameters for models. 
+    \item \textbf{AutoKeras}~\cite{Jin2018Auto-Keras:System} - open-source software library for \gls{AutoML}. It is built in Keras and provides methods for searching for \gls{DL} architectures and hyperparameters for models. 
     
 \end{itemize}
 
 
 \section{Python libraries for machine and deep learning}\label{sec:ML_DL_libraries}
 
-While there are many languages to choose from, Python is one of the most developer-friendly \gls{ML} and \gls{DL} programming languages available, and it comes with a large library to suit any use-case or project. Most popular libraries include~\cite{JonssonWaysDevelopment,Paszke2019PyTorch:Library}:
+While there are many languages to choose from, Python\footnote{\href{https://www.python.org/}{https://www.python.org/}} is one of the most developer-friendly \gls{ML} and \gls{DL} programming languages available, and it comes with a large library to suit any use-case or project. Most popular libraries include~\cite{JonssonWaysDevelopment,Paszke2019PyTorch:Library}:
 
 \begin{itemize}
-    \item \textbf{Tensorflow}: high-performance numerical computing open source software framework. This library, which was created by Google researchers and engineers, has a strong support for \gls{ML} and \gls{DL}. It works with tensors, which are structures that imitate scalars, vectors, and matrices and allow for calculations between them. This tool's key features include straightforward numerical calculation, deployment on numerous CPUs or \gls{GPU}s, and a robust data visualization interface.
-    \item \textbf{Keras}: \gls{DL} framework that provides high-level building blocks for designing practically any type of \gls{DL} model in a far more convenient way than constructing it from the ground up. Keras also enables users to train models on both the CPU and \gls{GPU}.
-    \item \textbf{PyTorch}: open-source \gls{ML}/\gls{DL} library created by Facebook and based on Torch. It offers a large number of tools and libraries that assist Computer Vision, \gls{NLP}, and a variety of other \gls{ML} tasks. It enables developers to run Tensor computations with \gls{GPU} acceleration and aids in the creation of computational graphs.
+    \item \textbf{Tensorflow}\footnote{\href{https://www.tensorflow.org/}{https://www.tensorflow.org/}}: high-performance numerical computing open source software framework. This library, which was created by Google researchers and engineers, has a strong support for \gls{ML} and \gls{DL}. It works with tensors, which are structures that imitate scalars, vectors, and matrices and allow for calculations between them. This tool's key features include straightforward numerical calculation, deployment on numerous CPUs or \gls{GPU}s, and a robust data visualization interface.
+    \item \textbf{Keras}\footnote{\href{https://keras.io/}{https://keras.io/}}: \gls{DL} framework that provides high-level building blocks for designing practically any type of \gls{DL} model in a far more convenient way than constructing it from the ground up. Keras also enables users to train models on both the CPU and \gls{GPU}.
+    \item \textbf{PyTorch}\footnote{\href{https://pytorch.org/}{https://pytorch.org/}}: open-source \gls{ML}/\gls{DL} library created by Facebook and based on Torch. It offers a large number of tools and libraries that assist Computer Vision, \gls{NLP}, and a variety of other \gls{ML} tasks. It enables developers to run Tensor computations with \gls{GPU} acceleration and aids in the creation of computational graphs.
 \end{itemize}

@@ -1,16 +1,16 @@
-\section{Classifiers Implementation}
+\section{Classifiers Implementation}\label{sec:classifiers}
 
-Following the selection of the dataset, the \gls{DNA} sequence records were randomly rearranged and assigned to the training and test/validation sets. A suitable data preprocessing strategy was selected in order to turn the \gls{DNA} sequences, into a numerical representation. This format was necessary to comply with the input requirements of the classification model, which takes only numerical data.
+Following the selection of the dataset, the \gls{DNA} sequence records were randomly rearranged and assigned to the training and test/validation sets. A suitable data preprocessing strategy was selected in order to turn the \gls{DNA} sequences into a numerical representation. This format was necessary to comply with the input requirements of the classification model, which takes only numerical data.
 
-At this stage, there will be either a collection of pre-calculated features, the descriptors, or labeled and encoded training data. The data will be used to train the classification model regardless of the previous choice.
+At this stage, there will be either a collection of pre-calculated features, the descriptors, or encoded training data. It is worth noting that if the data is in descriptor form, only shallow \gls{ML} models will be able to train on it, while \gls{DL} models need it to be in encoding form.
 
 \subsection{Models}
 
-The following sections will provide an insight for each one of the implemented classification models.
+The following sections will provide an insight for each one of the implemented classification models. The process of obtaining this list of models was based on the most common choices made by the authors of the previous studies on \gls{DNA} classification (Table~\ref{tab:previous_work}).
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\linewidth]{models_feature_extraction}
+    \includegraphics[width=0.8\linewidth]{models_feature_extraction}
     \caption{Models and their feature extraction methods.}
     \label{fig:models_feature_extraction}
 \end{figure}
@@ -81,7 +81,7 @@ This model is a combination of the \gls{CNN} and \gls{GRU} models. When using th
 
 \subsection{Hyperparameter Tuning}
 
-Additionally, hyperparameter optimization was considered and applied successfully. As mentioned in~\ref{sec:workflow}, the challenge of hyperparameter optimization is selecting the appropriate hyperparameters for a learning algorithm. It may distinguish an ordinary model from a very accurate one. Choosing a different learning rate or modifying the size of a network layer may have a substantial effect on the performance of the model. Ray Tune~\cite{Liaw2018Tune:Training} is the standard tuning tool for hyperparameters and it was used to complete this task. However, before finding the best combination, it is required to define the configuration of the Ray Tune's search space. The implemented one can be found in Table~\ref{tab:search_space}.
+Additionally, hyperparameter optimization was considered and applied successfully. As mentioned in Section~\ref{sec:workflow}, the challenge of hyperparameter optimization is selecting the appropriate hyperparameters for a learning algorithm. It may distinguish an ordinary model from a very accurate one. Choosing a different learning rate or modifying the size of a network layer may have a substantial effect on the performance of the model. Ray Tune\footnote{\href{https://docs.ray.io/en/latest/tune/}{https://docs.ray.io/en/latest/tune/}} is a standard tuning tool for hyperparameters~\cite{Liaw2018Tune:Training} and it was used to complete this task. However, before finding the best combination, it is required to define the configuration of the Ray Tune's search space. The implemented one can be found in Table~\ref{tab:search_space}.
 
 \begin{table}[ht]
 	\caption{Ray Tune's search space.}
@@ -89,20 +89,16 @@ Additionally, hyperparameter optimization was considered and applied successfull
     \centering
     \begin{tabular}{lll}
     	\toprule
-    	\textbf{Hyperparameter (x)} & \textbf{Search Space} \\\midrule
+    	\textbf{Hyperparameter (x)} & \textbf{Search Space} & \textbf{Models} \\\midrule
     	
-    	Hidden Size & $x \in 32, 64, 128, 256$ \\\midrule
-        Batch Size & $x \in 8, 16, 32, 64$ \\\midrule
-        Learning Rate & $x \in 0.0001, 0.001, 0.01$ \\\midrule
-        Dropout & $x \in 0.2, 0.3, 0.4, 0.5$ \\\midrule
-        Number of Layers & $x \in 1, 2, 3$ \\
+    	Hidden Size & $x \in \{32, 64, 128\}$ & All\\\midrule
+        Batch Size & $x \in \{16, 32, 64\}$ & All\\\midrule
+        Learning Rate & $x \in \{0.0001, 0.001, 0.01\}$ & All\\\midrule
+        Dropout & $x \in \{0.2, 0.3, 0.4, 0.5\}$ & All\\\midrule
+        Number of Layers & $x \in \{1, 2, 3\}$ & All except MLP and CNN\\
         
     	\bottomrule
     \end{tabular}
 \end{table}
 
-Ray Tune will now randomly choose a combination of parameters from these search areas for each trial. It will then train many models in parallel and determine which one has the highest performance. Additionally, the Ray Tune's scheduler \textit{ASHAScheduler} was used, which terminates poorly performing trials early. This is accomplished by choosing a desired metric (loss in this study) and measuring it at the end of each epoch. If the measure keeps worsening, reaching a specified patience value, the trial will end immediately. 
-
-\subsection{Other Parameters}
-
-The process of early stopping is a very useful technique since it prevents wasting time and resources on unnecessary computations. Therefore, this strategy was also implemented in the case when hyperparameter tuning is not being performed, using now the \textit{ReduceLROnPlateau} scheduler from \textit{PyTorch}. This scheduler is also able to reduce the learning rate when the given metric has stopped improving, since models often benefit from a 2-10x reduction in the learning rate when learning has stagnated.
+Ray Tune will randomly choose a combination of parameters from these search areas for each trial. It will then train many models in parallel and determine which has the highest performance, according to a defined metric. Additionally, the Ray Tune's scheduler \textit{HyperBandScheduler} was used, which terminates poorly performing trials early, using the HyperBand optimization algorithm. This is accomplished by choosing a desired metric (loss) and measuring it at the end of each epoch. If the measure keeps worsening, reaching a specified patience value, the trial will end immediately. This strategy was also implemented in the case when hyperparameter tuning is not being performed, using now the \textit{ReduceLROnPlateau} scheduler from \textit{PyTorch}. 

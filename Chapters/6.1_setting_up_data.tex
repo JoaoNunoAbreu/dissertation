@@ -1,12 +1,14 @@
-\section{Setting up the Data}
+\section{Setting up the Data}\label{sec:setup}
 
-It is important to note that all sequence feature vectors that will be fed into the model need to have the same input shape, regardless of whether the sequences have the same length or not. For example, a sequence with a length of 100 and another sequence with a length of 200 must be represented by a feature vector of the same size. When using descriptors, this can be achieved by implementing them in a way that they are not dependent on the sequence's length. However, when using encodings, the only option is to truncate or fill all sequences to a length's value. Using the example above, the two sequences could be truncated or filled to have a length of 150, and then calculate the encoding.
+It is important to note that all sequence feature vectors that will be fed into the model need to have the same input shape, regardless of whether the sequences have the same length or not. For example, a sequence with a length of 100 and another sequence with a length of 200, that belong to the same dataset, must be represented by a feature vector of the same size. When using descriptors, this can be achieved by implementing them in a way that they are not dependent on the sequence's length. However, when using encodings, the only option is to truncate or fill all sequences to a length's value. Using the example above, the two sequences could be truncated or filled to have a length of 150, and then calculate the encoding. To fill the sequence to a length's value, a letter that did not belong to the \gls{A}, \gls{C}, \gls{T}, and \gls{G} alphabet was added - the letter N. 
 
 The following chapter provides an overview of the descriptors and the encoders for \gls{DNA} sequences that were developed in this study.
 
 \subsection{Descriptors}\label{cha:descriptors}
 
-Table~\ref{tab:descriptors_classes} provides the list of all the implemented descriptors as well as their respective group and resulting vector size. The $N$ in the table represents the number of physicochemical indices to calculate.
+Table~\ref{tab:descriptors_classes} provides the list of all the implemented descriptors, as well as their respective group and resulting vector size. The process of obtaining this list of descriptors was based on finding the descriptors that most \gls{DNA} descriptors packages from Table~\ref{tab:descriptors_DNA} implemented, as well as choosing the ones that did not depend on the sequence's length, as the datasets used in the case studies did not have sequences of uniform length.
+
+The $N$ in the table represents the number of physicochemical indices to calculate.
 
 
 \begin{table}[ht]
@@ -30,12 +32,12 @@ Table~\ref{tab:descriptors_classes} provides the list of all the implemented des
     	& K-mer & $4^{k}$\\
     	& Accumulated Nucleotide Frequency (ANF) & $3 * 4$\\\midrule
     	
-    	\multirow{6}{*}{Auto Correlation and Cross Covariance} & Dinucleotide-based Auto Covariance (DAC) & $N * nlag$\\
-    	& Dinucleotide-based Cross Covariance (DCC) & $N * (N-1) * nlag$\\
-    	& Dinucleotide-based Auto-Cross Covariance (DACC) & $N * N * nlag$ \\
-    	& Trinucleotide-based Auto Covariance (TAC) & $N * nlag$\\
-    	& Trinucleotide-based Cross Covariance (TCC) & $N * (N-1) * nlag$\\
-    	& Trinucleotide-based Auto-Cross Covariance (TACC) & $N * N * nlag$\\\midrule
+    	\multirow{6}{*}{Auto Correlation and Cross Covariance} & Dinucleotide-based Auto Covariance (DAC) & $N * lag$\\
+    	& Dinucleotide-based Cross Covariance (DCC) & $N * (N-1) * lag$\\
+    	& Dinucleotide-based Auto-Cross Covariance (DACC) & $N * N * lag$ \\
+    	& Trinucleotide-based Auto Covariance (TAC) & $N * lag$\\
+    	& Trinucleotide-based Cross Covariance (TCC) & $N * (N-1) * lag$\\
+    	& Trinucleotide-based Auto-Cross Covariance (TACC) & $N * N * lag$\\\midrule
     	
     	\multirow{2}{*}{Pseudo Nucleic Acid Composition} & Pseudo Dinucleotide Compostion (PseDNC) & $16 + \lambda$\\
     	& Pseudo K-tupler Compostion (PseKNC) & $4^{k} + \lambda$\\
@@ -55,25 +57,25 @@ Length descriptor is a simple descriptor that calculates the length of a sequenc
 
 \paragraph{GC Content}
 
-\gls{GC} content feature enconding represents the quantity of guanine and cytosine nucleotides in a sequence. It can be calculated as follows:
+\gls{GC} content feature encoding represents the quantity of guanine and cytosine nucleotides in a sequence. It can be calculated as follows:
 
 \begin{equation}\label{eq:gc_content}
-    x = \frac{N_{(C)} + N_{(G)}}{N}
+    x = \frac{N_{(C)} + N_{(G)}}{L}
 \end{equation}
 
 
-where $N_{(C)}$ donates the number of the nucleotide C in the sequence, $N_{(G)}$ the number of the nucleotide G and $N$ the length of the sequence.
+\noindent where $N_{(C)}$ donates the number of the nucleotide C in the sequence, $N_{(G)}$ the number of the nucleotide G and $L$ the length of the sequence.
 
 \paragraph{AT Content}
 
-\gls{AT} content feature enconding represents the quantity of adenine and thymine nucleotides in a sequence. It can be calculated as follows:
+\gls{AT} content feature encoding represents the quantity of adenine and thymine nucleotides in a sequence. It can be calculated as follows:
 
 
 \begin{equation}\label{eq:at_content}
-    x = \frac{N_{(A)} + N_{(T)}}{N}
+    x = \frac{N_{(A)} + N_{(T)}}{L}
 \end{equation}
 
-where $N_{(A)}$ donates the number of the nucleotide A in the sequence, $N_{(T)}$ the number of the nucleotide T and $N$ the length of the sequence.
+\noindent where $N_{(A)}$ donates the number of the nucleotide A in the sequence, $N_{(T)}$ the number of the nucleotide T and $L$ the length of the sequence.
 
 
 \paragraph{Nucleic Acid Composition}
@@ -81,36 +83,35 @@ where $N_{(A)}$ donates the number of the nucleotide A in the sequence, $N_{(T)}
 The \gls{NAC} encoding~\cite{Chen2015IRNA-Methyl:Composition,Chen2013IRSpot-PseDNC:Composition} is one of the approaches often used to represent \gls{DNA} sequences; it represents the nucleotide frequencies of the sequence. The frequencies of the 4 natural nucleotides may be determined as follows:
 
 \begin{equation}\label{eq:NAC}
-    f(i) = \frac{N_{(i)}}{N}, i \in \left\{A,C,T,G\right\}
+    f(i) = \frac{N_{(i)}}{L}, i \in \left\{A,C,T,G\right\}
 \end{equation}
 
-where $N_{(i)}$ is the number of nucleotide type and $N$ is the length of the \gls{DNA} sequence.
+\noindent where $N_{(i)}$ is the number of nucleotide type and $L$ is the length of the \gls{DNA} sequence.
 
 \paragraph{Di-Nucleotide Composition}
 
 \gls{DNC} feature encoding~\cite{Grabherr2011ExploitingPromoters, Panwar2015IdentificationTri-nucleotides} is the composition of continuous dinucleotide pairs inside a \gls{DNA} sequence. \gls{DNC} feature encoding has 16 descriptors, which are specified as follows:
 
 \begin{equation}\label{eq:DNC}
-    D(i,j) = \frac{N_{(ij)}}{N-1}, i,j \in \left\{A,C,T,G\right\}
+    D(i,j) = \frac{N_{(ij)}}{L-1}, i,j \in \left\{A,C,T,G\right\}
 \end{equation}
 
-where $N_{(ij)}$ is the number of dinucleotide represented by nucleotide types $i$ and $j$, and $N$ is the length of the \gls{DNA} sequence.
+\noindent where $N_{(ij)}$ is the number of dinucleotide represented by nucleotide types $i$ and $j$, and $L$ is the length of the \gls{DNA} sequence.
 
 \paragraph{Tri-Nucleotide Composition}
 
 \gls{TNC} feature encoding~\cite{Qiu2014IRSpot-TNCPseAAC:Components,Panwar2014PredictionInformation} reflects the \gls{DNA} sequence's composition of continuous trinucleotide pairs. \gls{TNC} feature encoding has 64 descriptors ('AAA', 'AAC', 'AAG', 'AAT',..., 'TTT'), which may be described as follows:
 
 \begin{equation}\label{eq:TNC}
-    D(i,j,k) = \frac{N_{(ijk)}}{N-2}, i,j,k \in \left\{A,C,T,G\right\}
+    D(i,j,k) = \frac{N_{(ijk)}}{L-2}, i,j,k \in \left\{A,C,T,G\right\}
 \end{equation}
 
-where $N_{(ijk)}$ is the number of trinucleotides represented by nucleotide types $i$, $j$ and $k$, and $N$ is the length of the \gls{DNA} sequence.
+\noindent where $N_{(ijk)}$ is the number of trinucleotides represented by nucleotide types $i$, $j$ and $k$, and $L$ is the length of the \gls{DNA} sequence.
 
 
 \paragraph{Composition of K-spaced nucleic acid pairs}
 
 \gls{CKSNAP} feature encoding~\cite{Zhang2013PredictionPairs,Liu2017BioSeq-Analysis:Approaches} denotes the composition of nucleotide pairs in a segment that are K-steps apart. Specifically, we estimated the frequency of a nucleotide pair at positions $i$ and $i + K + 1$, where $i$ = 1,..., ($l$ - $K$ - 1) and $l$ is the length of the sequence. For instance, given the sequence $ACGTACGT$ and $K$ = 2, the nucleotide AT will appear twice, with A and T occurring at positions 1 and 4, as well as positions 5 and 8.
-
 Regardless of the number of $K$, there are a maximum of 16 potential nucleotide pairings. This coding method represents the close interactions between nucleic acids inside a \gls{DNA} sequence segment.
 
 \paragraph{K-mer}
@@ -118,24 +119,24 @@ Regardless of the number of $K$, there are a maximum of 16 potential nucleotide 
 The K-mer encoding~\cite{Manavalan20194mCpred-EL:Genome,Huang2018BERMP:Approach} determines the occurrence frequencies of K adjacent nucleotides in a \gls{DNA} sequence, which was widely employed in enhancer discovery and regulatory sequence prediction. The K-mer (e.g. K = 4) descriptor is described as follows:
 
 \begin{equation}\label{eq:K-mer}
-    K(i) = \frac{N_{(i)}}{N}, i \in \left\{AAAA, AAAC, AAAG,...,TTTT\right\}
+    K(i) = \frac{N_{(i)}}{L}, i \in \left\{AAAA, AAAC, AAAG,...,TTTT\right\}
 \end{equation}
 
-where $N_{i}$ is the number of K-tuple type and $N$ is the length of the \gls{DNA} sequence.
+\noindent where $N_{i}$ is the number of K-tuple type and $L$ is the length of the \gls{DNA} sequence.
 
 The K-mer descriptor implemented additionally contains the \gls{RCKmer}. The \gls{RCKmer} encoding~\cite{Chen2019ILearn:Data} is a variation of the K-mer descriptor that computes the occurrence frequencies of reverse complement k adjacent nucleotides in a \gls{DNA} sequence. For example, a \gls{DNA} sequence has 16 types of 2-mers. Among them, 'TT' is the opposite of 'AA'. By deleting the reverse complimentary K-mers, there are only 10 varieties of 2-mers in the \gls{RCKmer} method (i.e. 'AA', 'AC', 'AG', 'AT', 'CA', 'CC', 'CG', 'GA', 'GC', and 'TA').
 
 \paragraph{Accumulated Nucleotide Frequency}
 
-\gls{ANF} feature encoding technique~\cite{Feng2019IDNA6mA-PseKNC:PseKNC} represents the nucleotide density and distribution of each nucleotide inside a \gls{DNA} segment. The following formula illustrates how to determine the \gls{ANF} of a \gls{DNA} segment of length $L$.
+\gls{ANF} feature encoding technique~\cite{Feng2019IDNA6mA-PseKNC:PseKNC} represents the nucleotide density and distribution of each nucleotide inside a \gls{DNA} segment. The following formula illustrates how to determine the \gls{ANF} of a \gls{DNA} segment of length $K$.
 
 \begin{equation}\label{eq:ANF}
-    d_{l} = \frac{1}{l}\sum_{j=1}^{l}f(n_{j}), f(n_{j}) = \begin{cases}1 & n_{j} = q\\0 & other\end{cases}, l = 1,...,L
+    d_{l} = \frac{1}{l}\sum_{j=1}^{l}f(n_{j}), f(n_{j}) = \begin{cases}1 & n_{j} = q\\0 & other\end{cases}, l = 1,...,K
 \end{equation}
 
-where $n_{j}$ is the nucleotide at the $j^{th}$ position and $q \in (A,C,T,G)$. When $l$ = 3, the nucleotide at the $l^{th}$ position in the sequence of 'TGCTACGC' is C, and the density of this position is calculated as $d_{3} = \frac{1}{3}\sum_{j=1}^{3}f(n_{j}) = \frac{1}{3} [f(C) + f(A) + f(C)] = \frac{1}{3} [1+0+1] = 0.667$. All $L$ locations' densities may be estimated identically. When computing the \gls{ANF} at each place, however, there would be $L$ values, which is not a vector of constant length. To circumvent this, the \gls{ANF} was only computed for three places located at 25, 50, and 75\% of the sequence's length.
+\noindent where $n_{j}$ is the nucleotide at the $j^{th}$ position and $q \in (A,C,T,G)$. When $l$ = 3, the nucleotide at the $l^{th}$ position in the sequence of 'TGCTACGC' is C, and the density of this position is calculated as $d_{3} = \frac{1}{3}\sum_{j=1}^{3}f(n_{j}) = \frac{1}{3} [f(C) + f(A) + f(C)] = \frac{1}{3} [1+0+1] = 0.667$. All $K$ locations' densities may be estimated identically. When computing the \gls{ANF} at each place, however, there would be $K$ values, which is not a vector of constant length. To circumvent this, the \gls{ANF} was only computed for three places located at 25, 50, and 75\% of the sequence's length.
 
-\paragraph{Dinucleotide-based Auto Covariance}
+\paragraph{Dinucleotide-based Auto-covariance}
 
 The first autocorrelation descriptor is called \gls{DAC}. As one of the multivariate modeling methods, autocorrelation can turn \gls{DNA} sequences of varying lengths into vectors of constant length by assessing the correlation between any two physicochemical variables. Autocorrelation generates two types of variables: autocorrelation (AC) between the same property and cross-covariance (CC) between properties with different values.
 
@@ -230,13 +231,13 @@ Consider a \gls{DNA} sequence $D$ containing $L$ nucleic acid residues, i.e.
     D = R_{1}\;R_{2}\;R_{3}\;...\;R_{L}
 \end{equation}
 
-where $R_{i}$ is the nucleic acid residue at the sequence position $i \in [1,2,...,L]$ and $L$ is the length of the \gls{DNA} sequence. The \gls{DAC} evaluates the correlation of the same physicochemical index between two dinucleotides separated by a distance of lag in the sequence. This correlation can be determined as follows:
+\noindent where $R_{i}$ is the nucleic acid residue at the sequence position $i \in [1,2,...,L]$ and $L$ is the length of the \gls{DNA} sequence. The \gls{DAC} evaluates the correlation of the same physicochemical index between two dinucleotides separated by a distance of lag in the sequence. This correlation can be determined as follows:
 
 \begin{equation}\label{eq:DAC}
     DAC(u,lag) = \frac{\sum_{i=1}^{L-lag-1}(P_{u}(R_{i}\;R_{i+1}) - \overline{P_{u}})(P_{u}(R_{i+lag}\;R_{i+lag+1}) - \overline{P_{u}})}{L-lag-1}
 \end{equation}
 
-where $u$ is a physicochemical index, $L$ is the length of the \gls{DNA} sequence, $P_{u}(R_{i}R_{i+1})$ is the numerical value of the physicochemical index $u$ for the dinucleotide $R_{i}R_{i+1}$ at the $i^{th}$ position, and $\overline{P_{u}}$ is the average value for physicochemical index $u$ in the sequence~\cite{Zhu2016RDNAse:CHINA}. The latter is calculated as follows:
+\noindent where $u$ is a physicochemical index, $L$ is the length of the \gls{DNA} sequence, $P_{u}(R_{i}R_{i+1})$ is the numerical value of the physicochemical index $u$ for the dinucleotide $R_{i}R_{i+1}$ at the $i^{th}$ position, and $\overline{P_{u}}$ is the average value for physicochemical index $u$ in the sequence~\cite{Zhu2016RDNAse:CHINA}. The latter is calculated as follows:
 
 \begin{equation}\label{eq:DAC-PU}
     \overline{P_{u}} = \frac{\sum_{j=1}^{L-1}P_{u}(R_{j}R_{j+1})}{L-1}
@@ -245,13 +246,14 @@ where $u$ is a physicochemical index, $L$ is the length of the \gls{DNA} sequenc
 The length of \gls{DAC} feature vector is $N*LAG$, where $N$ is the number of physicochemical indices and $LAG$ is the maximum of $lag, lag \in [1,2,...,LAG]$~\cite{Zhu2016RDNAse:CHINA}.
 
 \paragraph{Dinucleotide-based Cross Covariance}
-Given a \gls{DNA} sequence D (Eq~\ref{eq:d-seq}, the \gls{DCC} method examines the correlation between two distinct physicochemical indices between two dinucleotides separated by lag nucleic acids in the sequence. This correlation may be determined using:
+Given a \gls{DNA} sequence D (Eq~\ref{eq:d-seq}), the \gls{DCC} method examines the correlation between two distinct physicochemical indices between two dinucleotides separated by lag nucleic acids in the sequence. This correlation may be determined using:
 
 \begin{equation}\label{eq:DCC}
     DCC(u_{1},u_{2},lag) = \frac{\sum_{i=1}^{L-lag-1}(P_{u_{1}}(R_{i}\;R_{i+1}) - \overline{P_{u_{1}}})(P_{u_{2}}(R_{i+lag}\;R_{i+lag+1}) - \overline{P_{u_{2}}})}{L-lag-1}
 \end{equation}
 
-where $u_{1}$, $u_{2}$ are two different physicochemical indices, $L$ is the length of the \gls{DNA} sequence, $P_{u_{1}}(R_{i}R_{i+1}) (P_{u_{2}}(R_{i}R_{i+1}))$ is the physicochemical index value $u_{1}(u_{2})$ for the dinucleotide $R_{i}R_{i+1}$ $i^{th}$ position, and $\overline{P_{u_{1}}}\;(\overline{P_{u_{2}}})$ is the average value for physicochemical index value $u_{1}$, $u_{2}$ along in the sequence:
+\noindent where $u_{1}$, $u_{2}$ are two different physicochemical indices, $L$ is the length of the \gls{DNA} sequence, \\
+$P_{u_{1}}(R_{i}R_{i+1}) (P_{u_{2}}(R_{i}R_{i+1}))$ is the physicochemical index value $u_{1}(u_{2})$ for the dinucleotide $R_{i}R_{i+1}$ $i^{th}$ position, and $\overline{P_{u_{1}}}\;(\overline{P_{u_{2}}})$ is the average value for physicochemical index value $u_{1}$, $u_{2}$ along in the sequence:
 
 \begin{equation}\label{eq:DAC-PU2}
     \overline{P_{u}} = \frac{\sum_{j=1}^{L-1}P_{u}(R_{j}R_{j+1})}{L-1}
@@ -277,7 +279,7 @@ L-lag-2
 }
 \end{equation}
 
-where $u$ is a physicochemical index, $L$ is the length of the \gls{DNA} sequence, $P_{u}(R_{i}R_{i+1}R_{i+2})$ is the numerical value of the physicochemical index $u$ for the trinucleotide $R_{i}R_{i+1}R_{i+2}$ at $i^{th}$ position, $\overline{P_{u}}$ is the average value for physicochemical index $u$ along the whole sequence:
+\noindent where $u$ is a physicochemical index, $L$ is the length of the \gls{DNA} sequence, $P_{u}(R_{i}R_{i+1}R_{i+2})$ is the numerical value of the physicochemical index $u$ for the trinucleotide $R_{i}R_{i+1}R_{i+2}$ at $i^{th}$ position, $\overline{P_{u}}$ is the average value for physicochemical index $u$ along the whole sequence:
 
 \begin{equation}\label{eq:tac-2}
     \overline{P_{u}} = \frac{\sum_{j=1}^{L-2}P_{u}(R_{j}R_{j+1}R_{j+2})}{L-2}
@@ -293,7 +295,7 @@ Given a \gls{DNA} sequence D (Eq.~\ref{eq:d-seq}), the \gls{TCC} method examines
     TCC(u_{1},u_{2},lag) = \frac{\sum_{i=1}^{L-lag-2}(P_{u_{1}}(R_{i}\;R_{i+1}\;R_{i+2}) - \overline{P_{u_{1}}})(P_{u_{2}}(R_{i+lag}\;R_{i+lag+1}\;R_{i+lag+2}) - \overline{P_{u_{2}}})}{L-lag-2}
 \end{equation}
 
-where $u_{1}$, $u_{2}$ are two different physicochemical indices, $L$ is the length of the \gls{DNA} sequence, $P_{u_{1}}(R_{i}R_{i+1}R_{i+2}) (P_{u_{2}}(R_{i}R_{i+1}R_{i+2}))$ is the numerical value of the physicochemical index $u_{1}(u_{2})$ for the trinucleotide $R_{i}R_{i+1}R_{i+2}$ at $i^{th}$ position, $\overline{P_{u_{1}}}\;(\overline{P_{u_{2}}})$ is the average value for physicochemical index value $u_{1}$, $u_{2}$ in the sequence:
+\noindent where $u_{1}$, $u_{2}$ are two different physicochemical indices, $L$ is the length of the \gls{DNA} sequence, \\ $P_{u_{1}}(R_{i}R_{i+1}R_{i+2}) (P_{u_{2}}(R_{i}R_{i+1}R_{i+2}))$ is the numerical value of the physicochemical index $u_{1}(u_{2})$ for the trinucleotide $R_{i}R_{i+1}R_{i+2}$ at $i^{th}$ position, $\overline{P_{u_{1}}}\;(\overline{P_{u_{2}}})$ is the average value for physicochemical index value $u_{1}$, $u_{2}$ in the sequence:
 
 \begin{equation}\label{eq:TCC-PU2}
     \overline{P_{u}} = \frac{\sum_{j=1}^{L-2}P_{u}(R_{j}R_{j+1}R_{j+2})}{L-2}
@@ -320,13 +322,13 @@ Given a \gls{DNA} sequence D (Eq.~\ref{eq:d-seq}), if the feature vector of D is
     D = [f(A)\;f(C)\;f(G)\;f(T)]^{T}
 \end{equation}
 
-where $f(A)$, $f(C)$, $f(G)$ and $f(T)$ are the normalized occurrence frequencies of the nucleotides in the \gls{DNA} sequence and the $T$ is the transpose operator symbol. As shown by Eq. \ref{eq:PseDNC-0}, all the sequence-order information is lost when a \gls{DNA} sequence is represented by \gls{NAC}. If the \gls{DNC} is used to represent the \gls{DNA} sequence, rather than the four components provided in~\ref{eq:PseDNC-0}, the associated feature vector will have $4 * 4 = 16$ components, as shown in the following equation.
+\noindent where $f(A)$, $f(C)$, $f(G)$ and $f(T)$ are the normalized occurrence frequencies of the nucleotides in the \gls{DNA} sequence and the $T$ is the transpose operator symbol. As shown by Eq. \ref{eq:PseDNC-0}, all the sequence-order information is lost when a \gls{DNA} sequence is represented by \gls{NAC}. If the \gls{DNC} is used to represent the \gls{DNA} sequence, rather than the four components provided in~\ref{eq:PseDNC-0}, the associated feature vector will have $4 * 4 = 16$ components, as shown in the following equation.
 
 \begin{equation}\label{eq:PseDNC-1-1}
     D = [f(AA)\;f(AC)\;...\;f(TT)]^{T} = [f_{1}\;f_{2} \;...\;f_{16}]^{T}
 \end{equation}
 
-where each element is the normalized occurrence frequency of the dinucleotide in the \gls{DNA} sequence. Eq.~\ref{eq:PseDNC-1-1} contains the most contiguous local sequence-order information, but the formulation does not take into account any of the global sequence-order data.
+\noindent where each element is the normalized occurrence frequency of the dinucleotide in the \gls{DNA} sequence. Eq.~\ref{eq:PseDNC-1-1} contains the most contiguous local sequence-order information, but the formulation does not take into account any of the global sequence-order data.
 
 The global sequence-order information may be included into the feature vector for the \gls{DNA} sequence using the procedure that follows.
 
@@ -344,7 +346,7 @@ The global sequence-order information may be included into the feature vector fo
     \end{cases}
 \end{equation}
 
-where $\theta_{1}$ is the first-tier correlation factor that represents the sequence-order correlation between all the most contiguous dinucleotides in a sequence (Figure~\ref{fig:psednc_correlation}A); $\theta_{2}$, the second-tier correlation factor between all the second most contiguous dinucleotides (Figure~\ref{fig:psednc_correlation}B); $\theta_{3}$, the third-tier correlation factor between all the third most contiguous dinucleotides (Figure~\ref{fig:psednc_correlation}C) and so forth~\cite{Chen2013IRSpot-PseDNC:Composition}.
+\noindent where $\theta_{1}$ is the first-tier correlation factor that represents the sequence-order correlation between all the most contiguous dinucleotides in a sequence (Figure~\ref{fig:psednc_correlation}A); $\theta_{2}$, the second-tier correlation factor between all the second most contiguous dinucleotides (Figure~\ref{fig:psednc_correlation}B); $\theta_{3}$, the third-tier correlation factor between all the third most contiguous dinucleotides (Figure~\ref{fig:psednc_correlation}C) and so forth~\cite{Chen2013IRSpot-PseDNC:Composition}.
 
 \begin{figure}[htbp]
     \centering
@@ -360,10 +362,9 @@ In Eq.~\ref{eq:PseDNC-thetas}, the parameter $\lambda$ is an integer that repres
     \Theta(R_{i}R_{i+1}, R_{j}R_{j+1}) = \frac{1}{\mu}\sum_{u=1}^{\mu}[P_{u} (R_{i}R_{i+1}) - P_{u}(R_{j}R_{j+1})]^{2}
 \end{equation}
 
-where $\mu$ is the number of local \gls{DNA} structural features taken into account in the current investigation, which is equal to six. $P_{u} (R_{i}R_{i+1})$ represents the numerical value of the \textit{u-th} $(u = 1,2,...,\mu)$ \gls{DNA} local property for the dinucleotide $R_{i}R_{i+1}$ at position $i$. And $P_{u}(R_{j}R_{j+1})$ is the corresponding value for the dinucleotide $R_{j}R_{j+1}$ at position $j$.
+\noindent where $\mu$ is the number of local \gls{DNA} structural features taken into account in the current investigation, which is equal to six. $P_{u} (R_{i}R_{i+1})$ represents the numerical value of the \textit{u-th} $(u = 1,2,...,\mu)$ \gls{DNA} local property for the dinucleotide $R_{i}R_{i+1}$ at position $i$. And $P_{u}(R_{j}R_{j+1})$ is the corresponding value for the dinucleotide $R_{j}R_{j+1}$ at position $j$.
 
-Numerous lines of research have shown that certain local \gls{DNA} structural properties, such as angular parameters (twist, tilt, and roll) and translational parameters (shift, slide, and rise), play significant roles in biological processes, including protein-\gls{DNA} interactions, chromosome formation, and higher-order organization of the genetic material~\cite{Goni2008DNAlive:Scale,Goni2007DeterminingCalculations}. Listed in Table
-~\ref{tab:original_numerical} are the original numerical values for twist $P_{1}(R_{i}R_{i+1})$⁠, tilt $P_{2}(R_{i}R_{i+1})$⁠, roll $P_{3}(R_{i}R_{i+1})$⁠, shift $P_{4}(R_{i}R_{i+1})$⁠, slide $P_{5}(R_{i}R_{i+1})$⁠, and rise $P_{6}(R_{i}R_{i+1})$⁠, respectively, where $R_{i}R_{i+1}$ represents the 16 possible dinucleotides. Only these six \gls{DNA} local physical structural properties were used to calculate \gls{PseDNC}, explaining why $\mu = 6$ in in Eq.~\ref{eq:PseDNC-5}.
+Numerous lines of research have shown that certain local \gls{DNA} structural properties, such as angular parameters (twist, tilt, and roll) and translational parameters (shift, slide, and rise), play significant roles in biological processes, including protein-\gls{DNA} interactions, chromosome formation, and higher-order organization of the genetic material~\cite{Goni2008DNAlive:Scale,Goni2007DeterminingCalculations}. Listed in Table \ref{tab:original_numerical} are the original numerical values for twist $P_{1}(R_{i}R_{i+1})$⁠, tilt $P_{2}(R_{i}R_{i+1})$⁠, roll $P_{3}(R_{i}R_{i+1})$⁠, shift $P_{4}(R_{i}R_{i+1})$⁠, slide $P_{5}(R_{i}R_{i+1})$⁠, and rise $P_{6}(R_{i}R_{i+1})$⁠, respectively, where $R_{i}R_{i+1}$ represents the 16 possible dinucleotides. Only these six \gls{DNA} local physical structural properties were used to calculate \gls{PseDNC}, explaining why $\mu = 6$ in Eq.~\ref{eq:PseDNC-5}.
 
 \begin{table}[ht]
 
@@ -403,7 +404,7 @@ Prior to inserting into Eq.~\ref{eq:PseDNC-5}, the values listed in Table~\ref{t
     P_{u}(R_{i}R_{i+1}) = \frac{P_{u}(R_{i}R_{i+1}) - <P_{u}>}{SD(P_{u})}
 \end{equation}
 
-where the symbol $<>$ is averaging the amount present for each of the 16 dinucleotides, (Eq.~\ref{eq:PseDNC-1-1}), and $SD$ is the corresponding standard deviation. Table~\ref{tab:normalized_values} provides the normalized values of $P_{u}(R_{i}R_{i+1})\;(u = 1,2,...,6)$ which were derived using the standard conversion calculation (Eq.~\ref{eq:PseDNC-6}) from the Table~\ref{tab:original_numerical} original values.
+\noindent where the symbol $<>$ is averaging the amount present for each of the 16 dinucleotides, (Eq.~\ref{eq:PseDNC-1-1}), and $SD$ is the corresponding standard deviation. Table~\ref{tab:normalized_values} provides the normalized values of $P_{u}(R_{i}R_{i+1})\;(u = 1,2,...,6)$ which were derived using the standard conversion calculation (Eq.~\ref{eq:PseDNC-6}) from the Table~\ref{tab:original_numerical} original values.
 
 \begin{table}[ht]
 
@@ -444,13 +445,13 @@ It is conceivable to draw the conclusion that a collection of sequence-correlati
     D = [d_{1}\;d_{2}\;...\;d_{16}\;d_{16+1}\;...\;d_{16+\lambda}]^{T}
 \end{equation}
 
-where
+\noindent where
 
 \begin{equation}\label{eq:PseDNC-9}
     d_{k} = \begin{cases}\frac{f_{k}}{\sum_{i=1}^{16} f_{i} + w\sum_{j=1}^{\lambda}\theta_{j}} & 1 \le k \le 16\\\frac{w\theta_{k-16}}{\sum_{i=1}^{16} f_{i} + w\sum_{j=1}^{\lambda}\theta_{j}} & 17 \le k \le 16 + \lambda\end{cases}
 \end{equation}
 
-where $f_{k}$ is normalized occurrence frequency of the $k$-th dinucleotide in the sequence, $\theta_{j}$ is given by Eq.~\ref{eq:PseDNC-thetas}, $\lambda$ represents the number of tiers of the correlations in the sequence and $w$ is the weight factor. As a result, instead of a 16-dimensional vector (Eq.~\ref{eq:PseDNC-1-1}), the \gls{DNA} sequence is formed by a $(16 + \lambda) - D$ vector as stated in Eq.~\ref{eq:PseDNC-8}. The \gls{DNA} sequences with very different lengths may be turned into a collection of feature vectors with the same dimension thanks to the extra $\lambda$ correlation factors, in addition to allowing for the inclusion of significant global sequence-order effects. This last requirement is crucial since many classification engines demand a collection of vectors with a certain number of components as input.
+\noindent where $f_{k}$ is normalized occurrence frequency of the $k$-th dinucleotide in the sequence, $\theta_{j}$ is given by Eq.~\ref{eq:PseDNC-thetas}, $\lambda$ represents the number of tiers of the correlations in the sequence and $w$ is the weight factor. As a result, instead of a 16-dimensional vector (Eq.~\ref{eq:PseDNC-1-1}), the \gls{DNA} sequence is formed by a $(16 + \lambda) - D$ vector as stated in Eq.~\ref{eq:PseDNC-8}. The \gls{DNA} sequences with very different lengths may be turned into a collection of feature vectors with the same dimension thanks to the extra $\lambda$ correlation factors, in addition to allowing for the inclusion of significant global sequence-order effects. This last requirement is crucial since many classification engines demand a collection of vectors with a certain number of components as input.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -466,7 +467,7 @@ Given a \gls{DNA} sequence D (Eq.~\ref{eq:d-seq}), the feature vector of D is de
     D = [d_{1}\;d_{2}\;...\;d_{4^{k}}\;d_{4^{k+1}}\;...\;d_{4^{k+ \lambda}}]^{T}
 \end{equation}
 
-where
+\noindent where
 
 \begin{equation}\label{eq:PseKNC-du}
     d_{u} = 
@@ -478,30 +479,32 @@ where
     \end{cases}
 \end{equation}
 
-where $\lambda$ is the number of the number of tiers of the correlations in a sequence; $f_{u}$ is the normalized occurrence frequency of the $u$-th dinucleotide in the sequence; $w$ is a weigth factor; $\theta_{j}$ is given by:
+\noindent where $\lambda$ is the number of tiers of the correlations in a sequence; $f_{u}$ is the normalized occurrence frequency of the $u$-th dinucleotide in the sequence; $w$ is a weight factor; $\theta_{j}$ is given by:
 
 \begin{equation}\label{eq:PseKNC-thetas}
 \theta_{j} = \frac{1}{L-j-1} \sum_{i=1}^{L-j-1}\Theta(R_{i}R_{i+1}, R_{i+j}R_{i+j+1}), \;j\in{1,2,...,\lambda;\lambda < L}
 \end{equation}
 
-which is the $j$-tier structural correlation factor between all the $j^{th}$ most
+\noindent which is the $j$-tier structural correlation factor between all the $j^{th}$ most
 contiguous dinucleotides. The correlation function $\Theta(R_{i}R_{i+1}, R_{i+j}R_{i+j+1})$ is defined by:
 
 \begin{equation}\label{eq:PseKNC-correlation}
     \Theta(R_{i}R_{i+1}, R_{i+j}R_{i+j+1}) = \frac{1}{\mu}\sum_{v=1}^{\mu}[P_{v} (R_{i}R_{i+1}) - P_{v}(R_{i+j}R_{i+j+1})]^{2}
 \end{equation}
 
-where $\mu$ is the number of physicochemical indices reflecting the local \gls{DNA} structural properties (Table~\ref{tab:normalized_values}); $P_{v} (R_{i}R_{i+1})$ is the value of the $v^{th}$ physicochemical indice for the dinucleotide $R_{i}R_{i+1}$ at $i^{th}$ position and $P_{v} (R_{i+j}R_{i+j+1})$ is the corresponding value for the dinucleotide $R_{i+j}R_{i+j+1}$ at $i+j^{th}$ position.
+\noindent where $\mu$ is the number of physicochemical indices reflecting the local \gls{DNA} structural properties (Table~\ref{tab:normalized_values}); $P_{v} (R_{i}R_{i+1})$ is the value of the $v^{th}$ physicochemical indice for the dinucleotide $R_{i}R_{i+1}$ at $i^{th}$ position and $P_{v} (R_{i+j}R_{i+j+1})$ is the corresponding value for the dinucleotide $R_{i+j}R_{i+j+1}$ at $(i+j)^{th}$ position.
 
 \subsection{Encoders}
 
-\gls{DNA} sequences consist of continuous sequential letters from a 4-letter alphabet, and, as mentioned in~\ref{sec:dna-dl}, it is first required to transform the string sequence into a numerical value in order to create an input matrix for the model. The encoders implemented were one-hot encoding, chemical encoding and k-mer one-hot encoding.
+\gls{DNA} sequences consist of continuous sequential letters from a 4-letter alphabet, and, as mentioned in Section~\ref{sec:dna-dl}, it is first required to transform the string sequence into a numerical value in order to create an input matrix for the model. However, as mentioned in Section~\ref{sec:setup}, an additional letter was included in the alphabet in order to fill sequences to a determined length - the letter N.
+
+The encoders implemented were one-hot encoding, chemical encoding and k-mer one-hot encoding.
 
 \paragraph{One-Hot Encoding}
 
-One-hot encoding is extensively used in deep learning models and is well suited for most models. In addition, the performance of one-hot encoding is very stable across various data sets, however an appropriate model is necessary to get acceptable performance. This approach preserves the positional information of each nucleotide in sequences but disregards high-order relationships between nucleotides and previous biological information~\cite{Zhang2019ModelingNetwork}.
+One-hot encoding is extensively used in deep learning models and is well suited for most models. In addition, the performance of one-hot encoding is very stable across various data sets. However, an appropriate model is necessary to get acceptable performance. This approach preserves the positional information of each nucleotide in sequences but disregards high-order relationships between nucleotides and previous biological information~\cite{Zhang2019ModelingNetwork}.
 
-As a result, \gls{A} is encoded to (1, 0, 0, 0), \gls{C} to (0, 1, 0, 0), \gls{G} to (0, 0, 1, 0), and \gls{T} to (0, 0, 0, 1). The final vector's dimension will be $L * 4$ where $L$ is the length of the sequence.
+As a result, \gls{A} is encoded to (1, 0, 0, 0), \gls{C} to (0, 1, 0, 0), \gls{G} to (0, 0, 1, 0), \gls{T} to (0, 0, 0, 1), and N to (0, 0, 0, 0). The final vector's dimension will be $L * 4$ where $L$ is the length of the sequence.
 
 \paragraph{Chemical Encoding}
 
@@ -530,13 +533,13 @@ The four nucleic acids each have unique chemical characteristics~\cite{GolamBari
 
 Three coordinates $(x, y, z)$ were utilized to represent the chemical characteristics of the four nucleotides, and the values 0 and 1 were given to the coordinates in order to incorporate these attributes. If $x$, $y$, and $z$ coordinates respectively represent the ring structure, the hydrogen bond, and the chemical functionality, then each nucleotide may be encoded as ($x_{i}$, $y_{i}$, $z_{i}$), where $x_{i}$ represents the ring structure, $y_{i}$ represents the hydrogen bond, and $z_{i}$ represents the chemical functionality.
 
-As a result, \gls{A} is encoded to (1, 1, 1), \gls{C} to (0, 0, 1), \gls{G} to (1, 0, 0), and \gls{T} to (0, 1, 0). The final vector's dimension will be $L * 3$ where $L$ is the length of the sequence.
+As a result, \gls{A} is encoded to (1, 1, 1), \gls{C} to (0, 0, 1), \gls{G} to (1, 0, 0), \gls{T} to (0, 1, 0) and N to (0, 0, 0). The final vector's dimension will be $L * 3$ where $L$ is the length of the sequence.
 
 
 \paragraph{K-mer One-Hot Encoding}
 
 As mentioned before, using one-hot encoding on \gls{DNA} sequences solely preserves the positional information of each nucleotide. Recent investigations, however, have shown that including high-order dependencies among nucleotides may enhance the efficacy of \gls{DNA} models~\cite{Zhang2019ModelingNetwork}. To capture the dependencies, all instances are turned into image-like matrices of high-order relationships using the k-mer encoding method.
 
-For example, in 1-mer one-hot encoding (which is the same as the regular one-hot encoding), each nucleotide is mapped into a vector of size 4 ($A = [1, 0, 0, 0]^{T}$, $C = [0, 1, 0, 0]^{T}$, $G = [0, 0, 1, 0]^{T}$, and $T = [0, 0, 0, 1]^{T}$). The 2-mer encoding is based on the dependencies between two nearby nucleotides, and each dinucleotide is mapped to a 16-dimensional vector ($AA = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]^{T}$, ..., $TT = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]^{T})$. The 3-mer encoding is based on the dependencies between three nearby nucleotides, and each dinucleotide is mapped to a 64-dimensional vector ($AAA = [1, 0, 0, 0, ..., 0, 0, 0, 0, 0]^{T}$, ... , $TTT = [0, 0, 0, 0, ..., 0, 0, 0, 0, 0, 1]^{T}$).
+For example, in 1-mer one-hot encoding, each nucleotide is mapped into a vector of size 5 ($A = [1, 0, 0, 0, 0]^{T}$, $C = [0, 1, 0, 0, 0]^{T}$, $G = [0, 0, 1, 0 ,0]^{T}$, $T = [0, 0, 0, 1, 0]^{T}$, and $N = [0, 0, 0, 0, 1]^{T}$). The 2-mer one hot encoding is based on the dependencies between two nearby nucleotides, and each dinucleotide is mapped to a 25-dimensional vector ($AA = [1, 0, 0, ..., 0]^{T}$, ..., $NN = [0, 0, 0, ..., 1]^{T})$. The 3-mer one hot encoding is based on the dependencies between three nearby nucleotides, and each trinucleotide is mapped to a 125-dimensional vector ($AAA = [1, 0, 0, 0, ..., 0, 0, 0, 0, 0]^{T}$, ... , $NNN = [0, 0, 0, 0, ..., 0, 0, 0, 0, 0, 1]^{T}$).
 
-As a result, the final vector's dimension will be $(L - k + 1) * 4^{k}$ where $L$ is the length of the sequence.
+As a result, the final vector's dimension will be $(L - k + 1) * 5^{k}$ where $L$ is the length of the sequence.

@@ -1,4 +1,4 @@
-\chapter{Machine and Deep Learning in DNA sequence classification} \label{sec:dna_sequences}
+\chapter{Machine and Deep Learning in DNA sequence classification} \label{chap:dna_sequences}
 
 \section{DNA sequences} \label{subsec:what_are_dna_sequences}
 
@@ -10,7 +10,7 @@ The four chemical bases of the \gls{DNA} double helix always connect with the sa
 
 Since the Human Genome Project's completion~\cite{TheProject}, technological advancements and automation have made it possible for individual genes to be sequenced on a regular basis, by reducing the amount of time it takes to perform the sequencing and also reducing its cost. Some labs can sequence over 100,000 billion bases per year, and a few thousand dollars is enough to sequence an entire \gls{genome}~\cite{2020DNASheet}. 
 
-\section{DNA sequence classification - Traditional ML}
+\section{DNA sequence classification - Traditional Machine Learning}
 
 Understanding the connections between protein structure and function is one of Biology's main goals. The basic amino acid sequences provide particularly helpful structural information for understanding the structure-function paradigm. The idea that sequences with similar structures have comparable functions is used to classify \gls{DNA} sequences. Sequence alignment techniques such as BLAST~\cite{Altschul1990BasicTool} and FASTA~\cite{Pearson1988ImprovedComparison} have historically been used to determine sequence similarity, and the majority of sequence classification is still done by these methods. This decision is based on two primary assumptions: the functional components have similar sequence properties, and the functional elements' relative order is preserved across sequences. These assumptions are applicable in a wide range of situations, but they are not universal~\cite{LoBosco2017DeepClassification}.
 
@@ -57,7 +57,7 @@ Another important stage in sequence analysis is the creation of predictors. Many
 %Descriptors 
 %Algorithms  
 
-\section{DNA sequence classification - DL}\label{sec:dna-dl}
+\section{DNA sequence classification - Deep Learning}\label{sec:dna-dl}
 
 A common difficulty in data mining is classifying biological sequences as a specific data type. This is a tough challenge, due to the non-numerical properties of biological sequence elements, the sequence interaction between sequence elements, and the variable sequence length~\cite{Yang2020ReviewDNA}. \gls{ML} methods for supervised classification tasks are, without a doubt, heavily reliant on the feature selection stage, and it is required to detect and quantify relevant aspects of the objects to classify in order to develop a suitable representation. \gls{DL} models have recently been shown to be capable of automatically extracting meaningful features from input patterns~\cite{LoBosco2017DeepClassification}. This is possible due to feature learning techniques that \gls{DL} methods possess. These techniques allow the automatic identification of the representations required for feature detection from raw data, meaning that the human feature engineering is removed, and the machine will learn the features instead. As a result, \gls{DL} models only need the sequence itself as input, unlike \gls{ML} models that require the previously calculated features. However, first it is required to transform the string sequence into a numerical value in order to create an input matrix for the model~\cite{Yang2020ReviewDNA}. Sequential encoding, one-hot encoding, and k-mer encoding are three popular methods for sequence encoding~\cite{Choong2017EvaluationMethod} and Table~\ref{tab:encoding_methods} summarizes the differences between them. The encoding technique is also significant for classification accuracy.
 
