@@ -105,7 +105,7 @@ As the objective is to discover the optimal class weight to train the models for
 	\caption{Results of different weights in the essential genes dataset.}
 	\label{tab:weights}
     \centering
-    \begin{tabular}{lllllll}
+    \begin{tabular}{llllll}
     	\toprule
     	\textbf{Model} & \textbf{Feature Extraction} & \textbf{Weights} & \textbf{Accuracy}  & \textbf{MCC} & \textbf{Confusion Matrix}\\\midrule
     	
@@ -123,7 +123,7 @@ As the objective is to discover the optimal class weight to train the models for
         \end{bmatrix}$
         \\
         
-        \textbf{MLP} & \textbf{Descriptor} & \textbf{1:3} & \textbf{0.980} & \textbf{0.918} & 
+        MLP & Descriptor & \textbf{1:3} & \textbf{0.980} & \textbf{0.918} & 
     	$\begin{bmatrix}
             2487 & 38\\ 
             20 & 382
@@ -137,7 +137,7 @@ As the objective is to discover the optimal class weight to train the models for
         \end{bmatrix}$
         \\\midrule
         
-        \textbf{CNN} & \textbf{One-Hot} & \textbf{1:1} & \textbf{0.964} & \textbf{0.845} & 
+        CNN & One-Hot & \textbf{1:1} & \textbf{0.964} & \textbf{0.845} & 
     	$\begin{bmatrix}
             2478 & 47\\ 
             59 & 343
@@ -172,7 +172,7 @@ As the objective is to discover the optimal class weight to train the models for
         \end{bmatrix}$
         \\
         
-        \textbf{LSTM} & \textbf{One-Hot} & \textbf{1:2} & \textbf{0.978} & \textbf{0.907} & 
+        LSTM & One-Hot & \textbf{1:2} & \textbf{0.978} & \textbf{0.907} & 
     	$\begin{bmatrix}
             2490 & 35\\ 
             30 & 372
@@ -193,7 +193,7 @@ As the objective is to discover the optimal class weight to train the models for
         \end{bmatrix}$
         \\\midrule
         
-        \textbf{GRU} & \textbf{One-Hot} & \textbf{1:1} & \textbf{0.982} & \textbf{0.925} & 
+        GRU & One-Hot & \textbf{1:1} & \textbf{0.982} & \textbf{0.925} & 
     	$\begin{bmatrix}
             2497 & 28\\ 
             24 & 378
@@ -227,14 +227,14 @@ As the objective is to discover the optimal class weight to train the models for
 
 By reviewing the data in Table~\ref{tab:weights}, one could conclude that class weights have a minimal effect on the performance of each model. In fact, in certain models, the best results can be achieved without any class weight distribution at all. Due to the robustness of the models, it is reasonable to infer that the class imbalance is not a significant concern. In addition, it can be inferred that, with the exception of the \gls{CNN} model, every other model achieves roughly the same level of accuracy regardless of the weight distribution, confirming the belief that the class imbalance is not a significant issue.
 
-Therefore, no weight class distribution was selected for training the remaining feature extraction techniques and model combinations in the essential genes dataset, since it was the best performing in half of the models.
+Therefore, no weight class distribution was selected for training the remaining feature extraction techniques and model combinations in the essential genes dataset, since it was the best performing in half of the models and also the one that obtained the highest value of MCC.
 
 
 \section{Results}\label{lab:results}
 
 To acquire the best possible results, it was necessary to test every combination of feature extraction - model - dataset. There are a total of four types of feature extraction techniques, ten distinct models, and two datasets. This means that, so far, $4*10*2 = 80$ possibilities would need testing. 
 
-However, one of the feature extraction methods, the k-mer one-hot encoding, receives a parameter \textit{k} defined by the user. The number of possibilities will rapidly increase since every value of $k$ would have to be tested, and $0 < k < L$, where $L$ is the length of the sequence. Given a sequence with length 2000 (sequences' length in the essential genes dataset), the number of possibilities that would need testing would be $(3+2000) * 10 * 3 = 60090$. Due to the practical impossibility of testing this number of possibilities, a maximum value for $k$ had to be established. It is also important to mention that the bigger the value of $k$, the larger the feature vector will be. With $k = 10$, every word of 10 letters (AAAAAAAAAA, AAAAAAAAAT, ..., NNNNNNNNNN) had to be calculated and assigned a unique array to represent it. This would result in 9765625 possible combinations, with each one assigned to an array of also $5^{10} = 9765625$ elements (containing exclusively zeros with the exception of a single 1 at a single position in the array). Then, the sequence had to be separated into $L-k+1 = 2000 - 10 + 1 = 1991$ 10-mers and assign the respective array of 9765625 elements, resulting in a vector size of $1991 * 9765625 = 1.94e10$.
+However, one of the feature extraction methods, the k-mer one-hot encoding, receives a parameter \textit{k} defined by the user. The number of possibilities will rapidly increase since every value of $k$ would have to be tested, and $0 < k < L$, where $L$ is the length of the sequence. Given a sequence with length 2000 (sequences' length in the essential genes dataset), the number of possibilities that would need testing would be $(3+2000) * 10 * 2 = 40060$. Due to the practical impossibility of testing this number of possibilities, a maximum value for $k$ had to be established. It is also important to mention that the bigger the value of $k$, the larger the feature vector will be. With $k = 10$, every word of 10 letters (AAAAAAAAAA, AAAAAAAAAT, ..., NNNNNNNNNN) had to be calculated and assigned a unique array to represent it. This would result in 9765625 possible combinations, with each one assigned to an array of also $5^{10} = 9765625$ elements (containing exclusively zeros with the exception of a single 1 at a single position in the array). Then, the sequence had to be separated into $L-k+1 = 2000 - 10 + 1 = 1991$ 10-mers and assign the respective array of 9765625 elements, resulting in a vector size of $1991 * 9765625 = 1.94e10$.
 
 The time necessary to create this encoding in addition to the time required for the model to process all of this input and train with it makes large values of $k$ impractical. This was taken into account while determining the maximum value of $k$, so that this value would be related with the maximum acceptable amount of time to wait for classification results. Some experiments to find the maximum value of $k$ were performed in the essential genes dataset, which is the dataset with the largest sequences, and the \gls{CNN} model, which is the \gls{DL} model with the fastest train times. They can be found below in Table~\ref{tab:stats_kmer}.
 
@@ -255,17 +255,63 @@ The time necessary to create this encoding in addition to the time required for 
     \end{tabular}
 \end{table}
 
-As anticipated, both the size of the feature vector and the training time for the model increase exponentially with the value of $k$. In fact, the vector size is so large that it was not possible to train the model for $k=4$ due to limited computation resources, especifically memory. Considering the results of Table~\ref{tab:stats_kmer}, it was determined that the maximum value of k would be 3.
+As anticipated, both the size of the feature vector and the training time for the model increase exponentially with the value of $k$. In fact, the vector size is so large that it was not possible to train the model for $k=4$ due to limited computation resources, specifically memory. Considering the results of Table~\ref{tab:stats_kmer}, it was determined that the maximum value of k would be 3.
 
-So, at this point, there are 5 possible feature extraction methods (descriptors, one-hot, chemical, k-mer one-hot with $k = 2$, and k-mer one-hot with $k = 3$), 10 different models and 2 datasets, resulting in 100 possibilities that would need testing. However, some of these combinations are incompatible (some models only accept encodings and vice-versa). Therefore, 74 combinations were examined, and the results are shown below in Table~\ref{tab:primer_results} and in Table~\ref{tab:eg_results}. It also worth mentioning that these results were obtained using the cross entropy loss function, which is the default loss function to use for binary classification problems~\cite{BrownleeHowNetworks}, and the Adam optimizer, which is one of the most popular optimizers and was the one used in both case studies.
+So, at this point, there are 5 possible feature extraction methods (descriptors, one-hot, chemical, k-mer one-hot with $k = 2$, and k-mer one-hot with $k = 3$), 10 different models and 2 datasets, resulting in 100 possibilities that would need testing. However, some of these combinations are incompatible (some models only accept encodings and vice-versa). Therefore, 74 combinations were examined, and the results are shown below in Table~\ref{tab:primer_results_compact} and in Table~\ref{tab:eg_results_compact}. It also worth mentioning that these results were obtained using the cross entropy loss function, which is the default loss function to use for binary classification problems~\cite{BrownleeHowNetworks}, and the Adam optimizer, which is one of the most popular optimizers and was the one used in both case studies. 
 
-\input{Chapters/primer_results}
+Also, in unbalanced dataset problems, the accuracy is not a good indicator of the performance of the model, since it can be easily skewed by the majority class. A dataset containing, for example, 100 sequences, 90 of which are negatively labeled and 10 of which are positively labeled, a model that always predicts false would achieve an accuracy of 90\%. However, this model would be useless in practice. The MCC and confusion matrices were also calculated for each combination, since they are a more accurate measure of the performance of the model. 
 
-\input{Chapters/eg_results}
+Tables~\ref{tab:primer_results_compact} and~\ref{tab:eg_results_compact} only provide the accuracy metric in order to compare the results of both case studies, but the complete results for both datasets with other metrics (MCC and confusion matrix) can be found in the supplementary material in Appendix~\ref{cha:complete_results} (Table~\ref{tab:primer_results} and~\ref{tab:eg_results}).
 
-Analyzing both tables, it can be concluded that all feature extraction methods and models performed well in both datasets. The results in the Primer dataset are better than the Essential Genes ones, which is expected since the results from both studies also show that the Primer dataset is easier to classify than the Essential Genes one (the authors from the Primer study achieved 98\% accuracy and the authors from the Essential Genes study achieved 90\% accuracy). The results obtained outperformed the results from both studies, achieving 100\% accuracy on the Primer dataset using \gls{LSTM}, Bi-LSTM, \gls{GRU} and Bi-GRU models, and 98\% accuracy on the Essential Genes dataset using ??? combination. 
+\begin{table}[ht]
+	\caption{Accuracy results on Primer dataset.}
+	\label{tab:primer_results_compact}
+    \centering
+    \begin{tabular}{llllll}
+    	\toprule
+    	\textbf{Model} & \textbf{Descriptors} & \textbf{One-hot} & \textbf{Chemical} & \textbf{2-mer one-hot} & \textbf{3-mer one-hot}\\\midrule
+    	
+    	MLP & 0.958 & --- & --- & --- & --- \\\midrule
+        CNN & --- & 0.990 & 0.988 & 0.985 & 0.995 \\\midrule 
+        LSTM & --- & 0.998 & 0.998 & 1 & 1 \\\midrule 
+        BiLSTM & --- & 1 & 1 & 1 & 1 \\\midrule 
+        GRU & --- & 1 & 1 & 1 & 0.995 \\\midrule 
+        BiGRU & --- & 0.998 & 1 & 0.993 & 1 \\\midrule 
+        CNN-LSTM & --- & 0.978 & 0.985 & 0.990 & 0.998 \\\midrule 
+        CNN-BiLSTM & --- & 0.988 & 0.960 & 0.995 & 0.998 \\\midrule 
+        CNN-GRU & --- & 0.985 & 0.995 & 0.995 & 0.985 \\\midrule 
+        CNN-BiGRU & --- & 0.993 & 0.990 & 0.995 & 0.998 \\ 
+        
+    	\bottomrule
+    \end{tabular}
+\end{table}
 
-These results show that \gls{RNN} (\gls{LSTM}, \gls{GRU}, and their variations) models are the best choice for this problem, since they achieved the best results in both datasets. \gls{RNN} models are well-known for their capacity to process sequential data, which is most likely why these models produced the best results.
+\begin{table}[ht]
+	\caption{Accuracy results on Essential Genes dataset.}
+	\label{tab:eg_results_compact}
+    \centering
+    \begin{tabular}{llllll}
+    	\toprule
+    	\textbf{Model} & \textbf{Descriptors} & \textbf{One-hot} & \textbf{Chemical} & \textbf{2-mer one-hot} & \textbf{3-mer one-hot}\\\midrule
+    	
+    	MLP & 0.978 & --- & --- & --- & --- \\\midrule
+        CNN & --- & 0.964 & 0.950 & 0.965 & 0.978 \\\midrule 
+        LSTM & --- & 0.974 & 0.976 & 0.981 & 0.982 \\\midrule
+        BiLSTM & --- & 0.984 & 0.972 & 0.981 & \textbf{0.986} \\\midrule 
+        GRU & --- & 0.982 & 0.975 & 0.978 & 0.985 \\\midrule 
+        BiGRU & --- & 0.976 & 0.976 & 0.982 & 0.983 \\\midrule 
+        CNN-LSTM & --- & 0.958 & 0.942 & 0.971 & 0.973 \\\midrule 
+        CNN-BiLSTM & --- & 0.960 & 0.936 & 0.967 & 0.976 \\\midrule 
+        CNN-GRU & --- & 0.963 & 0.943 & 0.970 & 0.978 \\\midrule 
+        CNN-BiGRU & --- & 0.962 & 0.946 & 0.971 & 0.977 \\
+        
+    	\bottomrule
+    \end{tabular}
+\end{table}
+
+Analyzing both tables, it can be concluded that all feature extraction methods and models performed well in both datasets. The results in the Primer dataset are better than the Essential Genes ones, which is expected since the results from both studies also show that the Primer dataset is easier to classify than the Essential Genes one (the authors from the Primer study achieved 98\% accuracy and the authors from the Essential Genes study achieved 90\% accuracy). The results obtained outperformed the results from both studies, achieving 100\% accuracy on the Primer dataset using \gls{LSTM}, BiLSTM, \gls{GRU} and BiGRU models, and 98\% accuracy on the Essential Genes dataset using BiLSTM/3-mer one-hot combination. 
+
+The tables show that \gls{RNN} (\gls{LSTM}, \gls{GRU}, and their variations) models are the best choice for this problem, since they achieved the best results in both datasets. \gls{RNN} models are well-known for their capacity to process sequential data, which is most likely why these models produced the best results.
 
 \section{Results Reproducibility}
 
@@ -273,10 +319,10 @@ A machine learning pipeline has several nondeterministic stages. For instance, t
 
 However, this problem is easily tackled by using the random seed that libraries like TensorFlow and PyTorch provide. By adjusting the random seed value, it is possible to assure that random numbers are created consistently across runs. This concept may seem counterintuitive at first, since one could believe that adjusting the random seed would manipulate the algorithm's randomness. This, however, is not true. The random seed is used to guarantee that the same random numbers are produced every time, and if the random seed value is altered, so will the random numbers. This is a highly helpful feature that can help in reproducing the results, and it is a common practice in machine learning.
 
-This line of thought can raise the question of how to choose the random seed value for optimal results. The answer to this question is that there is no single answer. The random seed value must be initially set and it is common practice to experiment with various values to see which one works best. It is, however, expected that the random seed value will not have a significant impact on the results and that the results will be similar across different values.
+This line of thought can raise the question of how to choose the random seed value for optimal results. The answer to this question is that there is no single answer. The random seed value must be initially set and it is common practice to experiment with multiple values. It is, however, expected that the random seed value will not have a significant impact on the results and that the results will be similar across different values.
 
-In this study, three different random seed values were used: 24, 42, and 2022. The results from the previous section were obtained using the random seed value of ?????. To see if the results are consistent across different random seed values, the same experiment was repeated using the other two random seed values, but only using the MLP and CNN models to reduce the number of experiments as they are already a good indicator of the consistency of the results. The results are shown in Table ??????.
+In this study, three different random seed values were tested: 24, 42, and 2022. The results from the previous section were obtained using the random seed value of 42. To see if the results are consistent across different random seed values, the same experiment was repeated using the other two random seed values, but only using the \gls{MLP} and \gls{CNN} models to reduce the number of experiments as they are already a good indicator of the consistency of the results. The results in the essential genes dataset are shown in Table~\ref{tab:seed_results}. 
 
-% meter aqui tabela
+\input{Chapters/seed_results}
 
-By analyzing Table ???, it is possible to deduce that the results obtained with the other two random seed values were quite comparable to those obtained with random seed value ?????. This is a good indication that the random seed value does not have a significant impact on the results.
+By analyzing Table~\ref{tab:seed_results}, it is possible to deduce that the results obtained with the other two random seed values were quite comparable to those obtained with random seed value 42. In addition, the best results are obtained using the MLP model and the CNN/3-mer one-hot combination in all three seeds, which proves the consistency of the models as well. It is thus feasible to infer that the random seed value has no significant effect on the results.

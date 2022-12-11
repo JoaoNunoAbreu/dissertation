@@ -1,0 +1,122 @@
+\begin{table}[ht]
+    \caption{Results on Essential Genes dataset with different seeds.}
+	\label{tab:seed_results}
+	\centering
+\begin{tabular}{llllll}
+    
+	\textbf{Seed} & \textbf{Model} & \textbf{Feature Extraction} & \textbf{Accuracy}  & \textbf{MCC} & \textbf{Confusion Matrix}\\\midrule
+	
+	24 & MLP & Descriptor & 0.980 & 0.917 & 
+	$\begin{bmatrix}
+        2495 & 30\\ 
+        28 & 374
+    \end{bmatrix}$
+    \\
+
+    24 & CNN & One-Hot & 0.970 & 0.874 &
+	$\begin{bmatrix}
+        2482 & 43\\ 
+        44 & 358
+    \end{bmatrix}$
+    \\
+
+    24 & CNN & Chemical & 0.939 & 0.720 &
+	$\begin{bmatrix}
+        2498 & 27\\ 
+        151 & 251
+    \end{bmatrix}$
+    \\
+
+    24 & CNN & 2-mer one-hot & 0.978 & 0.908 & 
+	$\begin{bmatrix}
+        2499 & 26\\ 
+        37 & 365
+    \end{bmatrix}$
+    \\
+
+    24 & CNN & 3-mer one-hot & 0.980 & 0.914 & 
+	$\begin{bmatrix}
+        2494 & 31\\ 
+        29 & 373
+    \end{bmatrix}$
+    \\\midrule
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    42 & MLP & Descriptor & 0.978 & 0.911 & 
+	$\begin{bmatrix}
+        2485 & 40\\ 
+        23 & 379
+    \end{bmatrix}$
+    \\
+
+    42 & CNN & One-Hot & 0.964 & 0.845 &
+	$\begin{bmatrix}
+        2478 & 47\\ 
+        59 & 343
+    \end{bmatrix}$
+    \\
+
+    42 & CNN & Chemical & 0.950 & 0.782 &
+	$\begin{bmatrix}
+        2476 & 49\\ 
+        96 & 306
+    \end{bmatrix}$
+    \\
+
+    42 & CNN & 2-mer one-hot & 0.965 & 0.855 & 
+	$\begin{bmatrix}
+        2462 & 63\\ 
+        40 & 362
+    \end{bmatrix}$
+    \\
+
+    42 & CNN & 3-mer one-hot & 0.978 & 0.912 & 
+	$\begin{bmatrix}
+        2483 & 42\\ 
+        21 & 381
+    \end{bmatrix}$
+    \\\midrule
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    2022 & MLP & Descriptor & 0.981 & 0.920 & 
+	$\begin{bmatrix}
+        2501 & 24\\ 
+        31 & 371
+    \end{bmatrix}$
+    \\
+
+    2022 & CNN & One-Hot & 0.954 & 0.796 &
+	$\begin{bmatrix}
+        2488 & 37\\ 
+        98 & 304
+    \end{bmatrix}$
+    \\
+
+    2022 & CNN & Chemical & 0.942 & 0.742 &
+	$\begin{bmatrix}
+        2464 & 61\\ 
+        110 & 292
+    \end{bmatrix}$
+    \\
+
+    2022 & CNN & 2-mer one-hot & 0.972 & 0.877 & 
+	$\begin{bmatrix}
+        2498 & 27\\ 
+        56 & 346
+    \end{bmatrix}$
+    \\
+
+    2022 & CNN & 3-mer one-hot & 0.981 & 0.920 & 
+	$\begin{bmatrix}
+        2500 & 25\\ 
+        30 & 372
+    \end{bmatrix}$
+    \\
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+	\bottomrule
+\end{tabular}
+\end{table}
